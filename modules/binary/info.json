@@ -1,0 +1,7 @@
+{
+  "name": "Binary converter",
+  "description": "Convert binary to text and vice versa",
+  "version": "1.0",
+  "icon": "Binary",
+  "contributors": ["EthanHazel"]
+}
