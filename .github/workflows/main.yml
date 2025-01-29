@@ -12,7 +12,7 @@ jobs:
         run: |
           # Set the required variables
           repo_owner="WispTools" 
-          repo_name="wisp"  
+          repo_name="wisp-web"  
           event_type="trigger-wisp" 
           service="module-trigger"
           version="v1.0.0"
