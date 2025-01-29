@@ -1,0 +1,17 @@
+name: Trigger Wisp Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify-wisp:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send repository dispatch event to Wisp
+        run: |
+          curl -X POST -H "Accept: application/vnd.github+json" \
+          -H "Authorization: token ${{ secrets.ACTIONS_DEPLOY_PAT }}" \
+          https://api.github.com/repos/EthanHazel/wisp/dispatches \
+          -d '{"event_type": "deploy_wisp"}'
