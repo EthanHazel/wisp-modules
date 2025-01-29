@@ -11,7 +11,7 @@ jobs:
       - name: Trigger Workflow in Another Repository
         run: |
           # Set the required variables
-          repo_owner="EthanHazel" 
+          repo_owner="WispTools" 
           repo_name="wisp"  
           event_type="trigger-wisp" 
           service="module-trigger"
