@@ -26,6 +26,23 @@ function setSlug(value) {
   localStorage.setItem("slug", value); // Save slug to localStorage
 }
 
+function pascalCaseToKebabCase(str) {
+  return str
+    .replace(/([A-Z])/g, " $1")
+    .trim()
+    .toLowerCase()
+    .replace(" ", "-");
+}
+
+function setIcon(icon) {
+  const CONTAINER = document.getElementById("moduleIcon");
+  const ICON = document.createElement("i");
+  ICON.setAttribute("data-lucide", pascalCaseToKebabCase(icon));
+  CONTAINER.innerHTML = "";
+  CONTAINER.appendChild(ICON);
+  lucide.createIcons();
+}
+
 function loadModule(slug) {
   slug = slug.toLowerCase();
   slug = slug.replace(/ /g, "-");
@@ -34,13 +51,25 @@ function loadModule(slug) {
   fetch(MODULE.src).then((response) => {
     if (response.status === 404) {
       alert("Module not found");
-      console.log(localStorage.getItem("slug"));
       setSlug(localStorage.getItem("slug"));
       loadModule(localStorage.getItem("slug"));
     } else {
       setSlug(slug);
+      loadModuleInfo(slug);
     }
   });
+}
+
+function loadModuleInfo(slug) {
+  fetch("modules/" + slug + "/info.json")
+    .then((response) => response.json())
+    .then((data) => {
+      document.getElementById("moduleName").innerText = data.name;
+      document.getElementById("moduleDescription").innerText = data.description;
+      document.getElementById("moduleContributors").innerText =
+        data.contributors.join(", ");
+      setIcon(data.icon);
+    });
 }
 
 // Function to check for errors
@@ -120,4 +149,21 @@ document.getElementById("slug").addEventListener("keydown", function (event) {
   }
 });
 
+document.getElementById("hideButton").addEventListener("click", function () {
+  document.getElementById("sideBar").classList.add("ui-hidden");
+  document.getElementById("content").classList.add("ui-hidden");
+  document.getElementById("showButton").classList.add("ui-hidden");
+});
+
+document.getElementById("showButton").addEventListener("click", function () {
+  document.getElementById("sideBar").classList.remove("ui-hidden");
+  document.getElementById("content").classList.remove("ui-hidden");
+  document.getElementById("showButton").classList.remove("ui-hidden");
+});
+
 window.addEventListener("resize", checkError);
+
+window.onload = function () {
+  checkError();
+  loadModule(SLUG.value);
+};

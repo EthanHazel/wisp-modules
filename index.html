@@ -8,19 +8,18 @@
   </head>
   <body>
     <div id="sideBar">
-      <h2>Wisp Module Kit</h2>
       <div id="moduleLoader">
         <input type="text" id="slug" placeholder="Slug" />
         <input type="button" value="Load" id="loadButton" />
       </div>
       <div id="moduleInfo">
-        <h3>Module Name</h3>
-        <p>Module Description</p>
-        <p>Module Contributors</p>
+        <div id="moduleIcon"></div>
+        <p id="moduleName">Module Name</p>
+        <p id="moduleDescription">Module Description</p>
+        <p id="moduleContributors">Module Contributors</p>
       </div>
       <div id="dimensions">
-        <label for="width">Width</label>
-        <span>
+        <span class="dimensionInput">
           <input
             type="range"
             min="100"
@@ -38,8 +37,7 @@
             max="1920"
           />
         </span>
-        <label for="height">Height</label>
-        <span>
+        <span class="dimensionInput">
           <input
             type="range"
             min="100"
@@ -57,13 +55,19 @@
             max="1280"
           />
         </span>
-        <input type="button" value="Set to desktop size" id="desktop" />
-        <input type="button" value="Set to mobile size" id="mobile" />
+        <span class="dimensionButtons">
+          <button type="button" value="Set to desktop size" id="desktop">
+            <i data-lucide="monitor"></i>
+          </button>
+          <button type="button" value="Set to mobile size" id="mobile">
+            <i data-lucide="smartphone"></i>
+          </button>
+        </span>
       </div>
-      <input type="button" value="Hide UI" />
-      <input type="button" value="Create Pull Request" />
+      <input type="button" value="Hide UI" id="hideButton" />
       <p id="error"></p>
     </div>
+    <input type="button" value="Show UI" id="showButton" />
     <div id="content">
       <iframe
         id="moduleFrame"
@@ -73,4 +77,8 @@
     </div>
   </body>
   <script src="./kit/js/master.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
 </html>
