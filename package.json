@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "connect-livereload": "^0.6.1",
+    "express": "^4.21.2",
+    "fs": "^0.0.1-security",
+    "livereload": "^0.9.3",
+    "path": "^0.12.7",
+    "prompt-sync": "^4.2.0"
+  },
+  "scripts": {
+    "create": "node kit/scripts/createModule",
+    "kit": "node kit/scripts/kitServer"
+  }
+}
