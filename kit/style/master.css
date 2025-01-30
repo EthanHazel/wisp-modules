@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#sideBar {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 360px;
+  height: calc(100vh - 64px);
+  background-color: white;
+  color: black;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  border-right: 1px solid black;
+  padding: 32px;
+}
+
+#content {
+  display: flex;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: calc(100% - 360px - 64px);
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+#content iframe {
+  border: none;
+}
+
+#dimensions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#error {
+  color: red;
+}

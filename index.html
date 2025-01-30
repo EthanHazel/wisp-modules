@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./kit/style/master.css" />
+    <title>Wisp Module Kit</title>
+  </head>
+  <body>
+    <div id="sideBar">
+      <h2>Wisp Module Kit</h2>
+      <input type="text" placeholder="Slug" />
+      <div id="moduleInfo">
+        <h3>Module Name</h3>
+        <p>Module Description</p>
+        <p>Module Contributors</p>
+      </div>
+      <div id="dimensions">
+        <label for="width">Width</label>
+        <span>
+          <input
+            type="range"
+            min="100"
+            max="1920"
+            step="1"
+            value="1280"
+            id="width"
+          />
+          <input
+            type="number"
+            name="width"
+            id="widthNum"
+            value="1280"
+            min="100"
+            max="1920"
+          />
+        </span>
+        <label for="height">Height</label>
+        <span>
+          <input
+            type="range"
+            min="100"
+            max="1280"
+            step="1"
+            value="720"
+            id="height"
+          />
+          <input
+            type="number"
+            name="height"
+            id="heightNum"
+            value="720"
+            min="100"
+            max="1280"
+          />
+        </span>
+        <input type="button" value="Set to desktop size" id="desktop" />
+        <input type="button" value="Set to mobile size" id="mobile" />
+      </div>
+      <input type="button" value="Hide UI" />
+      <input type="button" value="Create Pull Request" />
+      <p id="error"></p>
+    </div>
+    <div id="content">
+      <iframe
+        id="moduleFrame"
+        src="./modules/base64/index.html"
+        frameborder="0"
+      ></iframe>
+    </div>
+  </body>
+  <script src="./kit/js/master.js"></script>
+</html>
