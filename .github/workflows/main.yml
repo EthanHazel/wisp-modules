@@ -28,4 +28,17 @@ jobs:
         uses: tsickert/discord-webhook@v6.0.0
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          content: "New Wisp Module Update Deployed"
+          content: |
+            New Wisp Module Update Deployed
+            {{ range $commit := github.event.commits }}
+              Commit {{ $commit.id }}:
+              {{ range $file := $commit.added }}
+                + {{ $file }}
+              {{ end }}
+              {{ range $file := $commit.modified }}
+                M {{ $file }}
+              {{ end }}
+              {{ range $file := $commit.removed }}
+                - {{ $file }}
+              {{ end }}
+            {{ end }}
