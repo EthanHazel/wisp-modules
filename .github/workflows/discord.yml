@@ -38,8 +38,8 @@ jobs:
               embeds: [{
                 title: `<:repo:1334986816180322364><:sep:1334987026747097180>${context.repo.repo}`,
                 color: 16777215,
-                author: {
-                  name: context.payload.head_commit.author.username,
+                footer: {
+                  text: "Committed by " + context.payload.head_commit.author.username,
                 },
                 description: `[\`${context.payload.head_commit.message}\`](https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${context.sha})\n` + "```ansi\n" + modifiedFiles.join('\n') + "```"
               }]
