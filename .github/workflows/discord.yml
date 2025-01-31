@@ -28,6 +28,8 @@ jobs:
               if (file.status === 'removed') return '\u001b[2;35m⤬ ' + file.filename + '\u001b[0m';
             }).filter(Boolean);
 
+            console.log(modifiedFiles.join('\n'));
+
             // Create the raw-data JSON object
             const rawData = {
               embeds: [{
