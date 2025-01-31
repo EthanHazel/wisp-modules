@@ -36,7 +36,7 @@ jobs:
                   name: context.payload.head_commit.message,
                   url: `https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${context.sha}`
                 },
-                description: `<:user:1334968977952080044> [${context.payload.head_commit.author.name}](${context.payload.head_commit.author.url})\n\n${modifiedFiles.join('\n')}`
+                description: `<:user:1334968977952080044> **${context.payload.head_commit.author.name}**\n\n${modifiedFiles.join('\n')}`
               }]
             };
 
