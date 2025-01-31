@@ -1,0 +1,57 @@
+name: Send Discord Webhook
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  discord-notification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Get modified files
+        id: get-modified-files
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const commit = await github.rest.repos.getCommit({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: context.sha
+            });
+            const modifiedFiles = commit.data.files.map(file => {
+              if (file.status === 'modified') return '🔹 ' + file.filename;
+              if (file.status === 'added') return '➕ ' + file.filename;
+              if (file.status === 'removed') return '❌ ' + file.filename;
+            }).filter(Boolean);
+
+            // Create the raw-data JSON object
+            const rawData = {
+              embeds: [{
+                color: 2723899,
+                author: {
+                  name: context.payload.head_commit.message,
+                  url: `https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${context.sha}`
+                },
+                description: `Author: ${context.payload.head_commit.author.name}\n\n${modifiedFiles.join('\n')}`
+              }]
+            };
+
+            // Write the raw-data JSON to a file
+            const fs = require('fs');
+            const path = './raw-data.json';
+            fs.writeFileSync(path, JSON.stringify(rawData, null, 2));
+            core.setOutput('raw-data-path', path);
+
+      - name: Discord Webhook Action
+        uses: tsickert/discord-webhook@v6.0.0
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          raw-data: ${{ steps.get-modified-files.outputs.raw-data-path }}
+
+      - name: Clean up raw-data file
+        run: |
+          rm ${{ steps.get-modified-files.outputs.raw-data-path }}
