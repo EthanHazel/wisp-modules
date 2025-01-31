@@ -28,8 +28,7 @@ jobs:
         uses: tsickert/discord-webhook@v6.0.0
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          embed-color: 2723899
+          embed-author-name: ${{ github.event.head_commit.message }}
+          embed-author-url: https://github.com/${{ github.repository }}/commit/${{ github.sha }}
           embed-title: ${{ github.event.head_commit.message }}
-          embed-color: #29903b
-          embed-author-name: ${{ github.event.head_commit.author.name }}
-          embed-footer-text: |
-            Commit Hash: ${{ github.sha }}
