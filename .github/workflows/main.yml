@@ -37,8 +37,12 @@ jobs:
               repo: context.repo.repo,
               ref: context.sha
             });
-            const modifiedFiles = commit.data.files.filter(file => file.status === 'modified').map(file => file.filename);
-            return modifiedFiles.join(', ');
+            const modifiedFiles = commit.data.files.map(file => {
+              if (file.status === 'modified') return '🔹 ' + file.filename;
+              if (file.status === 'added') return '➕ ' + file.filename;
+              if (file.status === 'removed') return '❌ ' + file.filename;
+            }).filter(Boolean);
+            return modifiedFiles.join('\n');
 
       - name: Discord Webhook Action
         uses: tsickert/discord-webhook@v6.0.0
@@ -49,4 +53,5 @@ jobs:
           embed-author-url: https://github.com/${{ github.repository }}/commit/${{ github.sha }}
           embed-description: |
             Author: ${{ github.event.head_commit.author.name }}
-            Modified files: ${{ steps.get-modified-files.outputs.result }}
+
+            ${{ steps.get-modified-files.outputs.result }}
