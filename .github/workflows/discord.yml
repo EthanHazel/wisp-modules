@@ -37,7 +37,7 @@ jobs:
                   url: `https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${context.sha}`,
                   icon_url: context.payload.head_commit.author.avatar_url
                 },
-                description: `<:user:1334968977952080044> **${context.payload.head_commit.author.name}**\n\n${modifiedFiles.join('\n')}`
+                description: context.payload.head_commit.author.avatar_url `<:user:1334968977952080044> **${context.payload.head_commit.author.name}**\n\n${modifiedFiles.join('\n')}`
               }]
             };
 
