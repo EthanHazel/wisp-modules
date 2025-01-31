@@ -31,6 +31,7 @@ jobs:
             // Create the raw-data JSON object
             const rawData = {
               embeds: [{
+                title: context.payload.head_commit.message,
                 color: 2723899,
                 author: {
                   name: context.payload.head_commit.author.username,
@@ -38,7 +39,6 @@ jobs:
                   icon_url: `https://avatars.githubusercontent.com/${context.payload.head_commit.author.username}`
                 },
                 description: modifiedFiles.join('\n')
-                title: context.payload.head_commit.message
               }]
             };
 
