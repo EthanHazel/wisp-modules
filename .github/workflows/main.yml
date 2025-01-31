@@ -5,9 +5,9 @@ on:
     branches:
       - main
     paths:
-      - ./modules/**
-      - ./scripts/**
-      - ./style/**
+      - ../modules/**
+      - ../scripts/**
+      - ../style/**
 
 jobs:
   trigger-deployment:
