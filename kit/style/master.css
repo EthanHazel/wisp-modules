@@ -56,11 +56,12 @@ body {
   height: 100vh;
   align-items: center;
   justify-content: center;
-  transition: width 0.2s ease-in-out;
+  transition: width 0.2s ease-in-out, right 0.2s ease-in-out;
 }
 
 #content.ui-hidden {
   width: 100%;
+  right: 0;
 }
 
 #showButton {
