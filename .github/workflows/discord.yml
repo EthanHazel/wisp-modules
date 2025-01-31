@@ -23,9 +23,9 @@ jobs:
               ref: context.sha
             });
             const modifiedFiles = commit.data.files.map(file => {
-              if (file.status === 'modified') return '<:gitmodified:1334967883226157140> `' + file.filename + '`';
-              if (file.status === 'added') return '<:gitplus:1334967884484448341> `' + file.filename + '`';
-              if (file.status === 'removed') return '<:gitminus:1334967885843529738> `' + file.filename + '`';
+              if (file.status === 'modified') return '[2;34m- ' + file.filename + '[0m';
+              if (file.status === 'added') return '[2;36m+ ' + file.filename + '[0m';
+              if (file.status === 'removed') return '[2;2m[0m ' + file.filename + '[0m[2;2m[0m';
             }).filter(Boolean);
 
             // Create the raw-data JSON object
@@ -34,11 +34,11 @@ jobs:
                 title: context.payload.head_commit.message,
                 color: 2723899,
                 author: {
-                  name: context.payload.head_commit.author.username,
+                  name: `Commit from ${context.payload.head_commit.author.username}`,
                   url: `https://github.com/${context.payload.head_commit.author.username}/`,
                   icon_url: `https://avatars.githubusercontent.com/${context.payload.head_commit.author.username}`
                 },
-                description: modifiedFiles.join('\n')
+                description: "```ansi\nmodifiedFiles.join('\n')```"
               }]
             };
 
