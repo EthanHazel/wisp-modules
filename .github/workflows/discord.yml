@@ -23,9 +23,12 @@ jobs:
               ref: context.sha
             });
             const modifiedFiles = commit.data.files.map(file => {
-              if (file.status === 'modified') return '\u001b[2;34m- ' + file.filename + '\u001b[0m';
-              if (file.status === 'added') return '\u001b[2;36m+ ' + file.filename + '\u001b[0m';
-              if (file.status === 'removed') return '\u001b[2;35m⤬ ' + file.filename + '\u001b[0m';
+              const symbols = {
+                'modified': '\u001b[2;34m- ',
+                'added': '\u001b[2;36m+ ',
+                'removed': '\u001b[2;35m⤬ ',
+              };
+              return symbols[file.status] + file.filename + '\u001b[0m';
             }).filter(Boolean);
 
             console.log(modifiedFiles.join('\n'));
