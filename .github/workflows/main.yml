@@ -42,7 +42,7 @@ jobs:
               if (file.status === 'added') return '➕ ' + file.filename;
               if (file.status === 'removed') return '❌ ' + file.filename;
             }).filter(Boolean);
-            return modifiedFiles.join('\n');
+            core.setOutput('result', modifiedFiles.join('\n'));
 
       - name: Discord Webhook Action
         uses: tsickert/discord-webhook@v6.0.0
@@ -54,4 +54,4 @@ jobs:
           embed-description: |
             Author: ${{ github.event.head_commit.author.name }}
 
-            `${{ steps.get-modified-files.outputs.result }}`
+            ${{ steps.get-modified-files.outputs.result }}
