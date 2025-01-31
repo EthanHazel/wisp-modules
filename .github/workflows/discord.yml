@@ -36,7 +36,7 @@ jobs:
             // Create the raw-data JSON object
             const rawData = {
               embeds: [{
-                color: 2723899,
+                color: 131313131313,
                 author: {
                   name: `Commit from ${context.payload.head_commit.author.username}`,
                   url: `https://github.com/${context.payload.head_commit.author.username}/`,
