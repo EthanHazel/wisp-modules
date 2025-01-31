@@ -37,7 +37,8 @@ jobs:
                   url: `https://github.com/${context.payload.head_commit.author.username}/`,
                   icon_url: `https://avatars.githubusercontent.com/${context.payload.head_commit.author.username}`
                 },
-                description: `**${context.payload.head_commit.message}**`
+                description: modifiedFiles.join('\n')
+                title: context.payload.head_commit.message
               }]
             };
 
