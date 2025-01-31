@@ -20,6 +20,7 @@ const CONVERT_RGB = document.getElementById("convert-rgb");
 const CONVERT_HSV = document.getElementById("convert-hsv");
 const CONVERT_HSL = document.getElementById("convert-hsl");
 const CONVERT_CMYK = document.getElementById("convert-cmyk");
+const CLEAR = document.getElementById("clear");
 
 // Helper functions for color conversion
 function hexToRgb(hex) {
@@ -229,6 +230,10 @@ function updateAllFields(r, g, b) {
   updateColorDisplay(r, g, b);
 }
 
+function clearAllFields() {
+  updateAllFields(0, 0, 0);
+}
+
 // Event listeners
 CONVERT_HEX.addEventListener("click", () => {
   let hex = HEX_INPUT.value;
@@ -300,4 +305,8 @@ CONVERT_CMYK.addEventListener("click", () => {
   } else {
     alert("Invalid CMYK values!");
   }
+});
+
+CLEAR.addEventListener("click", () => {
+  clearAllFields();
 });

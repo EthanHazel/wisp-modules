@@ -9,65 +9,51 @@
     <title>Wisp Module</title>
   </head>
   <body>
-    <div class="tab-container stretch-vertically" title="Convert">
-      <div class="tab-content" title="Text to Binary">
-        <div class="row-container wrap-9-by-16 stretch-vertically">
-          <div class="container">
-            <textarea
-              type="text"
-              id="text-input"
-              placeholder="Enter text..."
-            ></textarea>
-          </div>
+    <div class="tab-con h-100" title="Convert">
+      <div class="tab-view h-100" title="Text to Binary">
+        <div class="container row w-100 h-100">
+          <textarea
+            type="text"
+            id="text-input"
+            class="w-100"
+            placeholder="Enter text..."
+          ></textarea>
 
-          <div class="container">
-            <textarea
-              type="text"
-              id="binary-output"
-              class="monospace"
-              placeholder="Output..."
-              readonly
-            ></textarea>
-          </div>
+          <textarea
+            type="text"
+            id="binary-output"
+            class="monospace w-100"
+            placeholder="Output..."
+            readonly
+          ></textarea>
         </div>
       </div>
 
-      <div class="tab-content" title="Binary to Text">
-        <div class="row-container wrap-9-by-16 stretch-vertically">
-          <div class="container">
-            <textarea
-              type="text"
-              id="binary-input"
-              class="monospace"
-              placeholder="Enter binary..."
-            ></textarea>
-          </div>
+      <div class="tab-view h-100" title="Binary to Text">
+        <div class="container row w-100 h-100">
+          <textarea
+            type="text"
+            id="binary-input"
+            class="monospace w-100"
+            placeholder="Enter binary..."
+          ></textarea>
 
-          <div class="container">
-            <textarea
-              type="text"
-              id="text-output"
-              placeholder="Output..."
-              readonly
-            ></textarea>
-          </div>
+          <textarea
+            type="text"
+            class="w-100"
+            id="text-output"
+            placeholder="Output..."
+            readonly
+          ></textarea>
         </div>
       </div>
     </div>
 
-    <div class="row-container border-top">
-      <div class="container">
-        <button id="clear-button" icon="trash">Clear</button>
-      </div>
-      <div class="container">
-        <button id="paste-button" icon="clipboard">Paste</button>
-      </div>
-      <div class="container">
-        <button id="copy-button" icon="copy">Copy</button>
-      </div>
-      <div class="container">
-        <button id="swap-button" icon="download">Save</button>
-      </div>
+    <div class="container row w-100 border-top">
+      <button class="w-100" id="clear-button" icon="trash">Clear</button>
+      <button class="w-100" id="paste-button" icon="clipboard">Paste</button>
+      <button class="w-100" id="copy-button" icon="copy">Copy</button>
+      <button class="w-100" id="swap-button" icon="download">Save</button>
     </div>
   </body>
   <script src="https://unpkg.com/lucide@latest"></script>

@@ -1,19 +1,17 @@
 // Tab container code -------------------------------------------------------
 
 var containerNames = [];
-document.querySelectorAll(".tab-container").forEach(function (tabContainer) {
+document.querySelectorAll(".tab-con").forEach(function (tabContainer) {
   var containerName = tabContainer.getAttribute("title");
 
   if (!containerName) {
-    console.error("Error: tab-container is missing a 'title' attribute.");
+    console.error("Error: tab-con is missing a 'title' attribute.");
     return;
   }
 
   if (containerNames.includes(containerName)) {
     console.error(
-      "Error: multiple tab-containers have the same title: '" +
-        containerName +
-        "'"
+      "Error: multiple tab-cons have the same title: '" + containerName + "'"
     );
     return;
   }
@@ -24,12 +22,12 @@ document.querySelectorAll(".tab-container").forEach(function (tabContainer) {
   radios.classList.add("radios");
   tabContainer.insertBefore(radios, tabContainer.firstChild);
 
-  var tabs = tabContainer.querySelectorAll(".tab-content");
+  var tabs = tabContainer.querySelectorAll(".tab-view");
   tabs.forEach(function (tab, index) {
     var title = tab.getAttribute("title");
 
     if (!title) {
-      console.error("Error: tab-content is missing a 'title' attribute.");
+      console.error("Error: tab-view is missing a 'title' attribute.");
       return;
     }
 

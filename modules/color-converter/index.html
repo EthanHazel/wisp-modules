@@ -9,46 +9,73 @@
     <title>Wisp Module</title>
   </head>
   <body>
-    <div class="row-container">
-      <div class="container" id="color"></div>
-      <div class="container">
+    <div class="container h-100 padless gapless">
+      <div class="container w-100 h-100 border-bottom">
+        <div id="color" class="w-100 h-100 outlined round-min"></div>
+      </div>
+      <div class="container w-100 overflow">
         <input type="text" id="hex-input" placeholder="Hex" />
 
-        <hr />
-        <input type="number" id="hex-red" placeholder="R" />
-        <input type="number" id="hex-green" placeholder="G" />
-        <input type="number" id="hex-blue" placeholder="B" />
-        <hr />
-        <input type="number" id="hsv-hue" placeholder="H" />
-        <input type="number" id="hsv-saturation" placeholder="S" />
-        <input type="number" id="hsv-value" placeholder="V" />
-        <hr />
-        <input type="number" id="hsl-hue" placeholder="H" />
-        <input type="number" id="hsl-saturation" placeholder="S" />
-        <input type="number" id="hsl-lightness" placeholder="L" />
-        <hr />
-        <input type="number" id="cmyk-cyan" placeholder="C" />
-        <input type="number" id="cmyk-magenta" placeholder="M" />
-        <input type="number" id="cmyk-yellow" placeholder="Y" />
-        <input type="number" id="cmyk-key" placeholder="K" />
-        <hr />
-
-        <button type="button" id="convert-hex" icon="refresh-cw">
-          Convert from HEX
-        </button>
-        <button type="button" id="convert-rgb" icon="refresh-cw">
-          Convert from RGB
-        </button>
-        <button type="button" id="convert-hsv" icon="refresh-cw">
-          Convert from HSV
-        </button>
-        <button type="button" id="convert-hsl" icon="refresh-cw">
-          Convert from HSL
-        </button>
-        <button type="button" id="convert-cmyk" icon="refresh-cw">
-          Convert from CMYK
-        </button>
+        <div class="container row overflow padless">
+          <input class="w-100" type="number" id="hex-red" placeholder="R" />
+          <input class="w-100" type="number" id="hex-green" placeholder="G" />
+          <input class="w-100" type="number" id="hex-blue" placeholder="B" />
+        </div>
+        <div class="container row overflow padless">
+          <input class="w-100" type="number" id="hsv-hue" placeholder="H" />
+          <input
+            class="w-100"
+            type="number"
+            id="hsv-saturation"
+            placeholder="S"
+          />
+          <input class="w-100" type="number" id="hsv-value" placeholder="V" />
+        </div>
+        <div class="container row overflow padless">
+          <input class="w-100" type="number" id="hsl-hue" placeholder="H" />
+          <input
+            class="w-100"
+            type="number"
+            id="hsl-saturation"
+            placeholder="S"
+          />
+          <input
+            class="w-100"
+            type="number"
+            id="hsl-lightness"
+            placeholder="L"
+          />
+        </div>
+        <div class="container row overflow padless">
+          <input class="w-100" type="number" id="cmyk-cyan" placeholder="C" />
+          <input
+            class="w-100"
+            type="number"
+            id="cmyk-magenta"
+            placeholder="M"
+          />
+          <input class="w-100" type="number" id="cmyk-yellow" placeholder="Y" />
+          <input class="w-100" type="number" id="cmyk-key" placeholder="K" />
+        </div>
       </div>
+    </div>
+    <div class="container row border-top">
+      <button type="button" class="w-100" id="convert-hex" icon="refresh-cw">
+        Use HEX
+      </button>
+      <button type="button" class="w-100" id="convert-rgb" icon="refresh-cw">
+        Use RGB
+      </button>
+      <button type="button" class="w-100" id="convert-hsv" icon="refresh-cw">
+        Use HSV
+      </button>
+      <button type="button" class="w-100" id="convert-hsl" icon="refresh-cw">
+        Use HSL
+      </button>
+      <button type="button" class="w-100" id="convert-cmyk" icon="refresh-cw">
+        Use CMYK
+      </button>
+      <button type="button" class="w-100" id="clear" icon="trash">Clear</button>
     </div>
   </body>
   <script src="https://unpkg.com/lucide@latest"></script>
