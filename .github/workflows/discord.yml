@@ -23,7 +23,7 @@ jobs:
               ref: context.sha
             });
             const modifiedFiles = commit.data.files.map(file => {
-              if (file.status === 'modified') return '<:gitmodified:1334967883226157140> ` + file.filename + '`';
+              if (file.status === 'modified') return '<:gitmodified:1334967883226157140> `' + file.filename + '`';
               if (file.status === 'added') return '<:gitplus:1334967884484448341> `' + file.filename + '`';
               if (file.status === 'removed') return '<:gitminus:1334967885843529738> `' + file.filename + '`';
             }).filter(Boolean);
@@ -36,7 +36,7 @@ jobs:
                   name: context.payload.head_commit.message,
                   url: `https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${context.sha}`
                 },
-                description: `<:user:1334968977952080044> ${context.payload.head_commit.author.name}\n\n${modifiedFiles.join('\n')}`
+                description: `<:user:1334968977952080044> [${context.payload.head_commit.author.name}](${context.payload.head_commit.author.html_url})\n\n${modifiedFiles.join('\n')}`
               }]
             };
 
