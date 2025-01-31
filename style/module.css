@@ -28,6 +28,7 @@ body {
   flex-direction: column;
   gap: 16px;
   font-family: "Inter", sans-serif;
+  justify-content: space-between;
 }
 
 /* Common styles */
@@ -63,6 +64,17 @@ body {
   text-align: center;
 }
 
+.stretch-vertically {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+
+  > *:not(.radios) {
+    flex: 1;
+  }
+}
+
 .text-center {
   text-align: center;
 }
@@ -93,8 +105,12 @@ body {
   padding: 16px;
 }
 
-@media screen and (max-width: 720px), screen and (max-aspect-ratio: 9/16) {
-  .row-container {
+.row-container.stretch-vertically {
+  padding: 0 16px;
+}
+
+@media screen and (max-aspect-ratio: 9/16), (max-width: 700px) {
+  .row-container.wrap-9-by-16 {
     flex-direction: column;
     gap: 0px;
   }
@@ -192,7 +208,7 @@ textarea:focus {
 
 textarea {
   resize: none;
-  aspect-ratio: 16 / 9;
+  height: 100%;
 }
 
 /* Styles for buttons */
@@ -211,11 +227,59 @@ input[type="button"] {
   transition: background-color 0.05s ease-in-out, color 0.05s ease-in-out;
 }
 
-button:hover {
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
   background-color: var(--half-color);
   color: var(--primary-color);
 }
 
-button:active {
+button:active,
+input[type="submit"]:active,
+input[type="button"]:active {
   background-color: var(--background-color);
+}
+
+.icon-button {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 12px;
+  border-radius: var(--input-border-radius);
+  cursor: pointer;
+  border: none;
+  font-family: var(--sans-serif);
+  font-size: 14px;
+  transition: background-color 0.05s ease-in-out, color 0.05s ease-in-out;
+}
+
+.icon-button svg {
+  width: 18px;
+  height: 18px;
+  color: var(--secondary-color);
+}
+
+.icon-button-text {
+  margin-right: 16px;
+}
+
+.icon-button:hover svg {
+  color: var(--primary-color);
+}
+
+@media screen and (max-aspect-ratio: 9/16), (max-width: 700px) {
+  .icon-button {
+    flex-direction: column;
+  }
+
+  .icon-button svg {
+    margin-right: 0;
+  }
+
+  .icon-button-text {
+    margin-right: 0px;
+    margin-left: 0px;
+  }
 }

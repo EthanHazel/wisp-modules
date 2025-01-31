@@ -1,7 +1,0 @@
-{
-  "name": "Base64 converter",
-  "description": "Convert base64 to text and vice versa",
-  "version": "1.0",
-  "icon": "Binary",
-  "contributors": ["EthanHazel"]
-}

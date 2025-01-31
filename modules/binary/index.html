@@ -9,9 +9,9 @@
     <title>Wisp Module</title>
   </head>
   <body>
-    <div class="tab-container" title="Convert">
+    <div class="tab-container stretch-vertically" title="Convert">
       <div class="tab-content" title="Text to Binary">
-        <div class="row-container">
+        <div class="row-container wrap-9-by-16 stretch-vertically">
           <div class="container">
             <textarea
               type="text"
@@ -33,7 +33,7 @@
       </div>
 
       <div class="tab-content" title="Binary to Text">
-        <div class="row-container">
+        <div class="row-container wrap-9-by-16 stretch-vertically">
           <div class="container">
             <textarea
               type="text"
@@ -57,19 +57,20 @@
 
     <div class="row-container border-top">
       <div class="container">
-        <button id="clear-button">Clear</button>
+        <button id="clear-button" icon="trash">Clear</button>
       </div>
       <div class="container">
-        <button id="paste-button">Paste</button>
+        <button id="paste-button" icon="clipboard">Paste</button>
       </div>
       <div class="container">
-        <button id="copy-button">Copy</button>
+        <button id="copy-button" icon="copy">Copy</button>
       </div>
       <div class="container">
-        <button id="swap-button">Save</button>
+        <button id="swap-button" icon="download">Save</button>
       </div>
     </div>
   </body>
+  <script src="https://unpkg.com/lucide@latest"></script>
   <script src="../../scripts/module.js"></script>
   <script src="script.js"></script>
 </html>

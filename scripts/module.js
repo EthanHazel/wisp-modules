@@ -106,17 +106,28 @@ function openTab(containerName, tabName) {
   document.getElementById(tabName + "-" + containerName).click();
 }
 
-// Embed code -------------------------------------------------------
+// Button Icon code ----------------------------------------------------------
 
-if (window.self !== window.top) {
-  if (
-    window.location.hostname !== "wisp.tools" &&
-    window.location.hostname !== "localhost" &&
-    window.location.hostname !== "127.0.0.1"
-  ) {
-    var footer = document.createElement("div");
-    footer.classList.add("footer");
-    footer.innerHTML = 'Powered by <a href="https://wisp.tools">wisp</a>';
-    document.body.appendChild(footer);
-  }
-}
+document
+  .querySelectorAll("button, input[type='button'], input[type='submit']")
+  .forEach(function (buttonIcon) {
+    // Check if they have an icon attribute
+    if (buttonIcon.getAttribute("icon")) {
+      // Put the text into a span with classname icon-button-text
+      var buttonText = document.createElement("span");
+      buttonText.classList.add("icon-button-text");
+      buttonText.innerHTML = buttonIcon.innerHTML;
+      buttonIcon.innerHTML = "";
+      buttonIcon.appendChild(buttonText);
+      // Create the icon
+      var icon = document.createElement("i");
+      icon.setAttribute("data-lucide", buttonIcon.getAttribute("icon"));
+      buttonIcon.insertBefore(icon, buttonIcon.firstChild);
+      buttonIcon.removeAttribute("icon");
+      buttonIcon.classList.add("icon-button");
+    }
+  });
+
+// Render all lucide icons --------------------------------------------
+
+lucide.createIcons();
