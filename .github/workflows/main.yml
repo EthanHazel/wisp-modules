@@ -54,4 +54,4 @@ jobs:
           embed-description: |
             Author: ${{ github.event.head_commit.author.name }}
 
-            ${steps.get-modified-files.outputs.result}
+            `${{ steps.get-modified-files.outputs.result }}`
