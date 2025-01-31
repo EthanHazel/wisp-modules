@@ -28,10 +28,9 @@ jobs:
         uses: tsickert/discord-webhook@v6.0.0
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          embed-title: New Wisp Module Update Deployed 🚀
-          embed-color: 16711680
-          embed-description: |
+          embed-title: ${{ github.event.head_commit.message }}
+          embed-color: 29903b
+          embed-author-name: ${{ github.event.head_commit.author.name }}
+          embed-author-url: ${{ github.event.head_commit.author.html_url }}
+          embed-footer-text: |
             Commit Hash: ${{ github.sha }}
-            Commit Message: ${{ github.event.head_commit.message }}
-            Author: ${{ github.event.head_commit.author.name }}
-          embed-footer-text: ${{ github.repository }}
