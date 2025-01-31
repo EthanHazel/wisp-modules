@@ -54,6 +54,7 @@ jobs:
                 description: `Author: ${context.payload.head_commit.author.name}\n\n${modifiedFiles.join('\n')}`
               }]
             };
+            // Set the raw-data output as a JSON string
             core.setOutput('raw-data', JSON.stringify(rawData));
 
       - name: Discord Webhook Action
