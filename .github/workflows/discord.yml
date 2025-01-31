@@ -23,9 +23,9 @@ jobs:
               ref: context.sha
             });
             const modifiedFiles = commit.data.files.map(file => {
-              if (file.status === 'modified') return '[2;34m- ' + file.filename + '[0m';
-              if (file.status === 'added') return '[2;36m+ ' + file.filename + '[0m';
-              if (file.status === 'removed') return '[2;2m[0m ' + file.filename + '[0m[2;2m[0m';
+              if (file.status === 'modified') return '\u001b[2;34m- ' + file.filename + '\u001b[0m';
+              if (file.status === 'added') return '\u001b[2;36m+ ' + file.filename + '\u001b[0m';
+              if (file.status === 'removed') return '\u001b[2;2m\u001b[0m ' + file.filename + '\u001b[0m\u001b[2;2m\u001b[0m';
             }).filter(Boolean);
 
             // Create the raw-data JSON object
