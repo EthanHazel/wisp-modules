@@ -36,13 +36,14 @@ jobs:
             // Create the raw-data JSON object
             const rawData = {
               embeds: [{
+                title: `On repo \`${context.repo.repo}\``,
                 color: 16777215,
                 author: {
                   name: `Commit from ${context.payload.head_commit.author.username}`,
                   url: `https://github.com/${context.payload.head_commit.author.username}/`,
                   icon_url: `https://avatars.githubusercontent.com/${context.payload.head_commit.author.username}`
                 },
-                description: `On ${context.repo.repo}: [\`${context.payload.head_commit.message}\`](https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${context.sha})\n` + "```ansi\n" + modifiedFiles.join('\n') + "```"
+                description: `[\`${context.payload.head_commit.message}\`](https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${context.sha})\n` + "```ansi\n" + modifiedFiles.join('\n') + "```"
               }]
             };
 
