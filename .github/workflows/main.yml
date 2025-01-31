@@ -31,16 +31,7 @@ jobs:
           embed-title: New Wisp Module Update Deployed 🚀
           embed-color: 16711680
           embed-description: |
-            [
-              {
-                "name": "Module Name",
-                "value": "${{ github.event.head_ref }}",
-                "inline": true
-              },
-              {
-                "name": "Commit Hash",
-                "value": "${{ github.sha }}",
-                "inline": true
-              }
-            ]
+            Commit Hash: ${{ github.sha }}
+            Commit Message: ${{ github.event.head_commit.message }}
+            Author: ${{ github.event.head_commit.author.name }}
           embed-footer-text: ${{ github.repository }}
