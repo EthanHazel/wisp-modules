@@ -36,7 +36,7 @@ jobs:
             // Create the raw-data JSON object
             const rawData = {
               embeds: [{
-                title: `\`${context.repo.owner}/${context.repo.repo}\``,
+                title: `<:gitplus:1334967884484448341>\`${context.repo.repo}\``,
                 color: 16777215,
                 author: {
                   name: `Commit from ${context.payload.head_commit.author.username}`,
