@@ -12,46 +12,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Get modified files
-        id: get-modified-files
-        uses: actions/github-script@v6
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          script: |
-            const commit = await github.rest.repos.getCommit({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: context.sha
-            });
-            const modifiedFiles = commit.data.files.map(file => {
-              const symbols = {
-                'modified': '\u001b[2;34m- ',
-                'added': '\u001b[2;36m+ ',
-                'removed': '\u001b[2;35m⤬ ',
-              };
-              return symbols[file.status] + file.filename + '\u001b[0m';
-            }).filter(Boolean);
+          node-version: "16"
 
-            console.log(modifiedFiles.join('\n'));
+      - name: Install dependencies
+        run: npm install @actions/core @actions/github
 
-            // Create the raw-data JSON object
-            const rawData = {
-              embeds: [{
-                title: `\`${context.repo.owner}/${context.repo.repo}\``,
-                color: 16777215,
-                author: {
-                  name: `Commit from ${context.payload.head_commit.author.username}`,
-                  url: `https://github.com/${context.payload.head_commit.author.username}/`,
-                  icon_url: `https://avatars.githubusercontent.com/${context.payload.head_commit.author.username}`
-                },
-                description: `[\`${context.payload.head_commit.message}\`](https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${context.sha})\n` + "```ansi\n" + modifiedFiles.join('\n') + "```"
-              }]
-            };
-
-            // Write the raw-data JSON to a file
-            const fs = require('fs');
-            const path = './raw-data.json';
-            fs.writeFileSync(path, JSON.stringify(rawData, null, 2));
-            core.setOutput('raw-data-path', path);
+      - name: Run Discord Webhook Script
+        id: get-modified-files
+        run: node scripts/discord-webhook.js
 
       - name: Discord Webhook Action
         uses: tsickert/discord-webhook@v6.0.0

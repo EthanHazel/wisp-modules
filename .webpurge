@@ -6,3 +6,4 @@ index.html
 package-lock.json
 package.json
 README.md
+scripts/discord-webhook.js
