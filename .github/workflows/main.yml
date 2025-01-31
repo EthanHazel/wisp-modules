@@ -54,11 +54,19 @@ jobs:
                 description: `Author: ${context.payload.head_commit.author.name}\n\n${modifiedFiles.join('\n')}`
               }]
             };
-            // Set the raw-data output as a JSON string
-            core.setOutput('raw-data', JSON.stringify(rawData));
+
+            // Write the raw-data JSON to a file
+            const fs = require('fs');
+            const path = './raw-data.json';
+            fs.writeFileSync(path, JSON.stringify(rawData, null, 2));
+            core.setOutput('raw-data-path', path);
 
       - name: Discord Webhook Action
         uses: tsickert/discord-webhook@v6.0.0
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          raw-data: ${{ steps.get-modified-files.outputs.raw-data }}
+          raw-data: ${{ steps.get-modified-files.outputs.raw-data-path }}
+
+      - name: Clean up raw-data file
+        run: |
+          rm ${{ steps.get-modified-files.outputs.raw-data-path }}
