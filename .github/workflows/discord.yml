@@ -34,7 +34,8 @@ jobs:
                 color: 2723899,
                 author: {
                   name: context.payload.head_commit.message,
-                  url: `https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${context.sha}`
+                  url: `https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${context.sha}`,
+                  avatar_url: context.payload.head_commit.author.avatar_url
                 },
                 description: `<:user:1334968977952080044> **${context.payload.head_commit.author.name}**\n\n${modifiedFiles.join('\n')}`
               }]
