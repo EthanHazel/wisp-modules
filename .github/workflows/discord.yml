@@ -28,6 +28,8 @@ jobs:
               if (file.status === 'removed') return '<:gitminus:1334967885843529738> `' + file.filename + '`';
             }).filter(Boolean);
 
+            console.log(context.payload.head_commit.author);
+
             // Create the raw-data JSON object
             const rawData = {
               embeds: [{
@@ -37,7 +39,7 @@ jobs:
                   url: `https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${context.sha}`,
                   icon_url: context.payload.head_commit.author.avatar_url
                 },
-                description: `${context.payload.head_commit.author.avatar_url} <:user:1334968977952080044> **${context.payload.head_commit.author.name}**\n\n${modifiedFiles.join('\n')}`
+                description: `<:user:1334968977952080044> **${context.payload.head_commit.author.name}**\n\n${modifiedFiles.join('\n')}`
               }]
             };
 
