@@ -21,6 +21,16 @@ function setHeight(value) {
   checkError();
 }
 
+function toggleUI() {
+  const sideBar = document.getElementById("sideBar");
+  const content = document.getElementById("content");
+  const showButton = document.getElementById("showButton");
+
+  sideBar.classList.toggle("ui-hidden");
+  content.classList.toggle("ui-hidden");
+  showButton.classList.toggle("ui-hidden");
+}
+
 function setSlug(value) {
   SLUG.value = value;
   localStorage.setItem("slug", value); // Save slug to localStorage
@@ -51,8 +61,10 @@ function loadModule(slug) {
   fetch(MODULE.src).then((response) => {
     if (response.status === 404) {
       alert("Module not found");
-      setSlug(localStorage.getItem("slug"));
-      loadModule(localStorage.getItem("slug"));
+      if (slug !== localStorage.getItem("slug")) {
+        setSlug(localStorage.getItem("slug"));
+        loadModule(localStorage.getItem("slug"));
+      }
     } else {
       setSlug(slug);
       loadModuleInfo(slug);
@@ -149,17 +161,8 @@ document.getElementById("slug").addEventListener("keydown", function (event) {
   }
 });
 
-document.getElementById("hideButton").addEventListener("click", function () {
-  document.getElementById("sideBar").classList.add("ui-hidden");
-  document.getElementById("content").classList.add("ui-hidden");
-  document.getElementById("showButton").classList.add("ui-hidden");
-});
-
-document.getElementById("showButton").addEventListener("click", function () {
-  document.getElementById("sideBar").classList.remove("ui-hidden");
-  document.getElementById("content").classList.remove("ui-hidden");
-  document.getElementById("showButton").classList.remove("ui-hidden");
-});
+document.getElementById("hideButton").addEventListener("click", toggleUI);
+document.getElementById("showButton").addEventListener("click", toggleUI);
 
 window.addEventListener("resize", checkError);
 
