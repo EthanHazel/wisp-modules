@@ -24,6 +24,22 @@ jobs:
   discord-notification:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Get modified files
+        id: get-modified-files
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const commit = await github.rest.repos.getCommit({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: context.sha
+            });
+            const modifiedFiles = commit.data.files.filter(file => file.status === 'modified').map(file => file.filename);
+            return modifiedFiles.join(', ');
+
       - name: Discord Webhook Action
         uses: tsickert/discord-webhook@v6.0.0
         with:
@@ -33,4 +49,4 @@ jobs:
           embed-author-url: https://github.com/${{ github.repository }}/commit/${{ github.sha }}
           embed-description: |
             Author: ${{ github.event.head_commit.author.name }}
-            Modified files: ${{ github.event.head_commit.modified_files }}
+            Modified files: ${{ steps.get-modified-files.outputs.result }}
