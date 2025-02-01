@@ -341,6 +341,19 @@ function openTab(containerName, tabName) {
   document.getElementById(tabName + "-" + containerName).click();
 }
 
+// Dropdown code -----------------------------------------------------
+
+document.querySelectorAll("select").forEach(function (dropdown) {
+  if (dropdown.getAttribute("placeholder")) {
+    var placeholder = document.createElement("option");
+    placeholder.setAttribute("disabled", true);
+    placeholder.setAttribute("selected", true);
+    placeholder.setAttribute("hidden", true);
+    placeholder.innerHTML = dropdown.getAttribute("placeholder");
+    dropdown.insertBefore(placeholder, dropdown.firstChild);
+  }
+});
+
 // Render all lucide icons --------------------------------------------
 
 lucide.createIcons();
