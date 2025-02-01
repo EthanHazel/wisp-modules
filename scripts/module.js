@@ -1,11 +1,248 @@
+// Button Icon code ----------------------------------------------------------
+
+document
+  .querySelectorAll("button, input[type='button'], input[type='submit']")
+  .forEach(function (buttonIcon) {
+    // Check if they have an icon attribute
+    if (buttonIcon.getAttribute("icon")) {
+      // Put the text into a span with classname icon-button-text
+      if (buttonIcon.innerHTML) {
+        var buttonText = document.createElement("span");
+        buttonText.classList.add("icon-button-text");
+        buttonText.innerHTML = buttonIcon.innerHTML;
+        buttonIcon.innerHTML = "";
+        buttonIcon.appendChild(buttonText);
+      } else {
+        buttonIcon.classList.add("textless");
+      }
+      // Create the icon
+      var icon = document.createElement("i");
+      icon.setAttribute("data-lucide", buttonIcon.getAttribute("icon"));
+      buttonIcon.insertBefore(icon, buttonIcon.firstChild);
+      buttonIcon.removeAttribute("icon");
+      buttonIcon.classList.add("icon-button");
+    }
+  });
+
+// File input code -----------------------------------------------------------
+
+document.querySelectorAll("input[type='file']").forEach(function (fileInput) {
+  const parent = fileInput.parentNode;
+  const fileInputDiv = document.createElement("div");
+  const icon = document.createElement("i");
+  const nameSpan = document.createElement("span");
+  const acceptSpan = document.createElement("span");
+  const sepSpan = document.createElement("span");
+
+  var name = fileInput.getAttribute("label") || "Upload File";
+
+  icon.setAttribute(
+    "data-lucide",
+    fileInput.getAttribute("icon") || "file-input"
+  ),
+    fileInput.removeAttribute("icon");
+
+  nameSpan.innerHTML = name;
+  nameSpan.classList.add("file-input-name");
+
+  if (fileInput.getAttribute("accept")) {
+    acceptSpan.innerHTML = " (" + fileInput.getAttribute("accept") + ")";
+    acceptSpan.classList.add("file-input-accept");
+  }
+
+  sepSpan.classList.add("file-input-separator");
+
+  fileInputDiv.classList.add("file-input");
+
+  parent.insertBefore(fileInputDiv, fileInput);
+  fileInputDiv.append(
+    icon,
+    nameSpan,
+    acceptSpan.innerHTML ? acceptSpan : "",
+    sepSpan,
+    fileInput
+  );
+  fileInputDiv.onclick = () => fileInput.click();
+});
+
+// Color input code ----------------------------------------------------------
+
+document.querySelectorAll("input[type='color']").forEach(function (colorInput) {
+  const parent = colorInput.parentNode;
+  const colorInputDiv = document.createElement("div");
+  const colorSpan = document.createElement("span");
+  const nameSpan = document.createElement("span");
+  const valueSpan = document.createElement("span");
+
+  var name = colorInput.getAttribute("label") || "Color";
+
+  nameSpan.innerHTML = name;
+  nameSpan.classList.add("color-input-name");
+
+  colorSpan.style.backgroundColor = colorInput.value;
+  colorSpan.classList.add("color-input-color");
+
+  valueSpan.innerHTML = colorInput.value;
+  valueSpan.classList.add("color-input-value");
+
+  colorInput.addEventListener("input", function () {
+    colorSpan.style.backgroundColor = colorInput.value;
+    valueSpan.innerHTML = colorInput.value;
+  });
+
+  colorInputDiv.classList.add("color-input");
+
+  parent.insertBefore(colorInputDiv, colorInput);
+  colorInputDiv.append(colorSpan, nameSpan, valueSpan, colorInput);
+  colorInputDiv.onclick = () => colorInput.click();
+});
+
+// Range input code ----------------------------------------------------------
+
+document.querySelectorAll("input[type='range']").forEach(function (rangeInput) {
+  const parent = rangeInput.parentNode;
+
+  const rangeInputContainer = document.createElement("div");
+
+  const rangeInputDiv = document.createElement("div");
+  const rangeBackground = document.createElement("span");
+
+  const rangeInputValue = document.createElement("input");
+
+  const rangeMin = rangeInput.getAttribute("min") || "0";
+  const rangeMax = rangeInput.getAttribute("max") || "100";
+
+  rangeInputValue.type = "number";
+  rangeInputValue.min = rangeMin;
+  rangeInputValue.max = rangeMax;
+
+  rangeInputValue.value = rangeInput.value;
+  rangeInputValue.classList.add("range-input-value");
+
+  rangeInputContainer.classList.add("range-container");
+
+  const updateBackgroundWidth = () => {
+    const rangePercent =
+      ((rangeInput.value - rangeMin) / (rangeMax - rangeMin)) * 100;
+    rangeBackground.style.width =
+      "calc(" + rangePercent + "% - " + (rangePercent / 100) * 4 + "px)";
+  };
+
+  rangeBackground.classList.add("range-input-color");
+
+  rangeInputDiv.classList.add("range-input");
+
+  rangeInput.addEventListener("input", function () {
+    updateBackgroundWidth();
+    rangeInputValue.value = rangeInput.value;
+  });
+
+  rangeInputValue.addEventListener("input", function () {
+    const value = Math.min(Math.max(rangeInputValue.value, rangeMin), rangeMax);
+    rangeInput.value = value;
+    rangeInputValue.value = value;
+    updateBackgroundWidth();
+  });
+
+  rangeInputContainer.append(rangeInputValue, rangeInputDiv);
+
+  parent.insertBefore(rangeInputContainer, rangeInput);
+  rangeInputDiv.append(rangeBackground, rangeInput);
+
+  updateBackgroundWidth();
+});
+
+// Checkbox code ----------------------------------------------------------
+
+document
+  .querySelectorAll("input[type='checkbox']")
+  .forEach(function (checkbox) {
+    const parent = checkbox.parentNode;
+    const checkboxDiv = document.createElement("div");
+    const nameLabel = document.createElement("label");
+    const pseudoCheckbox = document.createElement("span");
+    const checkIcon = document.createElement("i");
+
+    if (checkbox.getAttribute("icon")) {
+      checkIcon.setAttribute("data-lucide", checkbox.getAttribute("icon"));
+      checkbox.removeAttribute("icon");
+      pseudoCheckbox.classList.add("icon-checkbox");
+    } else {
+      checkIcon.setAttribute("data-lucide", "check");
+    }
+
+    pseudoCheckbox.classList.add("checkbox");
+    if (checkbox.checked) pseudoCheckbox.classList.add("checked");
+
+    pseudoCheckbox.append(checkIcon);
+
+    var name = checkbox.getAttribute("label") || "Checkbox";
+
+    nameLabel.innerHTML = name;
+    nameLabel.setAttribute("for", checkbox.id || "");
+    nameLabel.classList.add("checkbox-name");
+
+    checkboxDiv.classList.add("checkbox-container");
+
+    checkbox.addEventListener("change", function () {
+      pseudoCheckbox.classList.toggle("checked");
+    });
+
+    checkboxDiv.addEventListener("click", function () {
+      checkbox.click();
+    });
+
+    parent.insertBefore(checkboxDiv, checkbox);
+    checkboxDiv.append(pseudoCheckbox, checkbox, nameLabel);
+  });
+
+// Radio input code ----------------------------------------------------------
+
+document.querySelectorAll("input[type='radio']").forEach(function (radio) {
+  const parent = radio.parentNode;
+  const radioDiv = document.createElement("div");
+  const nameLabel = document.createElement("label");
+  const pseudoRadio = document.createElement("span");
+  const circleIcon = document.createElement("div");
+
+  pseudoRadio.classList.add("radio");
+  if (radio.checked) pseudoRadio.classList.add("checked");
+
+  pseudoRadio.append(circleIcon);
+
+  var name = radio.getAttribute("label") || "Radio";
+
+  nameLabel.innerHTML = name;
+  nameLabel.setAttribute("for", radio.id || "");
+  nameLabel.classList.add("radio-name");
+
+  radioDiv.classList.add("radio-container");
+
+  radio.addEventListener("change", function () {
+    const radios = parent.querySelectorAll('input[name="' + radio.name + '"]');
+    radios.forEach(function (r) {
+      const pseudoR = r.parentNode.querySelector(".radio");
+      pseudoR.classList.remove("checked");
+    });
+    pseudoRadio.classList.add("checked");
+  });
+
+  radioDiv.addEventListener("click", function () {
+    radio.click();
+  });
+
+  parent.insertBefore(radioDiv, radio);
+  radioDiv.append(pseudoRadio, radio, nameLabel);
+});
+
 // Tab container code -------------------------------------------------------
 
 var containerNames = [];
 document.querySelectorAll(".tab-con").forEach(function (tabContainer) {
-  var containerName = tabContainer.getAttribute("title");
+  var containerName = tabContainer.getAttribute("label");
 
   if (!containerName) {
-    console.error("Error: tab-con is missing a 'title' attribute.");
+    console.error("Error: tab-con is missing a 'label' attribute.");
     return;
   }
 
@@ -24,10 +261,10 @@ document.querySelectorAll(".tab-con").forEach(function (tabContainer) {
 
   var tabs = tabContainer.querySelectorAll(".tab-view");
   tabs.forEach(function (tab, index) {
-    var title = tab.getAttribute("title");
+    var title = tab.getAttribute("label");
 
     if (!title) {
-      console.error("Error: tab-view is missing a 'title' attribute.");
+      console.error("Error: tab-view is missing a 'label' attribute.");
       return;
     }
 
@@ -103,32 +340,6 @@ function openTab(containerName, tabName) {
   focusTab(containerName, tabName);
   document.getElementById(tabName + "-" + containerName).click();
 }
-
-// Button Icon code ----------------------------------------------------------
-
-document
-  .querySelectorAll("button, input[type='button'], input[type='submit']")
-  .forEach(function (buttonIcon) {
-    // Check if they have an icon attribute
-    if (buttonIcon.getAttribute("icon")) {
-      // Put the text into a span with classname icon-button-text
-      if (buttonIcon.innerHTML) {
-        var buttonText = document.createElement("span");
-        buttonText.classList.add("icon-button-text");
-        buttonText.innerHTML = buttonIcon.innerHTML;
-        buttonIcon.innerHTML = "";
-        buttonIcon.appendChild(buttonText);
-      } else {
-        buttonIcon.classList.add("textless");
-      }
-      // Create the icon
-      var icon = document.createElement("i");
-      icon.setAttribute("data-lucide", buttonIcon.getAttribute("icon"));
-      buttonIcon.insertBefore(icon, buttonIcon.firstChild);
-      buttonIcon.removeAttribute("icon");
-      buttonIcon.classList.add("icon-button");
-    }
-  });
 
 // Render all lucide icons --------------------------------------------
 

@@ -246,6 +246,17 @@ body {
 
 input[type="text"],
 input[type="number"],
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="url"],
+input[type="tel"],
+input[type="week"],
+input[type="month"],
+input[type="datetime"],
 textarea {
   background-color: var(--background-color);
   color: var(--primary-color);
@@ -261,6 +272,17 @@ textarea {
 
 input[type="text"]:hover,
 input[type="number"]:hover,
+input[type="date"]:hover,
+input[type="time"]:hover,
+input[type="datetime-local"]:hover,
+input[type="email"]:hover,
+input[type="password"]:hover,
+input[type="search"]:hover,
+input[type="url"]:hover,
+input[type="tel"]:hover,
+input[type="week"]:hover,
+input[type="month"]:hover,
+input[type="datetime"]:hover,
 textarea:hover {
   background-color: var(--quarter-color);
   outline: 1px solid var(--half-color);
@@ -268,6 +290,17 @@ textarea:hover {
 
 input[type="text"]:focus,
 input[type="number"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="datetime-local"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="url"]:focus,
+input[type="tel"]:focus,
+input[type="week"]:focus,
+input[type="month"]:focus,
+input[type="datetime"]:focus,
 textarea:focus {
   outline: 2px solid var(--primary-color);
   box-shadow: 0 0 6px var(--primary-color);
@@ -292,7 +325,8 @@ input::-webkit-inner-spin-button {
 
 button,
 input[type="submit"],
-input[type="button"] {
+input[type="button"],
+input[type="reset"] {
   background-color: var(--quarter-color);
   color: var(--primary-color);
   padding: 12px 24px;
@@ -306,23 +340,27 @@ input[type="button"] {
 
 button:hover,
 input[type="submit"]:hover,
-input[type="button"]:hover {
+input[type="button"]:hover,
+input[type="reset"]:hover {
   background-color: var(--half-color);
   color: var(--primary-color);
 }
 
 button:active,
 input[type="submit"]:active,
-input[type="button"]:active {
+input[type="button"]:active,
+input[type="reset"]:active {
   background-color: var(--background-color);
 }
 
 button:disabled,
 input[type="submit"]:disabled,
-input[type="button"]:disabled {
+input[type="button"]:disabled,
+input[type="reset"]:disabled {
   background-color: var(--quarter-color);
   color: var(--secondary-color);
   cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .icon-button {
@@ -356,6 +394,373 @@ input[type="button"]:disabled {
   color: var(--primary-color);
 }
 
+/* Styles for file inputs */
+
+.file-input {
+  padding: 12px 12px;
+  border-radius: var(--input-border-radius);
+  cursor: pointer;
+  border: none;
+  font-family: var(--sans-serif);
+  font-size: 14px;
+  transition: background-color 0.05s ease-in-out, color 0.05s ease-in-out;
+  border: 1px solid var(--half-color);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.file-input:hover {
+  background-color: var(--quarter-color);
+  outline: 1px solid var(--half-color);
+}
+
+.file-input:active {
+  background-color: var(--half-color);
+}
+
+.file-input-name {
+  display: block;
+  white-space: nowrap;
+}
+
+.file-input-separator {
+  display: block;
+  white-space: nowrap;
+  border-right: 1px solid var(--half-color);
+  margin-right: 4px;
+  margin-left: 4px;
+  height: 100%;
+}
+
+.file-input-accept {
+  color: var(--secondary-color);
+  text-wrap: nowrap;
+  font-size: 12px;
+}
+
+.file-input svg {
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  min-height: 18px;
+  color: var(--secondary-color);
+}
+
+.file-input input[type="file"] {
+  width: 100%;
+  font-family: var(--sans-serif);
+  cursor: pointer;
+  color: var(--secondary-color);
+}
+
+input[type="file"]::file-selector-button {
+  display: none;
+}
+
+/* Styles for color inputs */
+
+.color-input {
+  padding: 12px 12px;
+  border-radius: var(--input-border-radius);
+  cursor: pointer;
+  font-family: var(--sans-serif);
+  font-size: 14px;
+  transition: background-color 0.05s ease-in-out, color 0.05s ease-in-out;
+  border: 1px solid var(--half-color);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.color-input:hover {
+  background-color: var(--quarter-color);
+  outline: 1px solid var(--half-color);
+}
+
+.color-input:active {
+  background-color: var(--half-color);
+}
+
+.color-input-name {
+  display: block;
+  white-space: nowrap;
+  padding-right: 16px;
+  border-right: 1px solid var(--half-color);
+}
+
+.color-input-color {
+  display: block;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+  border-radius: 50%;
+  outline: 1px solid var(--quarter-color);
+}
+
+.color-input-value {
+  width: 100%;
+  font-family: var(--sans-serif);
+  cursor: pointer;
+  color: var(--secondary-color);
+}
+
+.color-input input[type="color"] {
+  display: none;
+}
+
+/* Styles for range inputs (I hate range inputs so much) */
+
+.range-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 21px;
+  padding: 12px;
+  border-radius: var(--input-border-radius);
+  border: 1px solid var(--half-color);
+}
+
+.range-input {
+  position: relative; /* Ensure the container is positioned relative */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: var(--input-border-radius);
+  cursor: pointer;
+  font-family: var(--sans-serif);
+  height: 16px;
+  border: 1px solid var(--half-color);
+  margin: 12px 12px 12px 0;
+  width: calc(100% - 32px);
+}
+
+.range-input-value {
+  display: block;
+  text-align: center;
+  width: 10%;
+  min-width: 60px;
+}
+
+.range-input-color {
+  background-color: var(--half-color);
+  height: 8px;
+  z-index: 0;
+  border-radius: 1px;
+  position: absolute; /* Positioned relative to .range-input */
+  top: calc(50% - 4px);
+  left: 4px;
+  border-radius: 1px;
+  transition: background-color 0.05s ease-in-out;
+}
+
+.range-input:hover .range-input-color {
+  background-color: var(--secondary-color);
+}
+
+.range-input:active .range-input-color {
+  background-color: var(--primary-color);
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 36px;
+  outline: none;
+  background: none;
+  margin: 0;
+  cursor: pointer;
+  z-index: 2;
+  position: relative; /* Ensure the slider is above the color span */
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  /* For some random reason, if you try combining these with
+  input[type="range"]::-webkit-slider-thumb,input[type="range"]::-moz-range-thumb {
+  it just doesn't work on Microsoft Edge
+  I hate Chromium so much you have no idea
+  */
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 36px;
+  background: var(--primary-color);
+  cursor: pointer;
+  border-radius: var(--input-border-radius);
+  outline: 4px solid var(--background-color);
+  border: none;
+  z-index: 1;
+}
+
+input[type="range"]::-moz-range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 36px;
+  background: var(--primary-color);
+  cursor: pointer;
+  border-radius: var(--input-border-radius);
+  outline: 4px solid var(--background-color);
+  border: none;
+  z-index: 1;
+}
+
+/* Styles for checkbox inputs */
+
+input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-container {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  cursor: pointer;
+  border-radius: var(--input-border-radius);
+  user-select: none;
+  width: fit-content;
+  padding: 8px;
+  transition: background-color 0.05s ease-in-out;
+}
+
+.checkbox-container:hover {
+  background-color: var(--quarter-color);
+}
+
+.checkbox-name {
+  display: block;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.checkbox {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  border-radius: var(--input-border-radius);
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--half-color);
+  transition: background-color 0.05s ease-in-out, color 0.05s ease-in-out;
+}
+
+.checkbox svg {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  transition: stroke-width 0.1s ease;
+  stroke-width: 0px;
+}
+
+.checkbox.icon-checkbox.checked svg {
+  stroke-width: 2px;
+}
+
+.checkbox.checked svg {
+  stroke-width: 2.5px;
+}
+
+.checkbox.icon-checkbox svg {
+  margin-top: 0px;
+}
+
+.checkbox:hover {
+  background-color: var(--quarter-color);
+  outline: 1px solid var(--half-color);
+}
+
+.checkbox:active {
+  background-color: var(--half-color);
+}
+
+.checkbox.checked {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  border: 1px solid var(--primary-color);
+}
+
+/* Styles for radio inputs */
+
+input[type="radio"] {
+  display: none;
+}
+
+.radio-container {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  cursor: pointer;
+  border-radius: var(--input-border-radius);
+  user-select: none;
+  width: fit-content;
+  padding: 8px;
+  transition: background-color 0.05s ease-in-out;
+}
+
+.radio-container:hover {
+  background-color: var(--quarter-color);
+}
+
+.radio-name {
+  display: block;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.radio {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--half-color);
+  transition: background-color 0.05s ease-in-out, color 0.05s ease-in-out;
+}
+
+.radio div {
+  width: 0px;
+  height: 0px;
+  border-radius: 50%;
+  background-color: var(--background-color);
+  transition: width 0.1s ease, height 0.1s ease;
+}
+
+.radio:hover {
+  background-color: var(--quarter-color);
+  outline: 1px solid var(--half-color);
+}
+
+.radio:active {
+  background-color: var(--half-color);
+}
+
+.radio.checked {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  border: 1px solid var(--primary-color);
+}
+
+.radio.checked div {
+  width: 10px;
+  height: 10px;
+}
+
 @media screen and (max-aspect-ratio: 9/16), (max-width: 700px) {
   .icon-button {
     flex-direction: column;
@@ -368,5 +773,18 @@ input[type="button"]:disabled {
   .icon-button-text {
     margin-right: 0px;
     margin-left: 0px;
+  }
+
+  .range-container {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .range-input {
+    margin: 12px 0;
+  }
+
+  .range-input-value {
+    width: 10%;
   }
 }
