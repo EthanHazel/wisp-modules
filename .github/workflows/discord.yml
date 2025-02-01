@@ -27,6 +27,7 @@ jobs:
                 'modified': '\u001b[2;34m- ',
                 'added': '\u001b[2;36m+ ',
                 'removed': '\u001b[2;35m⤬ ',
+                'renamed': '\u001b[2;34m~ '
               };
               return symbols[file.status] + file.filename + '\u001b[0m';
             }).filter(Boolean);
