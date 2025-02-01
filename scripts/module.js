@@ -112,11 +112,15 @@ document
     // Check if they have an icon attribute
     if (buttonIcon.getAttribute("icon")) {
       // Put the text into a span with classname icon-button-text
-      var buttonText = document.createElement("span");
-      buttonText.classList.add("icon-button-text");
-      buttonText.innerHTML = buttonIcon.innerHTML;
-      buttonIcon.innerHTML = "";
-      buttonIcon.appendChild(buttonText);
+      if (buttonIcon.innerHTML) {
+        var buttonText = document.createElement("span");
+        buttonText.classList.add("icon-button-text");
+        buttonText.innerHTML = buttonIcon.innerHTML;
+        buttonIcon.innerHTML = "";
+        buttonIcon.appendChild(buttonText);
+      } else {
+        buttonIcon.classList.add("textless");
+      }
       // Create the icon
       var icon = document.createElement("i");
       icon.setAttribute("data-lucide", buttonIcon.getAttribute("icon"));
