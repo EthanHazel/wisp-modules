@@ -1,8 +1,24 @@
+// Disabled handler
+const disabledHandler = (input, container) => {
+  input.addEventListener("change", function () {
+    if (input.disabled) {
+      container.classList.add("disabled");
+    }
+  });
+  if (input.disabled) {
+    container.classList.add("disabled");
+  }
+};
+
 // Button Icon code ----------------------------------------------------------
 
 document
-  .querySelectorAll("button, input[type='button'], input[type='submit']")
+  .querySelectorAll(
+    "button, input[type='button'], input[type='submit'], input[type='reset']"
+  )
   .forEach(function (buttonIcon) {
+    // Disabled handler
+    disabledHandler(buttonIcon, buttonIcon);
     // Check if they have an icon attribute
     if (buttonIcon.getAttribute("icon")) {
       // Put the text into a span with classname icon-button-text
@@ -33,6 +49,9 @@ document.querySelectorAll("input[type='file']").forEach(function (fileInput) {
   const nameSpan = document.createElement("span");
   const acceptSpan = document.createElement("span");
   const sepSpan = document.createElement("span");
+
+  // Disabled handler
+  disabledHandler(fileInput, fileInputDiv);
 
   var name = fileInput.getAttribute("label") || "Upload File";
 
@@ -74,6 +93,9 @@ document.querySelectorAll("input[type='color']").forEach(function (colorInput) {
   const nameSpan = document.createElement("span");
   const valueSpan = document.createElement("span");
 
+  // Disabled handler
+  disabledHandler(colorInput, colorInputDiv);
+
   var name = colorInput.getAttribute("label") || "Color";
 
   nameSpan.innerHTML = name;
@@ -111,6 +133,9 @@ document.querySelectorAll("input[type='range']").forEach(function (rangeInput) {
 
   const rangeMin = rangeInput.getAttribute("min") || "0";
   const rangeMax = rangeInput.getAttribute("max") || "100";
+
+  // Disabled handler
+  disabledHandler(rangeInput, rangeInputContainer);
 
   rangeInputValue.type = "number";
   rangeInputValue.min = rangeMin;
@@ -163,6 +188,9 @@ document
     const pseudoCheckbox = document.createElement("span");
     const checkIcon = document.createElement("i");
 
+    // Disabled handler
+    disabledHandler(checkbox, checkboxDiv);
+
     if (checkbox.getAttribute("icon")) {
       checkIcon.setAttribute("data-lucide", checkbox.getAttribute("icon"));
       checkbox.removeAttribute("icon");
@@ -214,6 +242,9 @@ document.querySelectorAll("input[type='radio']").forEach(function (radio) {
   const nameLabel = document.createElement("label");
   const pseudoRadio = document.createElement("span");
   const circleIcon = document.createElement("div");
+
+  // Disabled handler
+  disabledHandler(radio, radioDiv);
 
   pseudoRadio.classList.add("radio");
   if (radio.checked) pseudoRadio.classList.add("checked");
@@ -362,7 +393,20 @@ document.querySelectorAll("select").forEach(function (dropdown) {
     placeholder.innerHTML = dropdown.getAttribute("placeholder");
     dropdown.insertBefore(placeholder, dropdown.firstChild);
   }
+
+  // Disabled handler
+  disabledHandler(dropdown, dropdown);
 });
+
+// Text input code --------------------------------------------------
+
+document
+  .querySelectorAll(
+    "input[type='text'], input[type='date'], input[type='time'], input[type='datetime-local'], input[type='email'], input[type='number'], input[type='password'], input[type='search'], input[type='tel'], input[type='url'], input[type='week'], input[type='month'], input[type='datetime']"
+  )
+  .forEach(function (input) {
+    disabledHandler(input, input);
+  });
 
 // Render all lucide icons --------------------------------------------
 

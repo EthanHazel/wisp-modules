@@ -83,6 +83,12 @@ body {
   display: none;
 }
 
+.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.25;
+}
+
 /* Style for layout */
 
 .stroke {
@@ -105,7 +111,7 @@ body {
   flex-direction: row;
 }
 
-@media screen and (max-aspect-ratio: 9/16), (max-width: 700px) {
+@media screen and (max-aspect-ratio: 3/4), (max-width: 700px) {
   .container.row.wrap-mobile {
     flex-wrap: wrap;
   }
@@ -356,16 +362,6 @@ input[type="submit"]:active,
 input[type="button"]:active,
 input[type="reset"]:active {
   background-color: var(--background-color);
-}
-
-button:disabled,
-input[type="submit"]:disabled,
-input[type="button"]:disabled,
-input[type="reset"]:disabled {
-  background-color: var(--quarter-color);
-  color: var(--secondary-color);
-  cursor: not-allowed;
-  opacity: 0.5;
 }
 
 .icon-button {
