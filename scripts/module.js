@@ -1,10 +1,21 @@
 // Disabled handler
 const disabledHandler = (input, container) => {
-  input.addEventListener("change", function () {
-    if (input.disabled) {
-      container.classList.add("disabled");
+  const observer = new MutationObserver(function (mutationsList) {
+    for (let mutation of mutationsList) {
+      if (
+        mutation.type === "attributes" &&
+        mutation.attributeName === "disabled"
+      ) {
+        if (input.disabled) {
+          container.classList.add("disabled");
+        } else {
+          container.classList.remove("disabled");
+        }
+      }
     }
   });
+
+  observer.observe(input, { attributes: true });
   if (input.disabled) {
     container.classList.add("disabled");
   }
