@@ -212,8 +212,10 @@ body {
   text-align: center;
 }
 
-.tab-button label:hover {
-  outline: 1px solid var(--half-color);
+@media (hover: hover) {
+  .tab-button label:hover {
+    outline: 1px solid var(--half-color);
+  }
 }
 
 .tab-button input[type="radio"] {
@@ -269,23 +271,24 @@ textarea {
   transition: outline 0.05s ease-in-out, box-shadow 0.1s ease-in-out,
     background-color 0.1s ease-in-out;
 }
-
-input[type="text"]:hover,
-input[type="number"]:hover,
-input[type="date"]:hover,
-input[type="time"]:hover,
-input[type="datetime-local"]:hover,
-input[type="email"]:hover,
-input[type="password"]:hover,
-input[type="search"]:hover,
-input[type="url"]:hover,
-input[type="tel"]:hover,
-input[type="week"]:hover,
-input[type="month"]:hover,
-input[type="datetime"]:hover,
-textarea:hover {
-  background-color: var(--quarter-color);
-  outline: 1px solid var(--half-color);
+@media (hover: hover) {
+  input[type="text"]:hover,
+  input[type="number"]:hover,
+  input[type="date"]:hover,
+  input[type="time"]:hover,
+  input[type="datetime-local"]:hover,
+  input[type="email"]:hover,
+  input[type="password"]:hover,
+  input[type="search"]:hover,
+  input[type="url"]:hover,
+  input[type="tel"]:hover,
+  input[type="week"]:hover,
+  input[type="month"]:hover,
+  input[type="datetime"]:hover,
+  textarea:hover {
+    background-color: var(--quarter-color);
+    outline: 1px solid var(--half-color);
+  }
 }
 
 input[type="text"]:focus,
@@ -338,12 +341,14 @@ input[type="reset"] {
   transition: background-color 0.05s ease-in-out, color 0.05s ease-in-out;
 }
 
-button:hover,
-input[type="submit"]:hover,
-input[type="button"]:hover,
-input[type="reset"]:hover {
-  background-color: var(--half-color);
-  color: var(--primary-color);
+@media (hover: hover) {
+  button:hover,
+  input[type="submit"]:hover,
+  input[type="button"]:hover,
+  input[type="reset"]:hover {
+    background-color: var(--half-color);
+    color: var(--primary-color);
+  }
 }
 
 button:active,
@@ -390,8 +395,10 @@ input[type="reset"]:disabled {
   margin-right: 16px;
 }
 
-.icon-button:hover svg {
-  color: var(--primary-color);
+@media (hover: hover) {
+  .icon-button:hover svg {
+    color: var(--primary-color);
+  }
 }
 
 /* Styles for file inputs */
@@ -411,9 +418,11 @@ input[type="reset"]:disabled {
   gap: 16px;
 }
 
-.file-input:hover {
-  background-color: var(--quarter-color);
-  outline: 1px solid var(--half-color);
+@media (hover: hover) {
+  .file-input:hover {
+    background-color: var(--quarter-color);
+    outline: 1px solid var(--half-color);
+  }
 }
 
 .file-input:active {
@@ -476,9 +485,11 @@ input[type="file"]::file-selector-button {
   position: relative;
 }
 
-.color-input:hover {
-  background-color: var(--quarter-color);
-  outline: 1px solid var(--half-color);
+@media (hover: hover) {
+  .color-input:hover {
+    background-color: var(--quarter-color);
+    outline: 1px solid var(--half-color);
+  }
 }
 
 .color-input:active {
@@ -565,8 +576,10 @@ input[type="file"]::file-selector-button {
   transition: background-color 0.05s ease-in-out;
 }
 
-.range-input:hover .range-input-color {
-  background-color: var(--secondary-color);
+@media (hover: hover) {
+  .range-input:hover .range-input-color {
+    background-color: var(--secondary-color);
+  }
 }
 
 .range-input:active .range-input-color {
@@ -637,8 +650,10 @@ input[type="checkbox"] {
   transition: background-color 0.05s ease-in-out;
 }
 
-.checkbox-container:hover {
-  background-color: var(--quarter-color);
+@media (hover: hover) {
+  .checkbox-container:hover {
+    background-color: var(--quarter-color);
+  }
 }
 
 .checkbox-name {
@@ -681,9 +696,11 @@ input[type="checkbox"] {
   margin-top: 0px;
 }
 
-.checkbox:hover {
-  background-color: var(--quarter-color);
-  outline: 1px solid var(--half-color);
+@media (hover: hover) {
+  .checkbox:hover {
+    background-color: var(--quarter-color);
+    outline: 1px solid var(--half-color);
+  }
 }
 
 .checkbox:active {
@@ -716,8 +733,10 @@ input[type="radio"] {
   transition: background-color 0.05s ease-in-out;
 }
 
-.radio-container:hover {
-  background-color: var(--quarter-color);
+@media (hover: hover) {
+  .radio-container:hover {
+    background-color: var(--quarter-color);
+  }
 }
 
 .radio-name {
@@ -748,9 +767,11 @@ input[type="radio"] {
   transition: width 0.1s ease, height 0.1s ease;
 }
 
-.radio:hover {
-  background-color: var(--quarter-color);
-  outline: 1px solid var(--half-color);
+@media (hover: hover) {
+  .radio:hover {
+    background-color: var(--quarter-color);
+    outline: 1px solid var(--half-color);
+  }
 }
 
 .radio:active {
@@ -789,9 +810,15 @@ select {
   background-position: right 12px center;
 }
 
-select:hover {
-  background-color: var(--quarter-color);
-  outline: 1px solid var(--half-color);
+@media (hover: hover) {
+  select:hover {
+    background-color: var(--quarter-color);
+    outline: 1px solid var(--half-color);
+  }
+}
+
+select:active {
+  background-color: var(--half-color);
 }
 
 @media screen and (max-aspect-ratio: 9/16), (max-width: 700px) {
