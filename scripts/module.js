@@ -1,4 +1,5 @@
-// Disabled handler
+// Disabled handler -----------------------------------------------------------
+
 const disabledHandler = (input, container) => {
   const observer = new MutationObserver(function (mutationsList) {
     for (let mutation of mutationsList) {
@@ -20,6 +21,41 @@ const disabledHandler = (input, container) => {
     container.classList.add("disabled");
   }
 };
+
+// Check input validity -------------------------------------------------------
+
+let prevVal = "";
+document.querySelectorAll("input[pattern]").forEach((input) => {
+  input.addEventListener("input", function () {
+    if (!this.checkValidity()) {
+      const match = this.value.match(/\d+/g);
+      if (match) {
+        this.value = match.join("");
+      } else {
+        this.value = "";
+      }
+    }
+  });
+});
+
+// Force number inputs to be numbers only ---------------------------------------
+
+document
+  .querySelectorAll("input[type='number'], input[type='tel']")
+  .forEach((input) => {
+    input.addEventListener("input", function () {
+      const val = parseFloat(this.value);
+      if (this.value === "") {
+        prevVal = "";
+      } else if (isNaN(val)) {
+        this.value = prevVal;
+      } else if (val > parseFloat(this.max)) {
+        this.value = this.max;
+      } else {
+        prevVal = this.value;
+      }
+    });
+  });
 
 // Button Icon code ----------------------------------------------------------
 
