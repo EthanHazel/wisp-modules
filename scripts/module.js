@@ -179,7 +179,17 @@ document
     var name = checkbox.getAttribute("label") || "Checkbox";
 
     nameLabel.innerHTML = name;
-    nameLabel.setAttribute("for", checkbox.id || "");
+    if (!checkbox.id) {
+      checkbox.id = "checkbox-" + Math.floor(Math.random() * 1000);
+      console.warn(
+        'Warning: Checkbox "' +
+          name +
+          '" has no ID. Given ID: ' +
+          checkbox.id +
+          " instead as a fallback. Please consider adding an ID."
+      );
+    }
+    nameLabel.setAttribute("for", checkbox.id);
     nameLabel.classList.add("checkbox-name");
 
     checkboxDiv.classList.add("checkbox-container");
