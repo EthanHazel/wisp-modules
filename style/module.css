@@ -508,13 +508,6 @@ input[type="file"]::file-selector-button {
   color: var(--secondary-color);
 }
 
-.color-input input[type="color"] {
-  position: fixed;
-  opacity: 0;
-  left: -1000px;
-  top: -1000px;
-}
-
 /* Styles for range inputs (I hate range inputs so much) */
 
 .range-container {
