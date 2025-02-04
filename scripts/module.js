@@ -264,7 +264,6 @@ document
           " instead as a fallback. Please consider adding an ID."
       );
     }
-    nameLabel.setAttribute("for", checkbox.id);
     nameLabel.classList.add("checkbox-name");
 
     checkboxDiv.classList.add("checkbox-container");
