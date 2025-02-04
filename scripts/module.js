@@ -300,7 +300,6 @@ document.querySelectorAll("input[type='radio']").forEach(function (radio) {
   var name = radio.getAttribute("label") || "Radio";
 
   nameLabel.innerHTML = name;
-  nameLabel.setAttribute("for", radio.id || "");
   nameLabel.classList.add("radio-name");
 
   radioDiv.classList.add("radio-container");
