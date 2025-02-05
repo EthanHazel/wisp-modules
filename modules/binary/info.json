@@ -3,5 +3,6 @@
   "description": "Convert binary to text and vice versa",
   "version": "1.0",
   "icon": "Binary",
-  "contributors": ["EthanHazel"]
+  "contributors": ["EthanHazel"],
+  "tags": ["code", "text to binary", "binary to text", "conversion"]
 }

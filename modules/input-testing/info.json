@@ -1,7 +1,7 @@
 {
-  "slug": "input-testing",
   "name": "Input Testing",
   "description": "A Testing Module for the Input System, please ignore this module if you somehow got here.",
   "icon": "FlaskConical",
-  "contributors": ["EthanHazel"]
+  "contributors": ["EthanHazel"],
+  "tags": ["tag"]
 }
