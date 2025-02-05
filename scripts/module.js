@@ -490,21 +490,11 @@ function openTab(containerName, tabName) {
 // Render all lucide icons --------------------------------------------
 
 window.addEventListener("load", function () {
-  const loading = document.createElement("div");
-  loading.id = "loading";
-  loading.innerHTML = "Loading...";
-  loading.style.transition = "opacity 0.5s ease-in-out";
-  document.body.appendChild(loading);
+  document.body.style.transition = "opacity 0.2s ease-in-out";
+  document.body.style.opacity = 1;
   const renderInputsPromise = renderInputs();
   const createIconsPromise = lucide.createIcons();
   Promise.all([renderInputsPromise, createIconsPromise]).then(function () {
-    document.body.style.transition = "opacity 0.2s ease-in-out";
-    document.body.style.opacity = 1;
-    setTimeout(function () {
-      document.getElementById("loading").style.opacity = 0;
-    }, 1);
-    setTimeout(function () {
-      loading.remove();
-    }, 500);
+    // Do nothing
   });
 });
