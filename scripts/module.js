@@ -430,32 +430,6 @@ async function renderInputs() {
     });
   });
 
-  function getCurrentTabName(containerName) {
-    var tab = document.querySelector(
-      'input[name="' + containerName + '"]:checked'
-    );
-    return tab ? tab.value : null;
-  }
-
-  function getCurrentTabIndex(containerName) {
-    var tab = document.querySelector(
-      'input[name="' + containerName + '"]:checked'
-    );
-    return tab ? tab.tabIndex : null;
-  }
-
-  function getAllTabNames(containerName) {
-    var tabs = document.querySelectorAll('input[name="' + containerName + '"]');
-    return Array.from(tabs).map(function (tab) {
-      return tab.value;
-    });
-  }
-
-  function openTab(containerName, tabName) {
-    focusTab(containerName, tabName);
-    document.getElementById(tabName + "-" + containerName).click();
-  }
-
   // Dropdown code -----------------------------------------------------
 
   document.querySelectorAll("select").forEach(function (dropdown) {
@@ -487,13 +461,50 @@ async function renderInputs() {
   return;
 }
 
+function getCurrentTabName(containerName) {
+  var tab = document.querySelector(
+    'input[name="' + containerName + '"]:checked'
+  );
+  return tab ? tab.value : null;
+}
+
+function getCurrentTabIndex(containerName) {
+  var tab = document.querySelector(
+    'input[name="' + containerName + '"]:checked'
+  );
+  return tab ? tab.tabIndex : null;
+}
+
+function getAllTabNames(containerName) {
+  var tabs = document.querySelectorAll('input[name="' + containerName + '"]');
+  return Array.from(tabs).map(function (tab) {
+    return tab.value;
+  });
+}
+
+function openTab(containerName, tabName) {
+  focusTab(containerName, tabName);
+  document.getElementById(tabName + "-" + containerName).click();
+}
+
 // Render all lucide icons --------------------------------------------
 
 window.addEventListener("load", function () {
-  var renderInputsPromise = renderInputs();
-  var createIconsPromise = lucide.createIcons();
+  const loading = document.createElement("div");
+  loading.id = "loading";
+  loading.innerHTML = "Loading...";
+  loading.style.transition = "opacity 0.5s ease-in-out";
+  document.body.appendChild(loading);
+  const renderInputsPromise = renderInputs();
+  const createIconsPromise = lucide.createIcons();
   Promise.all([renderInputsPromise, createIconsPromise]).then(function () {
     document.body.style.transition = "opacity 0.2s ease-in-out";
     document.body.style.opacity = 1;
+    setTimeout(function () {
+      document.getElementById("loading").style.opacity = 0;
+    }, 1);
+    setTimeout(function () {
+      loading.remove();
+    }, 500);
   });
 });
