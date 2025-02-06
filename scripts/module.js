@@ -458,6 +458,22 @@ async function renderInputs() {
       disabledHandler(input, input);
     });
 
+  document
+    .querySelectorAll(
+      "input[type='date'], input[type='time'], input[type='datetime-local'], input[type='week'], input[type='month']"
+    )
+    .forEach(function (input) {
+      if (input.getAttribute("rendered")) return;
+      var iOSInput = document.createElement("div");
+      iOSInput.classList.add("iOS-input");
+      iOSInput.onclick = function () {
+        input.focus();
+      };
+      input.parentNode.insertBefore(iOSInput, input);
+      iOSInput.appendChild(input);
+      input.setAttribute("rendered", true);
+    });
+
   return;
 }
 

@@ -304,7 +304,6 @@ input[type="month"] {
   font-family: var(--sans-serif);
   font-size: 14px;
   background: none;
-  text-align: left;
 }
 
 .iOS-input {
@@ -320,7 +319,8 @@ input[type="month"] {
   font-size: 14px;
   height: 41px;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
+  cursor: text;
   transition: outline 0.05s ease-in-out, box-shadow 0.1s ease-in-out,
     background-color 0.1s ease-in-out;
 }
