@@ -30,23 +30,6 @@ body {
   opacity: 0;
 }
 
-#loading {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--background-color);
-  color: var(--primary-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: "Inter", sans-serif;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: 1;
-}
-
 /* Common styles */
 
 .outlined {
@@ -855,6 +838,14 @@ select {
 
 select:active {
   background-color: var(--half-color);
+}
+
+/* Hr styles */
+
+hr {
+  border: 1px solid var(--half-color);
+  border-style: solid none none none;
+  margin: 16px 0;
 }
 
 @media screen and (max-aspect-ratio: 9/16), (max-width: 700px) {
