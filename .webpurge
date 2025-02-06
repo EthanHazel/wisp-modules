@@ -4,6 +4,7 @@ kit/
 node_modules/
 .gitignore
 index.html
+package.json
 package-lock.json
 README.md
-scripts/discord-webhook.js
+verOffset.json
