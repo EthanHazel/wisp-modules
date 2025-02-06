@@ -1,4 +1,7 @@
 {
+  "name": "wisp-modules",
+  "description": "Modules for Wisp and the Wisp Module Dev Kit",
+  "version": "0",
   "dependencies": {
     "connect-livereload": "^0.6.1",
     "express": "^4.21.2",
