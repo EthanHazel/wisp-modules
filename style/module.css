@@ -295,6 +295,11 @@ textarea {
   transition: outline 0.05s ease-in-out, box-shadow 0.1s ease-in-out,
     background-color 0.1s ease-in-out;
 }
+
+input[type="date"] {
+  padding: 24px;
+}
+
 @media (hover: hover) {
   input[type="text"]:hover,
   input[type="number"]:hover,
