@@ -312,11 +312,14 @@ input[type="month"] {
   background-color: var(--background-color);
   color: var(--primary-color);
   border: 1px solid var(--half-color);
-  padding: 12px;
+  padding: 0 10px;
   border-radius: var(--input-border-radius);
   outline: 0px solid var(--half-color);
   font-family: var(--sans-serif);
   font-size: 14px;
+  height: 41px;
+  align-items: center;
+  justify-content: flex-start;
   transition: outline 0.05s ease-in-out, box-shadow 0.1s ease-in-out,
     background-color 0.1s ease-in-out;
 }
