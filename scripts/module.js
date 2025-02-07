@@ -474,6 +474,36 @@ async function renderInputs() {
       input.setAttribute("rendered", true);
     });
 
+  document.querySelectorAll(".collapsible").forEach(function (collapsible) {
+    if (collapsible.getAttribute("rendered")) return;
+
+    const header = document.createElement("div");
+    const headerIcon = document.createElement("i");
+    const headerLabel = document.createElement("span");
+    const headerLine = document.createElement("hr");
+
+    headerIcon.setAttribute("data-lucide", "chevron-down");
+    header.appendChild(headerIcon);
+
+    headerLabel.innerHTML = collapsible.getAttribute("label");
+    headerLabel.classList.add("collapsible-label");
+    header.appendChild(headerLabel);
+
+    header.appendChild(headerLine);
+
+    header.classList.add("collapsible-header");
+    header.classList.add("collapsed");
+    header.onclick = function () {
+      collapsible.classList.toggle("collapsed");
+      header.classList.toggle("collapsed");
+    };
+
+    collapsible.classList.add("collapsed");
+
+    collapsible.parentNode.insertBefore(header, collapsible);
+    collapsible.setAttribute("rendered", true);
+  });
+
   return;
 }
 

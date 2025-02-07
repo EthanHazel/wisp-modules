@@ -300,7 +300,7 @@ input[type="month"] {
   outline: 0px solid var(--half-color);
   font-family: var(--sans-serif);
   font-size: 14px;
-  height: 41px;
+  min-height: 41px;
   align-items: center;
   justify-content: center;
   cursor: text;
@@ -846,6 +846,59 @@ hr {
   border: 1px solid var(--half-color);
   border-style: solid none none none;
   margin: 16px 0;
+}
+
+/* Collapsible styles */
+
+.collapsible {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  opacity: 1;
+}
+
+.collapsible.collapsed {
+  display: none;
+}
+
+.collapsible-header {
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  gap: 16px;
+  border-radius: var(--input-border-radius);
+  transition: background-color 0.1s ease-in-out;
+}
+
+@media (hover: hover) {
+  .collapsible-header:hover {
+    background-color: var(--quarter-color);
+  }
+}
+
+.collapsible-header .collapsible-label {
+  text-wrap: nowrap;
+}
+
+.collapsible-header svg {
+  transition: transform 0.1s ease-in-out;
+}
+
+.collapsible-header.collapsed svg {
+  transform: rotate(-90deg);
+}
+
+.collapsible-header hr {
+  margin: 0;
+  border: 1px solid var(--half-color);
+  border-style: solid none none none;
+  width: 100%;
 }
 
 @media screen and (max-aspect-ratio: 9/16), (max-width: 700px) {
