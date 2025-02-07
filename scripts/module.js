@@ -493,10 +493,19 @@ async function renderInputs() {
 
     header.classList.add("collapsible-header");
     header.classList.add("collapsed");
+    header.tabIndex = 0;
+
     header.onclick = function () {
       collapsible.classList.toggle("collapsed");
       header.classList.toggle("collapsed");
     };
+
+    header.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        collapsible.classList.toggle("collapsed");
+        header.classList.toggle("collapsed");
+      }
+    });
 
     collapsible.classList.add("collapsed");
 
