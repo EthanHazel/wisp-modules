@@ -11,6 +11,11 @@
   --quarter-color: #101010;
   --background-color: #000;
 
+  --error-color: #7c1515;
+  --success-color: #3d783d;
+  --warning-color: #4b4b28;
+  --info-color: #2c2c5b;
+
   --container-border-radius: 16px;
   --input-border-radius: 4px;
 
@@ -899,6 +904,66 @@ hr {
   border: 1px solid var(--half-color);
   border-style: solid none none none;
   width: 100%;
+}
+
+/* Toast styles */
+#toast-container {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px;
+  width: calc(100% - 24px);
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  width: calc(100% - 24px);
+  border-radius: var(--input-border-radius);
+  background-color: var(--background-color);
+  outline: 1px solid var(--half-color);
+  padding: 12px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.toast.error {
+  outline: 1px solid var(--error-color);
+}
+
+.toast.success {
+  outline: 1px solid var(--success-color);
+}
+
+.toast.warning {
+  outline: 1px solid var(--warning-color);
+}
+
+.toast.info {
+  outline: 1px solid var(--info-color);
+}
+
+.toast svg {
+  width: 16px;
+  height: 16px;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
 }
 
 @media screen and (max-aspect-ratio: 9/16), (max-width: 700px) {

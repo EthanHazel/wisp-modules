@@ -26,8 +26,6 @@
 
       <hr />
 
-      <p>Collapsible input test</p>
-
       <div class="collapsible" label="Collapsible Input">
         <input type="text" placeholder="Text Input" />
         <input type="button" value="Cool Button" />
@@ -35,10 +33,14 @@
         <p>Okay this is all</p>
       </div>
 
-      <p>
-        This is an element below the collapsible to show how it reacts when the
-        collapsible is closed
-      </p>
+      <hr />
+
+      <button
+        icon="message-square-dot"
+        onclick="toast('Cool toast', 0, 'copy', 3000)"
+      >
+        Testing toast
+      </button>
     </div>
   </body>
   <script src="https://unpkg.com/lucide@latest"></script>

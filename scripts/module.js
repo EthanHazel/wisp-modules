@@ -542,6 +542,56 @@ function openTab(containerName, tabName) {
   document.getElementById(tabName + "-" + containerName).click();
 }
 
+function toast(message, type = 0, icon, time = 5000) {
+  var toastContainer = document.getElementById("toast-container");
+  if (!toastContainer) {
+    toastContainer = document.createElement("div");
+    toastContainer.id = "toast-container";
+    document.body.appendChild(toastContainer);
+    toastContainer = document.getElementById("toast-container");
+  }
+
+  var toast = document.createElement("div");
+  toast.classList.add("toast");
+  switch (type) {
+    case 0:
+      break;
+    case 1:
+      toast.classList.add("success");
+      break;
+    case 2:
+      toast.classList.add("warning");
+      break;
+    case 3:
+      toast.classList.add("error");
+      break;
+    default:
+      console.error("Invalid toast type: " + type);
+      break;
+  }
+
+  toast.innerHTML = message;
+  toastContainer.appendChild(toast);
+
+  if (icon) {
+    const toastIcon = document.createElement("i");
+    toastIcon.setAttribute("data-lucide", icon);
+    toast.insertBefore(toastIcon, toast.firstChild);
+    lucide.createIcons();
+  }
+
+  setTimeout(function () {
+    toast.style.animation = "fade-out 0.25s";
+    toast.style.animationFillMode = "forwards";
+    setTimeout(function () {
+      toastContainer.removeChild(toast);
+      if (toastContainer.children.length === 0) {
+        toastContainer.remove();
+      }
+    }, 250);
+  }, time);
+}
+
 // Render all lucide icons --------------------------------------------
 
 window.addEventListener("load", function () {
