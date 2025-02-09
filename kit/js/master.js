@@ -147,8 +147,8 @@ document.getElementById("desktop").addEventListener("click", function () {
 });
 
 document.getElementById("mobile").addEventListener("click", function () {
-  setWidth(720);
-  setHeight(1280);
+  setWidth(491);
+  setHeight(709);
 });
 
 document.getElementById("loadButton").addEventListener("click", function () {
