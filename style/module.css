@@ -37,6 +37,8 @@ body {
   opacity: 0;
 }
 
+/* Scrollbar styles */
+
 /* Common styles */
 
 .outlined {
@@ -108,7 +110,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  overflow: scroll;
+  overflow: auto;
   padding: 16px;
   width: auto;
   height: auto;
@@ -242,7 +244,7 @@ body {
 }
 
 .tab-view {
-  overflow-y: scroll;
+  overflow-y: auto;
   margin-top: -16px; /* Offset fresh from my ass */
 }
 
