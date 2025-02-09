@@ -10,6 +10,8 @@
   --half-color: #2e2e2e;
   --quarter-color: #101010;
   --background-color: #000;
+  --background-color-trans: rgba(0, 0, 0, 0.5);
+  --background-blur: blur(12px);
 
   --error-color: #7c1515;
   --success-color: #3d783d;
@@ -635,9 +637,10 @@ input[type="range"]::-webkit-slider-thumb {
   */
   -webkit-appearance: none;
   appearance: none;
-  width: 12px;
-  height: 36px;
+  width: 24px;
+  height: 24px;
   background: var(--primary-color);
+  margin: 12px 0;
   cursor: pointer;
   border-radius: var(--input-border-radius);
   outline: 4px solid var(--background-color);
@@ -648,8 +651,9 @@ input[type="range"]::-webkit-slider-thumb {
 input[type="range"]::-moz-range-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 12px;
-  height: 36px;
+  width: 24px;
+  height: 24px;
+  margin: 12px 0;
   background: var(--primary-color);
   cursor: pointer;
   border-radius: var(--input-border-radius);
@@ -930,7 +934,8 @@ hr {
   display: flex;
   width: calc(100% - 24px);
   border-radius: var(--input-border-radius);
-  background-color: var(--background-color);
+  background-color: var(--background-color-trans);
+  backdrop-filter: var(--background-blur);
   outline: 1px solid var(--half-color);
   padding: 12px;
   text-align: center;
@@ -995,5 +1000,14 @@ hr {
 
   .range-input-value {
     width: 10%;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 36px !important;
+    height: 36px !important;
+  }
+  input[type="range"]::-moz-slider-thumb {
+    width: 36px !important;
+    height: 36px !important;
   }
 }
