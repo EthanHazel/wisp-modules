@@ -281,10 +281,6 @@ textarea {
     background-color 0.1s ease-in-out;
 }
 
-textarea {
-  field-sizing: content;
-}
-
 input[type="date"],
 input[type="time"],
 input[type="datetime-local"],

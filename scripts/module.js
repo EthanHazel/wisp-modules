@@ -513,6 +513,31 @@ async function renderInputs() {
     collapsible.setAttribute("rendered", true);
   });
 
+  // Size to content code -----------------------------------------------------
+
+  document.querySelectorAll("textarea.size-to-content").forEach((element) => {
+    const computedStyle = getComputedStyle(element);
+    const paddingY =
+      parseFloat(computedStyle.paddingTop) +
+      parseFloat(computedStyle.paddingBottom);
+    const borderY =
+      parseFloat(computedStyle.borderTopWidth) +
+      parseFloat(computedStyle.borderBottomWidth);
+
+    const updateSize = () => {
+      element.style.height = "auto";
+
+      const scrollHeight = element.scrollHeight;
+      const newHeight = Math.max(scrollHeight - paddingY, 0);
+
+      element.style.height = `${newHeight}px`;
+    };
+
+    element.addEventListener("input", updateSize);
+
+    updateSize();
+  });
+
   return;
 }
 
