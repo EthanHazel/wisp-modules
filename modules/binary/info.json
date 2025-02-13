@@ -4,5 +4,6 @@
   "version": "1.0",
   "icon": "Binary",
   "contributors": ["EthanHazel"],
-  "tags": ["code", "text to binary", "binary to text", "conversion"]
+  "tags": ["code", "text to binary", "binary to text", "conversion"],
+  "attributions": null
 }

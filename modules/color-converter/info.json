@@ -3,5 +3,6 @@
   "description": "Convert colors between HEX, RGB, HSV, HSL, and CMYK",
   "icon": "Palette",
   "contributors": ["EthanHazel"],
-  "tags": ["palette", "conversion"]
+  "tags": ["palette", "conversion"],
+  "attributions": null
 }
