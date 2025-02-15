@@ -195,7 +195,7 @@ const clearFields = (fields) => fields.forEach((field) => (field.value = ""));
 
 const copyToClipboard = (text) => {
   navigator.clipboard.writeText(text);
-  alert(`${text} copied to clipboard!`);
+  toast(`${text} copied to clipboard!`, 0, "copy", 500);
 };
 
 buttons.convertHex.addEventListener("click", () => {
@@ -207,7 +207,7 @@ buttons.convertHex.addEventListener("click", () => {
   else if (!hex.startsWith("#")) hex = `#${hex}`;
   if (/^#([A-Fa-f0-9]{6})$/.test(hex))
     updateAllFields(...Object.values(hexToRgb(hex)));
-  else alert("Invalid HEX color format!");
+  else toast("Invalid HEX color format!", 3, "error", 500);
 });
 
 buttons.convertRgb.addEventListener("click", () => {
@@ -216,7 +216,13 @@ buttons.convertRgb.addEventListener("click", () => {
   const b = parseFloat(inputs.blue.value);
   if ([r, g, b].every((val) => !isNaN(val) && val >= 0 && val <= 255))
     updateAllFields(r, g, b);
-  else alert("Invalid RGB values! Values must be between 0 and 255.");
+  else
+    toast(
+      "Invalid RGB values! Values must be between 0 and 255.",
+      3,
+      "error",
+      500
+    );
 });
 
 buttons.convertHsv.addEventListener("click", () => {
@@ -225,7 +231,7 @@ buttons.convertHsv.addEventListener("click", () => {
   const v = parseFloat(inputs.hsvValue.value);
   if ([h, s, v].every((val) => !isNaN(val)))
     updateAllFields(...Object.values(hsvToRgb(h, s, v)));
-  else alert("Invalid HSV values!");
+  else toast("Invalid HSV values!", 3, "error", 500);
 });
 
 buttons.convertHsl.addEventListener("click", () => {
@@ -234,7 +240,7 @@ buttons.convertHsl.addEventListener("click", () => {
   const l = parseFloat(inputs.hslLightness.value);
   if ([h, s, l].every((val) => !isNaN(val)))
     updateAllFields(...Object.values(hslToRgb(h, s, l)));
-  else alert("Invalid HSL values!");
+  else toast("Invalid HSL values!", 3, "error", 500);
 });
 
 buttons.convertCmyk.addEventListener("click", () => {
@@ -244,7 +250,7 @@ buttons.convertCmyk.addEventListener("click", () => {
   const k = parseFloat(inputs.key.value);
   if ([c, m, y, k].every((val) => !isNaN(val)))
     updateAllFields(...Object.values(cmykToRgb(c, m, y, k)));
-  else alert("Invalid CMYK values!");
+  else toast("Invalid CMYK values!", 3, "error", 500);
 });
 
 buttons.clearHex.addEventListener("click", () => clearFields([inputs.hex]));
