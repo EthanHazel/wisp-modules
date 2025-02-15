@@ -134,6 +134,14 @@ body {
   height: 100%;
 }
 
+.w-fit {
+  width: fit-content;
+}
+
+.h-fit {
+  height: fit-content;
+}
+
 .j-center {
   justify-content: center;
 }
