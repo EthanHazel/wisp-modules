@@ -9,169 +9,167 @@
     <title>Wisp Module</title>
   </head>
   <body ontouchstart="">
-    <div class="container row wrap-mobile h-100 gapless">
-      <div class="container w-100 h-fit overflow">
-        <div class="collapsible" label="Color Preview">
-          <div class="container w-100">
-            <div
-              id="color"
-              class="w-100 outlined round-min"
-              style="height: 128px"
-            ></div>
+    <div class="container w-100 h-fit overflow">
+      <div class="collapsible" label="Color Preview">
+        <div class="container w-100">
+          <div
+            id="color"
+            class="w-100 outlined round-min"
+            style="height: 128px"
+          ></div>
+        </div>
+      </div>
+      <div class="collapsible" label="Hex">
+        <div class="container row overflow wrap-mobile">
+          <input
+            class="w-100"
+            type="text"
+            id="hex-input"
+            placeholder="Hex"
+            value="#000000"
+          />
+          <div class="container row w-100 padless">
+            <button class="w-100" id="convert-hex" icon="refresh-cw">
+              Convert
+            </button>
+            <button class="w-100" id="copy-hex" icon="copy">Copy</button>
+            <button class="w-100" id="clear-hex" icon="trash">Clear</button>
           </div>
         </div>
-        <div class="collapsible" label="Hex">
-          <div class="container row overflow wrap-mobile">
-            <input
-              class="w-100"
-              type="text"
-              id="hex-input"
-              placeholder="Hex"
-              value="#000000"
-            />
-            <div class="container row w-100 padless">
-              <button class="w-100" id="convert-hex" icon="refresh-cw">
-                Convert
-              </button>
-              <button class="w-100" id="copy-hex" icon="copy">Copy</button>
-              <button class="w-100" id="clear-hex" icon="trash">Clear</button>
-            </div>
-          </div>
-        </div>
+      </div>
 
-        <div class="collapsible" label="RGB">
-          <div class="container row overflow wrap-mobile">
-            <input
-              class="w-100"
-              type="number"
-              id="hex-red"
-              placeholder="R"
-              value="0"
-            />
-            <input
-              class="w-100"
-              type="number"
-              id="hex-green"
-              placeholder="G"
-              value="0"
-            />
-            <input
-              class="w-100"
-              type="number"
-              id="hex-blue"
-              placeholder="B"
-              value="0"
-            />
-            <div class="container row w-100 padless overflow">
-              <button class="w-100" id="convert-rgb" icon="refresh-cw">
-                Convert
-              </button>
-              <button class="w-100" id="copy-rgb" icon="copy">Copy</button>
-              <button class="w-100" id="clear-rgb" icon="trash">Clear</button>
-            </div>
+      <div class="collapsible" label="RGB">
+        <div class="container row overflow wrap-mobile">
+          <input
+            class="w-100"
+            type="number"
+            id="hex-red"
+            placeholder="R"
+            value="0"
+          />
+          <input
+            class="w-100"
+            type="number"
+            id="hex-green"
+            placeholder="G"
+            value="0"
+          />
+          <input
+            class="w-100"
+            type="number"
+            id="hex-blue"
+            placeholder="B"
+            value="0"
+          />
+          <div class="container row w-100 padless overflow">
+            <button class="w-100" id="convert-rgb" icon="refresh-cw">
+              Convert
+            </button>
+            <button class="w-100" id="copy-rgb" icon="copy">Copy</button>
+            <button class="w-100" id="clear-rgb" icon="trash">Clear</button>
           </div>
         </div>
-        <div class="collapsible" label="HSV">
-          <div class="container row overflow wrap-mobile">
-            <input
-              class="w-100"
-              type="number"
-              id="hsv-hue"
-              placeholder="H"
-              value="0"
-            />
-            <input
-              class="w-100"
-              type="number"
-              id="hsv-saturation"
-              placeholder="S"
-              value="0"
-            />
-            <input
-              class="w-100"
-              type="number"
-              id="hsv-value"
-              placeholder="V"
-              value="0"
-            />
-            <div class="container row w-100 padless overflow">
-              <button class="w-100" id="convert-hsv" icon="refresh-cw">
-                Convert
-              </button>
-              <button class="w-100" id="copy-hsv" icon="copy">Copy</button>
-              <button class="w-100" id="clear-hsv" icon="trash">Clear</button>
-            </div>
+      </div>
+      <div class="collapsible" label="HSV">
+        <div class="container row overflow wrap-mobile">
+          <input
+            class="w-100"
+            type="number"
+            id="hsv-hue"
+            placeholder="H"
+            value="0"
+          />
+          <input
+            class="w-100"
+            type="number"
+            id="hsv-saturation"
+            placeholder="S"
+            value="0"
+          />
+          <input
+            class="w-100"
+            type="number"
+            id="hsv-value"
+            placeholder="V"
+            value="0"
+          />
+          <div class="container row w-100 padless overflow">
+            <button class="w-100" id="convert-hsv" icon="refresh-cw">
+              Convert
+            </button>
+            <button class="w-100" id="copy-hsv" icon="copy">Copy</button>
+            <button class="w-100" id="clear-hsv" icon="trash">Clear</button>
           </div>
         </div>
-        <div class="collapsible" label="HSL">
-          <div class="container row overflow wrap-mobile">
-            <input
-              class="w-100"
-              type="number"
-              id="hsl-hue"
-              placeholder="H"
-              value="0"
-            />
-            <input
-              class="w-100"
-              type="number"
-              id="hsl-saturation"
-              placeholder="S"
-              value="0"
-            />
-            <input
-              class="w-100"
-              type="number"
-              id="hsl-lightness"
-              placeholder="L"
-              value="0"
-            />
-            <div class="container row w-100 padless overflow">
-              <button class="w-100" id="convert-hsl" icon="refresh-cw">
-                Convert
-              </button>
-              <button class="w-100" id="copy-hsl" icon="copy">Copy</button>
-              <button class="w-100" id="clear-hsl" icon="trash">Clear</button>
-            </div>
+      </div>
+      <div class="collapsible" label="HSL">
+        <div class="container row overflow wrap-mobile">
+          <input
+            class="w-100"
+            type="number"
+            id="hsl-hue"
+            placeholder="H"
+            value="0"
+          />
+          <input
+            class="w-100"
+            type="number"
+            id="hsl-saturation"
+            placeholder="S"
+            value="0"
+          />
+          <input
+            class="w-100"
+            type="number"
+            id="hsl-lightness"
+            placeholder="L"
+            value="0"
+          />
+          <div class="container row w-100 padless overflow">
+            <button class="w-100" id="convert-hsl" icon="refresh-cw">
+              Convert
+            </button>
+            <button class="w-100" id="copy-hsl" icon="copy">Copy</button>
+            <button class="w-100" id="clear-hsl" icon="trash">Clear</button>
           </div>
         </div>
-        <div class="collapsible" label="CMYK">
-          <div class="container row overflow wrap-mobile">
-            <input
-              class="w-100"
-              type="number"
-              id="cmyk-cyan"
-              placeholder="C"
-              value="0"
-            />
-            <input
-              class="w-100"
-              type="number"
-              id="cmyk-magenta"
-              placeholder="M"
-              value="0"
-            />
-            <input
-              class="w-100"
-              type="number"
-              id="cmyk-yellow"
-              placeholder="Y"
-              value="0"
-            />
-            <input
-              class="w-100"
-              type="number"
-              id="cmyk-key"
-              placeholder="K"
-              value="100"
-            />
-            <div class="container row w-100 padless overflow">
-              <button class="w-100" id="convert-cmyk" icon="refresh-cw">
-                Convert
-              </button>
-              <button class="w-100" id="copy-cmyk" icon="copy">Copy</button>
-              <button class="w-100" id="clear-cmyk" icon="trash">Clear</button>
-            </div>
+      </div>
+      <div class="collapsible" label="CMYK">
+        <div class="container row overflow wrap-mobile">
+          <input
+            class="w-100"
+            type="number"
+            id="cmyk-cyan"
+            placeholder="C"
+            value="0"
+          />
+          <input
+            class="w-100"
+            type="number"
+            id="cmyk-magenta"
+            placeholder="M"
+            value="0"
+          />
+          <input
+            class="w-100"
+            type="number"
+            id="cmyk-yellow"
+            placeholder="Y"
+            value="0"
+          />
+          <input
+            class="w-100"
+            type="number"
+            id="cmyk-key"
+            placeholder="K"
+            value="100"
+          />
+          <div class="container row w-100 padless overflow">
+            <button class="w-100" id="convert-cmyk" icon="refresh-cw">
+              Convert
+            </button>
+            <button class="w-100" id="copy-cmyk" icon="copy">Copy</button>
+            <button class="w-100" id="clear-cmyk" icon="trash">Clear</button>
           </div>
         </div>
       </div>
