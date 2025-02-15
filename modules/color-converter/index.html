@@ -10,139 +10,144 @@
   </head>
   <body ontouchstart="">
     <div class="container h-100 gapless">
-      <div class="container w-100 h-100">
-        <div id="color" class="w-100 h-100 outlined round-min"></div>
-      </div>
       <div class="container w-100 overflow">
-        <div class="container row overflow padless">
-          <p>Hex:</p>
-          <input
-            class="w-100"
-            type="text"
-            id="hex-input"
-            placeholder="Hex"
-            value="#000000"
-          />
-          <button id="convert-hex" icon="refresh-cw">Convert</button>
-          <button id="copy-hex" icon="copy"></button>
-          <button id="clear-hex" icon="trash"></button>
+        <div class="collapsible" label="Hex">
+          <div class="container row overflow padless">
+            <input
+              class="w-100"
+              type="text"
+              id="hex-input"
+              placeholder="Hex"
+              value="#000000"
+            />
+            <button id="convert-hex" icon="refresh-cw">Convert</button>
+            <button id="copy-hex" icon="copy"></button>
+            <button id="clear-hex" icon="trash"></button>
+          </div>
         </div>
 
-        <div class="container row overflow padless">
-          <p>RGB:</p>
-          <input
-            class="w-100"
-            type="number"
-            id="hex-red"
-            placeholder="R"
-            value="0"
-          />
-          <input
-            class="w-100"
-            type="number"
-            id="hex-green"
-            placeholder="G"
-            value="0"
-          />
-          <input
-            class="w-100"
-            type="number"
-            id="hex-blue"
-            placeholder="B"
-            value="0"
-          />
-          <button id="convert-rgb" icon="refresh-cw">Convert</button>
-          <button id="copy-rgb" icon="copy"></button>
-          <button id="clear-rgb" icon="trash"></button>
+        <div class="collapsible" label="RGB">
+          <div class="container row overflow padless">
+            <input
+              class="w-100"
+              type="number"
+              id="hex-red"
+              placeholder="R"
+              value="0"
+            />
+            <input
+              class="w-100"
+              type="number"
+              id="hex-green"
+              placeholder="G"
+              value="0"
+            />
+            <input
+              class="w-100"
+              type="number"
+              id="hex-blue"
+              placeholder="B"
+              value="0"
+            />
+            <button id="convert-rgb" icon="refresh-cw">Convert</button>
+            <button id="copy-rgb" icon="copy"></button>
+            <button id="clear-rgb" icon="trash"></button>
+          </div>
         </div>
-        <div class="container row overflow padless">
-          <p>HSV:</p>
-          <input
-            class="w-100"
-            type="number"
-            id="hsv-hue"
-            placeholder="H"
-            value="0"
-          />
-          <input
-            class="w-100"
-            type="number"
-            id="hsv-saturation"
-            placeholder="S"
-            value="0"
-          />
-          <input
-            class="w-100"
-            type="number"
-            id="hsv-value"
-            placeholder="V"
-            value="0"
-          />
-          <button id="convert-hsv" icon="refresh-cw">Convert</button>
-          <button id="copy-hsv" icon="copy"></button>
-          <button id="clear-hsv" icon="trash"></button>
+        <div class="collapsible" label="HSV">
+          <div class="container row overflow padless">
+            <input
+              class="w-100"
+              type="number"
+              id="hsv-hue"
+              placeholder="H"
+              value="0"
+            />
+            <input
+              class="w-100"
+              type="number"
+              id="hsv-saturation"
+              placeholder="S"
+              value="0"
+            />
+            <input
+              class="w-100"
+              type="number"
+              id="hsv-value"
+              placeholder="V"
+              value="0"
+            />
+            <button id="convert-hsv" icon="refresh-cw">Convert</button>
+            <button id="copy-hsv" icon="copy"></button>
+            <button id="clear-hsv" icon="trash"></button>
+          </div>
         </div>
-        <div class="container row overflow padless">
-          <p>HSL:</p>
-          <input
-            class="w-100"
-            type="number"
-            id="hsl-hue"
-            placeholder="H"
-            value="0"
-          />
-          <input
-            class="w-100"
-            type="number"
-            id="hsl-saturation"
-            placeholder="S"
-            value="0"
-          />
-          <input
-            class="w-100"
-            type="number"
-            id="hsl-lightness"
-            placeholder="L"
-            value="0"
-          />
-          <button id="convert-hsl" icon="refresh-cw">Convert</button>
-          <button id="copy-hsl" icon="copy"></button>
-          <button id="clear-hsl" icon="trash"></button>
+        <div class="collapsible" label="HSL">
+          <div class="container row overflow padless">
+            <input
+              class="w-100"
+              type="number"
+              id="hsl-hue"
+              placeholder="H"
+              value="0"
+            />
+            <input
+              class="w-100"
+              type="number"
+              id="hsl-saturation"
+              placeholder="S"
+              value="0"
+            />
+            <input
+              class="w-100"
+              type="number"
+              id="hsl-lightness"
+              placeholder="L"
+              value="0"
+            />
+            <button id="convert-hsl" icon="refresh-cw">Convert</button>
+            <button id="copy-hsl" icon="copy"></button>
+            <button id="clear-hsl" icon="trash"></button>
+          </div>
         </div>
-        <div class="container row overflow padless">
-          <p>CMYK:</p>
-          <input
-            class="w-100"
-            type="number"
-            id="cmyk-cyan"
-            placeholder="C"
-            value="0"
-          />
-          <input
-            class="w-100"
-            type="number"
-            id="cmyk-magenta"
-            placeholder="M"
-            value="0"
-          />
-          <input
-            class="w-100"
-            type="number"
-            id="cmyk-yellow"
-            placeholder="Y"
-            value="0"
-          />
-          <input
-            class="w-100"
-            type="number"
-            id="cmyk-key"
-            placeholder="K"
-            value="100"
-          />
-          <button id="convert-cmyk" icon="refresh-cw">Convert</button>
-          <button id="copy-cmyk" icon="copy"></button>
-          <button id="clear-cmyk" icon="trash"></button>
+        <div class="collapsible" label="CMYK">
+          <div class="container row overflow padless">
+            <input
+              class="w-100"
+              type="number"
+              id="cmyk-cyan"
+              placeholder="C"
+              value="0"
+            />
+            <input
+              class="w-100"
+              type="number"
+              id="cmyk-magenta"
+              placeholder="M"
+              value="0"
+            />
+            <input
+              class="w-100"
+              type="number"
+              id="cmyk-yellow"
+              placeholder="Y"
+              value="0"
+            />
+            <input
+              class="w-100"
+              type="number"
+              id="cmyk-key"
+              placeholder="K"
+              value="100"
+            />
+            <button id="convert-cmyk" icon="refresh-cw">Convert</button>
+            <button id="copy-cmyk" icon="copy"></button>
+            <button id="clear-cmyk" icon="trash"></button>
+          </div>
         </div>
+      </div>
+      <div class="container w-100 h-100">
+        <div id="color" class="w-100 h-100 outlined round-min"></div>
       </div>
     </div>
   </body>

@@ -520,20 +520,30 @@ async function renderInputs() {
     const paddingY =
       parseFloat(computedStyle.paddingTop) +
       parseFloat(computedStyle.paddingBottom);
-    const borderY =
-      parseFloat(computedStyle.borderTopWidth) +
-      parseFloat(computedStyle.borderBottomWidth);
 
     const updateSize = () => {
       element.style.height = "auto";
-
       const scrollHeight = element.scrollHeight;
       const newHeight = Math.max(scrollHeight - paddingY, 0);
-
       element.style.height = `${newHeight}px`;
     };
 
     element.addEventListener("input", updateSize);
+
+    const originalDescriptor = Object.getOwnPropertyDescriptor(
+      HTMLTextAreaElement.prototype,
+      "value"
+    );
+    Object.defineProperty(element, "value", {
+      set: function (value) {
+        originalDescriptor.set.call(this, value);
+        this.dispatchEvent(new Event("input", { bubbles: true }));
+      },
+      get: function () {
+        return originalDescriptor.get.call(this);
+      },
+      configurable: true,
+    });
 
     updateSize();
   });

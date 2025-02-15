@@ -113,7 +113,6 @@ body {
   overflow: auto;
   padding: 16px;
   width: auto;
-  height: auto;
   justify-content: space-between;
 }
 
@@ -296,6 +295,10 @@ input[type="month"] {
   font-family: var(--sans-serif);
   font-size: 14px;
   background: none;
+}
+
+textarea {
+  min-height: 41px;
 }
 
 .iOS-input {

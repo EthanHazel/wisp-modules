@@ -38,6 +38,7 @@ document.getElementById("copy-button").addEventListener("click", function () {
   textArea.select();
   document.execCommand("copy");
   textArea.remove();
+  toast("Copied to clipboard", 0, "clipboard", 250);
 });
 
 document.getElementById("paste-button").addEventListener("click", function () {
@@ -73,4 +74,20 @@ document.getElementById("clear-button").addEventListener("click", function () {
     document.getElementById("binary-input").value = "";
     document.getElementById("text-output").value = "";
   }
+});
+
+document.getElementById("save-button").addEventListener("click", function () {
+  const mode = getCurrentMode();
+  const textToSave =
+    mode === "textToBinary"
+      ? document.getElementById("binary-output").value
+      : document.getElementById("text-output").value;
+  const blob = new Blob([textToSave], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `${mode}.txt`;
+  a.click();
+  URL.revokeObjectURL(url);
+  toast("Saved as " + a.download, 0, "file-text", 1000);
 });
