@@ -96,7 +96,6 @@ fs.writeFileSync(`./modules/${slug}/info.json`, JSON.stringify(moduleData));
 // Copy the template files to the module directory
 fs.copyFileSync("./kit/template/index.html", `./modules/${slug}/index.html`);
 fs.copyFileSync("./kit/template/script.js", `./modules/${slug}/script.js`);
-fs.copyFileSync("./kit/template/style.css", `./modules/${slug}/style.css`);
 
 // Log success message
 console.log(`\n\x1b[32mModule created successfully!\x1b[0m\n`);
