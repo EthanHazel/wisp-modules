@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../../style/module.css" />
+
+    <title>Wisp Module</title>
+  </head>
+  <body ontouchstart="" class="container w-100 padless gapless">
+    <div class="container row wrap-mobile w-100 h-100">
+      <textarea
+        type="text"
+        id="text-input"
+        class="w-100"
+        placeholder="Enter text..."
+      ></textarea>
+
+      <textarea
+        type="text"
+        id="reverse-output"
+        class="w-100"
+        placeholder="Output..."
+        spellcheck="false"
+        readonly
+      ></textarea>
+    </div>
+
+    <div class="border-top">
+      <div class="container w-100 h-fit">
+        <div class="collapsible h-100" label="Mode">
+          <input
+            type="radio"
+            name="mode"
+            id="characters"
+            label="Reverse characters"
+            checked
+          />
+          <input type="radio" name="mode" id="words" label="Reverse words" />
+        </div>
+      </div>
+      <div class="container row w-100 border-top">
+        <button class="w-100" id="clear-button" icon="trash">Clear</button>
+        <button class="w-100" id="paste-button" icon="clipboard">Paste</button>
+        <button class="w-100" id="copy-button" icon="copy">Copy</button>
+        <button class="w-100" id="save-button" icon="download">Save</button>
+      </div>
+    </div>
+  </body>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="../../scripts/module.js"></script>
+  <script src="script.js"></script>
+</html>
