@@ -3,5 +3,5 @@
   "description": "Converts morse code to text and vice versa",
   "icon": "Binary",
   "contributors": ["EthanHazel"],
-  "tags": ["conversion"]
+  "tags": ["conversion", "encode", "decode"]
 }
