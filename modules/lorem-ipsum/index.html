@@ -8,45 +8,40 @@
 
     <title>Wisp Module</title>
   </head>
-  <body ontouchstart="" class="container w-100 padless row wrap-mobile">
+  <body ontouchstart="" class="container w-100 padless gapless row wrap-mobile">
     <div class="container w-100 h-fit">
-      <label for="wordAmount">
-        Length
-        <input
-          type="range"
-          name="words"
-          id="wordAmount"
-          min="1"
-          max="5000"
-          value="145"
-        />
-      </label>
+      <label for="fontSize">Length</label>
+      <input
+        type="range"
+        name="words"
+        id="wordAmount"
+        min="1"
+        max="5000"
+        value="146"
+      />
 
-      <label for="fontSize"
-        >Font Size
-        <input
-          type="range"
-          min="1"
-          max="128"
-          value="14"
-          name="fontSize"
-          id="fontSize"
-      /></label>
+      <input
+        type="checkbox"
+        name="paragraphs"
+        id="paragraphs"
+        label="Enable Paragraphs"
+        checked
+      />
+
+      <label for="fontSize">Font Size</label>
+      <input
+        type="range"
+        min="1"
+        max="128"
+        value="14"
+        name="fontSize"
+        id="fontSize"
+      />
 
       <button id="originalAmount" icon="refresh-cw">Reset to default</button>
-
-      <p>Letter count: <span id="letterCount">0</span></p>
-      <p>Word count: <span id="wordCount">0</span></p>
-      <p>
-        Original text is 145 words and 974 letters. Anything past that will
-        loop.
-      </p>
+      <button id="reseed" icon="dices">Reseed</button>
     </div>
     <div class="container w-100 h-100">
-      <div class="container row w-100 padless">
-        <button class="w-100" id="copyLorem" icon="copy">Copy</button>
-        <button class="w-100" id="saveLorem" icon="file-text">Save</button>
-      </div>
       <textarea
         name="lorem"
         id="loremOutput"
@@ -54,6 +49,16 @@
         class="h-100"
         readonly
       ></textarea>
+      <div
+        class="container row w-100 outlined round-min j-around txt-small a-center padless h-fit"
+      >
+        <p>Letter count: <span id="letterCount">0</span></p>
+        <p>Word count: <span id="wordCount">0</span></p>
+      </div>
+      <div class="container row w-100 padless">
+        <button class="w-100" id="copyLorem" icon="copy">Copy</button>
+        <button class="w-100" id="saveLorem" icon="file-text">Save</button>
+      </div>
     </div>
   </body>
   <script src="https://unpkg.com/lucide@latest"></script>

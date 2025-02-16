@@ -37,7 +37,9 @@ body {
   opacity: 0;
 }
 
-/* Scrollbar styles */
+label {
+  font-size: 14px;
+}
 
 /* Common styles */
 
@@ -100,11 +102,6 @@ body {
 }
 
 /* Style for layout */
-
-.stroke {
-  outline: 1px solid var(--half-color);
-  border-radius: var(--container-border-radius);
-}
 
 .container {
   display: flex;
@@ -192,6 +189,18 @@ body {
 
 .a-stretch {
   align-items: stretch;
+}
+
+.txt-small {
+  font-size: 12px;
+}
+
+.txt-medium {
+  font-size: 14px;
+}
+
+.txt-large {
+  font-size: 16px;
 }
 
 .container.w-100 {
