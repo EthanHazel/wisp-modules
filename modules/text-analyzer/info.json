@@ -1,0 +1,15 @@
+{
+  "name": "Text Analyzer",
+  "description": "Shows info on the text such as the letter count, word count, and more.",
+  "icon": "ScanText",
+  "contributors": ["EthanHazel"],
+  "tags": [
+    "info",
+    "letter",
+    "characters",
+    "word",
+    "sentence",
+    "pargraph",
+    "counter"
+  ]
+}

@@ -627,14 +627,32 @@ function toast(message, type = 0, icon, time = 5000) {
   }, time);
 }
 
+// Check on load and on resize if the page is in mobile mode ---------------------
+
+function isMobile() {
+  return window.matchMedia("(max-aspect-ratio: 3/4), (max-width: 700px)")
+    .matches;
+}
+
+function onResize() {
+  if (isMobile()) {
+    document.body.classList.add("is-mobile");
+  } else {
+    document.body.classList.remove("is-mobile");
+  }
+}
+
 // Render all lucide icons --------------------------------------------
 
 window.addEventListener("load", function () {
   document.body.style.transition = "opacity 0.2s ease-in-out";
   document.body.style.opacity = 1;
+  onResize();
   const renderInputsPromise = renderInputs();
   const createIconsPromise = lucide.createIcons();
   Promise.all([renderInputsPromise, createIconsPromise]).then(function () {
     // Do nothing
   });
 });
+
+window.addEventListener("resize", onResize);
