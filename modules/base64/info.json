@@ -1,0 +1,7 @@
+{
+  "name": "Base64 Converter",
+  "description": "Convert base64 to text and images, and also encode into base64",
+  "icon": "Binary",
+  "contributors": ["EthanHazel"],
+  "tags": ["decode", "conversion"]
+}

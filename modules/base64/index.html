@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../../style/module.css" />
+
+    <style>
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    </style>
+
+    <title>Wisp Module</title>
+  </head>
+  <body ontouchstart="">
+    <div class="tab-con h-100" label="Convert">
+      <div class="tab-view h-100" label="Text to Base64">
+        <div class="container row wrap-mobile w-100">
+          <textarea
+            type="text"
+            id="text-input"
+            class="w-100 size-to-content"
+            placeholder="Enter text..."
+          ></textarea>
+
+          <textarea
+            type="text"
+            id="base64-output"
+            class="w-100 size-to-content"
+            placeholder="Output..."
+            spellcheck="false"
+            readonly
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="tab-view h-100" label="Base64 to Text">
+        <div class="container row wrap-mobile w-100">
+          <textarea
+            type="text"
+            id="base64-input"
+            class="w-100 size-to-content"
+            spellcheck="false"
+            placeholder="Enter base64..."
+          ></textarea>
+
+          <textarea
+            type="text"
+            class="w-100 size-to-content"
+            id="text-output"
+            placeholder="Output..."
+            readonly
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="tab-view h-100" label="Image to Base64">
+        <div class="container w-100 h-100">
+          <input
+            type="file"
+            id="image-input"
+            accept="image/*"
+            class="w-100 size-to-content"
+            label="Upload Image"
+            icon="image"
+          />
+
+          <textarea
+            type="text"
+            class="txt-small h-100"
+            id="base64-image-output"
+            placeholder="Output..."
+            spellcheck="false"
+            readonly
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="tab-view h-100" label="Base64 to Image">
+        <div class="container row wrap-mobile w-100 h-100">
+          <textarea
+            type="text"
+            class="txt-small w-100"
+            id="base64-image-input"
+            spellcheck="false"
+            placeholder="Enter base64..."
+          ></textarea>
+
+          <div
+            class="container w-100 h-100 j-center a-center outlined round-min"
+          >
+            <img src="" id="image-output" alt="Image Output" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container row w-100 border-top">
+      <button class="w-100" id="clear-button" icon="trash">Clear</button>
+      <button class="w-100" id="paste-button" icon="clipboard">Paste</button>
+      <button class="w-100" id="copy-button" icon="copy">Copy</button>
+      <button class="w-100" id="save-button" icon="download">Save</button>
+    </div>
+  </body>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="../../scripts/module.js"></script>
+  <script src="script.js"></script>
+</html>
