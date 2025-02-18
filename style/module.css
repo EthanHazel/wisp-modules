@@ -19,7 +19,7 @@
   --info-color: #2c2c5b;
 
   --container-border-radius: 16px;
-  --input-border-radius: 4px;
+  --input-border-radius: 8px;
 
   --sans-serif: "Inter", sans-serif;
   --monospace: "Space Mono", monospace;
@@ -44,7 +44,8 @@ label {
 /* Common styles */
 
 .outlined {
-  outline: 1px solid var(--half-color);
+  outline: 2px solid var(--quarter-color);
+  outline-style: dashed;
 }
 
 .round-min {
@@ -286,11 +287,17 @@ label {
   font-size: 14px;
   width: calc(100% - 32px);
   text-align: center;
+  box-shadow: inset 0 0 64px 0px var(--background-color-trans);
+  outline: 0px solid var(--quarter-color);
+  transition: outline 0.1s ease-in-out, background-color 0.1s ease-in-out,
+    box-shadow 0.2s ease-in-out;
 }
 
 @media (hover: hover) {
   .tab-button label:hover {
     outline: 1px solid var(--half-color);
+    background-color: var(--quarter-color);
+    box-shadow: inset 0 0 64px 0px var(--quarter-color);
   }
 }
 
@@ -301,6 +308,7 @@ label {
 .tab-button input[type="radio"]:checked + label {
   background-color: var(--primary-color);
   color: var(--background-color);
+  box-shadow: 0 0 16px -6px var(--primary-color);
 }
 
 .tab-view {
@@ -330,15 +338,18 @@ input[type="search"],
 input[type="url"],
 input[type="tel"],
 input[type="datetime"],
-textarea {
+textarea,
+select,
+.iOS-input {
   background-color: var(--background-color);
   color: var(--primary-color);
   border: 1px solid var(--half-color);
   padding: 12px;
   border-radius: var(--input-border-radius);
-  outline: 0px solid var(--half-color);
+  outline: 0px solid var(--quarter-color);
   font-family: var(--sans-serif);
   font-size: 14px;
+  box-shadow: inset 0 8px 16px -16px var(--quarter-color);
   transition: outline 0.05s ease-in-out, box-shadow 0.1s ease-in-out,
     background-color 0.1s ease-in-out;
 }
@@ -358,27 +369,18 @@ input[type="month"] {
   background: none;
 }
 
-textarea {
-  min-height: 41px;
-}
-
 .iOS-input {
   /* iOS Safari randomly overrites some input style for some reason so I have to do this for it */
   display: flex;
-  background-color: var(--background-color);
-  color: var(--primary-color);
-  border: 1px solid var(--half-color);
   padding: 0 10px;
-  border-radius: var(--input-border-radius);
-  outline: 0px solid var(--half-color);
-  font-family: var(--sans-serif);
-  font-size: 14px;
   min-height: 41px;
   align-items: center;
   justify-content: center;
   cursor: text;
-  transition: outline 0.05s ease-in-out, box-shadow 0.1s ease-in-out,
-    background-color 0.1s ease-in-out;
+}
+
+textarea {
+  min-height: 41px;
 }
 
 @media (hover: hover) {
@@ -390,10 +392,12 @@ textarea {
   input[type="url"]:hover,
   input[type="tel"]:hover,
   input[type="datetime"]:hover,
+  select:hover,
   .iOS-input:hover,
   textarea:hover {
-    background-color: var(--quarter-color);
-    outline: 1px solid var(--half-color);
+    background-color: var(--background-color);
+    outline: 2px solid var(--quarter-color);
+    box-shadow: inset 0 0 16px 0px var(--quarter-color);
   }
 }
 
@@ -405,11 +409,14 @@ input[type="search"]:focus,
 input[type="url"]:focus,
 input[type="tel"]:focus,
 input[type="datetime"]:focus,
+select:focus,
 .iOS-input:focus-within,
 textarea:focus {
-  outline: 2px solid var(--primary-color);
-  box-shadow: 0 0 6px var(--primary-color);
-  background-color: var(--quarter-color);
+  outline: 2px solid var(--secondary-color);
+  box-shadow: 0 0 16px -6px var(--primary-color),
+    inset 0 0 4px 0px var(--quarter-color);
+  background-color: var(--background-color);
+  border: 1px solid var(--quarter-color);
 }
 
 textarea {
@@ -437,10 +444,12 @@ input[type="reset"] {
   padding: 12px 24px;
   border-radius: var(--input-border-radius);
   cursor: pointer;
-  border: none;
+  border: 1px solid var(--half-color);
   font-family: var(--sans-serif);
   font-size: 14px;
-  transition: background-color 0.05s ease-in-out, color 0.05s ease-in-out;
+  box-shadow: inset 0 0 64px 0px var(--quarter-color);
+  transition: background-color 0.05s ease-in-out, color 0.05s ease-in-out,
+    box-shadow 0.1s ease-in-out;
 }
 
 @media (hover: hover) {
@@ -469,7 +478,6 @@ input[type="reset"]:active {
   padding: 12px 12px;
   border-radius: var(--input-border-radius);
   cursor: pointer;
-  border: none;
   font-family: var(--sans-serif);
   font-size: 14px;
   transition: background-color 0.05s ease-in-out, color 0.05s ease-in-out;
@@ -481,6 +489,7 @@ input[type="reset"]:active {
   min-width: 18px;
   min-height: 18px;
   color: var(--secondary-color);
+  transition: color 0.05s ease-in-out;
 }
 
 .icon-button-text {
@@ -502,7 +511,10 @@ input[type="reset"]:active {
   border: none;
   font-family: var(--sans-serif);
   font-size: 14px;
-  transition: background-color 0.05s ease-in-out, color 0.05s ease-in-out;
+  box-shadow: inset 0 8px 16px -16px var(--quarter-color);
+  transition: outline 0.05s ease-in-out, box-shadow 0.1s ease-in-out,
+    background-color 0.1s ease-in-out;
+  outline: 0px solid var(--quarter-color);
   border: 1px solid var(--half-color);
   display: flex;
   flex-direction: row;
@@ -512,8 +524,8 @@ input[type="reset"]:active {
 
 @media (hover: hover) {
   .file-input:hover {
-    background-color: var(--quarter-color);
-    outline: 1px solid var(--half-color);
+    outline: 2px solid var(--quarter-color);
+    box-shadow: inset 0 0 16px 0px var(--quarter-color);
   }
 }
 
@@ -568,7 +580,10 @@ input[type="file"]::file-selector-button {
   cursor: pointer;
   font-family: var(--sans-serif);
   font-size: 14px;
-  transition: background-color 0.05s ease-in-out, color 0.05s ease-in-out;
+  box-shadow: inset 0 8px 16px -16px var(--quarter-color);
+  transition: outline 0.05s ease-in-out, box-shadow 0.1s ease-in-out,
+    background-color 0.1s ease-in-out;
+  outline: 0px solid var(--quarter-color);
   border: 1px solid var(--half-color);
   display: flex;
   flex-direction: row;
@@ -579,8 +594,8 @@ input[type="file"]::file-selector-button {
 
 @media (hover: hover) {
   .color-input:hover {
-    background-color: var(--quarter-color);
-    outline: 1px solid var(--half-color);
+    outline: 2px solid var(--quarter-color);
+    box-shadow: inset 0 0 16px 0px var(--quarter-color);
   }
 }
 
@@ -602,7 +617,8 @@ input[type="file"]::file-selector-button {
   min-width: 24px;
   min-height: 24px;
   border-radius: 50%;
-  outline: 1px solid var(--quarter-color);
+  border: 2px solid var(--background-color);
+  outline: 1px solid var(--half-color);
 }
 
 .color-input-value {
@@ -631,8 +647,8 @@ input[type="file"]::file-selector-button {
   justify-content: space-between;
   gap: 21px;
   padding: 12px;
-  border-radius: var(--input-border-radius);
-  border: 1px solid var(--half-color);
+  border-radius: var(--container-border-radius);
+  border: 1px solid var(--quarter-color);
 }
 
 .range-input {
@@ -646,6 +662,7 @@ input[type="file"]::file-selector-button {
   height: 16px;
   border: 1px solid var(--half-color);
   margin: 12px 12px 12px 0;
+  box-shadow: inset 0 2px 4px -2px var(--quarter-color);
   width: calc(100% - 32px);
 }
 
@@ -657,20 +674,20 @@ input[type="file"]::file-selector-button {
 }
 
 .range-input-color {
-  background-color: var(--half-color);
+  background-color: var(--secondary-color);
   height: 8px;
   z-index: 0;
   border-radius: 1px;
   position: absolute; /* Positioned relative to .range-input */
   top: calc(50% - 4px);
   left: 4px;
-  border-radius: 1px;
-  transition: background-color 0.05s ease-in-out;
+  border-radius: 3px;
+  transition: background-color 0.1s ease-in-out;
 }
 
 @media (hover: hover) {
   .range-input:hover .range-input-color {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
   }
 }
 
@@ -737,7 +754,7 @@ input[type="checkbox"] {
   justify-content: center;
   gap: 16px;
   cursor: pointer;
-  border-radius: var(--input-border-radius);
+  border-radius: var(--container-border-radius);
   user-select: none;
   width: fit-content;
   padding: 8px;
@@ -750,9 +767,11 @@ input[type="checkbox"] {
   }
 }
 
-.checkbox-name {
+.checkbox-name,
+.radio-name {
   display: block;
   white-space: nowrap;
+  padding-right: 8px;
   cursor: pointer;
 }
 
@@ -767,6 +786,7 @@ input[type="checkbox"] {
   width: 24px;
   height: 24px;
   border: 1px solid var(--half-color);
+  box-shadow: inset 0 2px 8px -2px var(--quarter-color);
   transition: background-color 0.05s ease-in-out, color 0.05s ease-in-out;
 }
 
@@ -790,13 +810,6 @@ input[type="checkbox"] {
   margin-top: 0px;
 }
 
-@media (hover: hover) {
-  .checkbox:hover {
-    background-color: var(--quarter-color);
-    outline: 1px solid var(--half-color);
-  }
-}
-
 .checkbox:active {
   background-color: var(--half-color);
 }
@@ -805,6 +818,7 @@ input[type="checkbox"] {
   background-color: var(--primary-color);
   color: var(--background-color);
   border: 1px solid var(--primary-color);
+  box-shadow: 0 0 8px 0 var(--quarter-color);
 }
 
 /* Styles for radio inputs */
@@ -820,7 +834,7 @@ input[type="radio"] {
   justify-content: center;
   gap: 16px;
   cursor: pointer;
-  border-radius: var(--input-border-radius);
+  border-radius: var(--container-border-radius);
   user-select: none;
   width: fit-content;
   padding: 8px;
@@ -831,12 +845,6 @@ input[type="radio"] {
   .radio-container:hover {
     background-color: var(--quarter-color);
   }
-}
-
-.radio-name {
-  display: block;
-  white-space: nowrap;
-  cursor: pointer;
 }
 
 .radio {
@@ -850,6 +858,7 @@ input[type="radio"] {
   width: 24px;
   height: 24px;
   border: 1px solid var(--half-color);
+  box-shadow: inset 0 2px 8px -2px var(--quarter-color);
   transition: background-color 0.05s ease-in-out, color 0.05s ease-in-out;
 }
 
@@ -876,6 +885,7 @@ input[type="radio"] {
   background-color: var(--primary-color);
   color: var(--background-color);
   border: 1px solid var(--primary-color);
+  box-shadow: 0 0 8px 0 var(--quarter-color);
 }
 
 .radio.checked div {
@@ -888,31 +898,10 @@ input[type="radio"] {
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none;
-  border-radius: var(--input-border-radius);
-  border: 1px solid var(--half-color);
-  background-color: var(--background-color);
-  color: var(--primary-color);
-  padding: 12px;
-  cursor: pointer;
-  font-family: var(--sans-serif);
-  font-size: 14px;
-  transition: background-color 0.05s ease-in-out, color 0.05s ease-in-out;
-  outline: none;
   background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%235b5b5b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22lucide%20lucide-chevron-down%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%2F%3E%3C%2Fsvg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
-}
-
-@media (hover: hover) {
-  select:hover {
-    background-color: var(--quarter-color);
-    outline: 1px solid var(--half-color);
-  }
-}
-
-select:active {
-  background-color: var(--half-color);
+  cursor: pointer;
 }
 
 /* Hr styles */
@@ -947,6 +936,8 @@ hr {
   justify-content: space-between;
   padding: 12px;
   gap: 16px;
+  outline: 0px solid var(--half-color);
+  box-shadow: none;
   border-radius: var(--input-border-radius);
   transition: background-color 0.1s ease-in-out;
 }
@@ -954,6 +945,8 @@ hr {
 @media (hover: hover) {
   .collapsible-header:hover {
     background-color: var(--quarter-color);
+    outline: 1px solid var(--half-color);
+    box-shadow: inset 0 0 64px 0px var(--quarter-color);
   }
 }
 
@@ -977,6 +970,7 @@ hr {
 }
 
 /* Toast styles */
+
 #toast-container {
   position: fixed;
   bottom: 0px;
