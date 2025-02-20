@@ -14,10 +14,17 @@ jobs:
   trigger-deployment:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger deployment in wisp
+      - name: Trigger deployment in wisp-web
         run: |
           curl -X POST -H "Accept: application/vnd.github+json" \
                -H "Authorization: Bearer ${{ secrets.ACTION_TOKEN }}" \
                -H "X-GitHub-Api-Version: 2022-11-28" \
                https://api.github.com/repos/WispTools/wisp-web/actions/workflows/main.yml/dispatches \
+               -d '{"ref":"main"}'
+      - name: Trigger deployment in wisp-readme
+        run: |
+          curl -X POST -H "Accept: application/vnd.github+json" \
+               -H "Authorization: Bearer ${{ secrets.ACTION_TOKEN }}" \
+               -H "X-GitHub-Api-Version: 2022-11-28" \
+               https://api.github.com/repos/WispTools/.github/actions/workflows/update.yml/dispatches \
                -d '{"ref":"main"}'
