@@ -1,9 +1,12 @@
-const textInput = document.getElementById("text-input");
+const TEXT_INPUT = document.getElementById("text-input");
 
-const charCount = document.getElementById("char-count");
-const wordCount = document.getElementById("word-count");
-const sentenceCount = document.getElementById("sentence-count");
-const paragraphCount = document.getElementById("paragraph-count");
+const PASTE_BUTTON = document.getElementById("paste-button");
+const CLEAR_BUTTON = document.getElementById("clear-button");
+
+const CHAR_COUNT = document.getElementById("char-count");
+const WORD_COUNT = document.getElementById("word-count");
+const SENTENCE_COUNT = document.getElementById("sentence-count");
+const PARAGRAPH_COUNT = document.getElementById("paragraph-count");
 
 const mostUsedWordsContainer = document.getElementById(
   "most-used-words-container"
@@ -55,15 +58,45 @@ function getMostUsedCharacters(text) {
 }
 
 function generate() {
-  charCount.innerHTML = this.value.length;
-  wordCount.innerHTML = this.value.split(/[\s\n]+/).length;
-  sentenceCount.innerHTML = this.value.split(".").length;
-  paragraphCount.innerHTML = this.value.split("\n").length;
+  const text = TEXT_INPUT.value;
 
-  updateMostUsedWords(getMostUsedWords(this.value));
-  updateMostUsedCharacters(getMostUsedCharacters(this.value));
+  if (text === "") {
+    CHAR_COUNT.innerHTML = 0;
+    WORD_COUNT.innerHTML = 0;
+    SENTENCE_COUNT.innerHTML = 0;
+    PARAGRAPH_COUNT.innerHTML = 0;
+
+    updateMostUsedWords([]);
+    updateMostUsedCharacters([]);
+
+    return;
+  }
+
+  CHAR_COUNT.innerHTML = text.length;
+  WORD_COUNT.innerHTML = text
+    .split(/[\s\n]+/)
+    .filter((word) => word !== "").length;
+  SENTENCE_COUNT.innerHTML = text
+    .split(/[.!?]+/)
+    .filter((sentence) => sentence !== "").length;
+  PARAGRAPH_COUNT.innerHTML =
+    text.split(/\n/).filter((paragraph) => paragraph.trim() !== "").length - 1;
+
+  updateMostUsedWords(getMostUsedWords(text));
+  updateMostUsedCharacters(getMostUsedCharacters(text));
 }
 
-textInput.addEventListener("input", generate);
+PASTE_BUTTON.addEventListener("click", async () => {
+  const text = await navigator.clipboard.readText();
+  TEXT_INPUT.value = text;
+  generate();
+});
+
+CLEAR_BUTTON.addEventListener("click", () => {
+  TEXT_INPUT.value = "";
+  generate();
+});
+
+TEXT_INPUT.addEventListener("input", generate);
 
 generate();
