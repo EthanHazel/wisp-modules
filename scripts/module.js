@@ -330,6 +330,27 @@ async function renderInputs() {
 
       checkboxDiv.classList.add("checkbox-container");
 
+      const inputDescriptor = Object.getOwnPropertyDescriptor(
+        Object.getPrototypeOf(checkbox),
+        "checked"
+      );
+
+      Object.defineProperty(checkbox, "checked", {
+        set: function (newValue) {
+          const oldValue = this.checked;
+          inputDescriptor.set.call(this, newValue);
+
+          if (oldValue !== newValue) {
+            checkbox.dispatchEvent(new Event("change"));
+            pseudoCheckbox.classList.toggle("checked", newValue);
+          }
+        },
+        get: function () {
+          return inputDescriptor.get.call(this);
+        },
+        configurable: true,
+      });
+
       checkbox.addEventListener("change", function () {
         pseudoCheckbox.classList.toggle("checked");
       });
