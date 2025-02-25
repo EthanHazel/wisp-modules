@@ -243,6 +243,28 @@ async function renderInputs() {
         rangeInputValue.value = rangeInput.value;
       });
 
+      const inputDescriptor = Object.getOwnPropertyDescriptor(
+        Object.getPrototypeOf(rangeInput),
+        "value"
+      );
+
+      Object.defineProperty(rangeInput, "value", {
+        set: function (newValue) {
+          const oldValue = this.value;
+          inputDescriptor.set.call(this, newValue);
+          updateBackgroundWidth();
+          rangeInputValue.value = newValue;
+
+          if (oldValue !== newValue) {
+            rangeInput.dispatchEvent(new Event("input"));
+          }
+        },
+        get: function () {
+          return inputDescriptor.get.call(this);
+        },
+        configurable: true,
+      });
+
       rangeInputValue.addEventListener("input", function () {
         const value = Math.min(
           Math.max(rangeInputValue.value, rangeMin),
