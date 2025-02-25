@@ -390,6 +390,27 @@ async function renderInputs() {
 
     radioDiv.classList.add("radio-container");
 
+    const inputDescriptor = Object.getOwnPropertyDescriptor(
+      Object.getPrototypeOf(radio),
+      "checked"
+    );
+
+    Object.defineProperty(radio, "checked", {
+      set: function (newValue) {
+        const oldValue = this.checked;
+        inputDescriptor.set.call(this, newValue);
+
+        if (oldValue !== newValue) {
+          radio.dispatchEvent(new Event("change"));
+          pseudoRadio.classList.toggle("checked", newValue);
+        }
+      },
+      get: function () {
+        return inputDescriptor.get.call(this);
+      },
+      configurable: true,
+    });
+
     radio.addEventListener("change", function () {
       const radios = parent.querySelectorAll(
         'input[name="' + radio.name + '"]'
