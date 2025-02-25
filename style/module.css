@@ -580,14 +580,13 @@ input[type="reset"]:active {
 }
 
 .file-input input[type="file"] {
-  width: 100%;
-  font-family: var(--sans-serif);
-  cursor: pointer;
-  color: var(--secondary-color);
+  display: none;
 }
 
-input[type="file"]::file-selector-button {
-  display: none;
+.file-input-filename {
+  color: var(--secondary-color);
+  text-wrap: nowrap;
+  font-size: 12px;
 }
 
 /* Styles for color inputs */

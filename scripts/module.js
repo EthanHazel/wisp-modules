@@ -99,6 +99,7 @@ async function renderInputs() {
     const nameSpan = document.createElement("span");
     const acceptSpan = document.createElement("span");
     const sepSpan = document.createElement("span");
+    const fileName = document.createElement("span");
 
     // Disabled handler
     disabledHandler(fileInput, fileInputDiv);
@@ -122,6 +123,24 @@ async function renderInputs() {
 
     sepSpan.classList.add("file-input-separator");
 
+    fileInput.addEventListener("change", function () {
+      if (this.value) {
+        let fileNameParts = this.value.split("\\");
+        fileName.innerHTML = fileNameParts[fileNameParts.length - 1];
+      } else {
+        fileName.innerHTML = "No file selected";
+      }
+    });
+
+    if (fileInput.value) {
+      let fileNameParts = fileInput.value.split("\\");
+      fileName.innerHTML = fileNameParts[fileNameParts.length - 1];
+    } else {
+      fileName.innerHTML = "No file selected.";
+    }
+
+    fileName.classList.add("file-input-filename");
+
     fileInputDiv.classList.add("file-input");
 
     parent.insertBefore(fileInputDiv, fileInput);
@@ -130,6 +149,7 @@ async function renderInputs() {
       nameSpan,
       acceptSpan.innerHTML ? acceptSpan : "",
       sepSpan,
+      fileName,
       fileInput
     );
     fileInputDiv.onclick = () => fileInput.click();
