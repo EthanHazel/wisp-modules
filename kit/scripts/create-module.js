@@ -1,9 +1,6 @@
 const fs = require("fs");
 const prompt = require("prompt-sync")();
 
-// Clear terminal
-console.clear();
-
 // Helper function to log errors in red
 function logError(message) {
   console.log("\x1b[31m%s\x1b[0m", message); // \x1b[31m is the ANSI escape code for red

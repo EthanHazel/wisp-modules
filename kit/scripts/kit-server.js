@@ -29,7 +29,6 @@ app.get("/", (req, res) => {
 app.use(express.static(rootPath));
 
 app.listen(PORT, () => {
-  console.clear();
   console.log(
     `Wisp Module Kit running on port \x1b[32m${PORT}\x1b[0m\n\n\x1b[34mhttp://localhost:${PORT}\x1b[0m || \x1b[34mhttp://127.0.0.1:${PORT}\x1b[0m\n`
   );

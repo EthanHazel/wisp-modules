@@ -648,11 +648,8 @@ window.addEventListener("load", function () {
   document.body.style.transition = "opacity 0.2s ease-in-out";
   document.body.style.opacity = 1;
   onResize();
-  const renderInputsPromise = renderInputs();
-  const createIconsPromise = lucide.createIcons();
-  Promise.all([renderInputsPromise, createIconsPromise]).then(function () {
-    // Do nothing
-  });
+  renderInputs();
+  lucide.createIcons();
 });
 
 window.addEventListener("resize", onResize);
