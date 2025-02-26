@@ -5,12 +5,12 @@
 /* Variables */
 
 :root {
-  --primary-color: #ddd;
-  --secondary-color: #5b5b5b;
-  --half-color: #2e2e2e;
-  --quarter-color: #101010;
-  --background-color: #000;
-  --background-color-trans: rgba(0, 0, 0, 0.5);
+  --primary-color: #d9d4d4;
+  --secondary-color: #847b7b;
+  --half-color: #514747;
+  --quarter-color: #2b2424;
+  --background-color: #050505;
+  --background-color-trans: rgba(5, 5, 5, 0.5);
   --background-blur: blur(12px);
 
   --error-color: #7c1515;

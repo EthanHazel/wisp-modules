@@ -1,9 +1,9 @@
 :root {
-  --primary-color: #ddd;
-  --secondary-color: #5b5b5b;
-  --half-color: #2e2e2e;
-  --quarter-color: #101010;
-  --background-color: #000;
+  --primary-color: #d9d4d4;
+  --secondary-color: #847b7b;
+  --half-color: #514747;
+  --quarter-color: #2b2424;
+  --background-color: #050505;
 
   --container-border-radius: 16px;
   --input-border-radius: 8px;
