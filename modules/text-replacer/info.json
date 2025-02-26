@@ -1,0 +1,8 @@
+{
+  "name": "Text Replacer",
+  "description": "Replace certain words and characters in text.",
+  "icon": "Type",
+  "contributors": ["EthanHazel"],
+  "keywords": ["string", "find", "editor"],
+  "attributions": null
+}

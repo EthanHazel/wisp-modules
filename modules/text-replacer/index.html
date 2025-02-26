@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../../style/module.css" />
+
+    <title>Wisp Module</title>
+  </head>
+  <body>
+    <div class="container w-100 h-100">
+      <div class="container w-100 h-100 padless overflow">
+        <textarea
+          class="h-100"
+          name="input"
+          id="input"
+          placeholder="Enter text..."
+        ></textarea>
+        <input type="text" name="find" id="find" placeholder="Find..." />
+        <input
+          type="text"
+          name="replace"
+          id="replace"
+          placeholder="Replace... (\n for new line)"
+        />
+        <textarea
+          class="h-100"
+          name="output"
+          id="output"
+          placeholder="Output..."
+          readonly
+        ></textarea>
+      </div>
+      <div class="container row h-fit w-100 padless">
+        <button icon="trash" class="w-100" id="clear-button">Clear</button>
+        <button icon="clipboard" class="w-100" id="paste-button">Paste</button>
+        <button icon="copy" class="w-100" id="copy-button">Copy</button>
+        <button icon="download" class="w-100" id="save-button">Save</button>
+      </div>
+    </div>
+  </body>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="../../scripts/module.js"></script>
+  <script src="script.js"></script>
+</html>
