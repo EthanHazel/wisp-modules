@@ -5,10 +5,10 @@
 /* Variables */
 
 :root {
-  --primary-color: #d9d4d4;
+  --primary-color: #ddd;
   --secondary-color: #847b7b;
-  --half-color: #514747;
-  --quarter-color: #2b2424;
+  --half-color: #524d4f;
+  --quarter-color: #241f21;
   --background-color: #050505;
   --background-color-trans: rgba(5, 5, 5, 0.5);
   --background-blur: blur(12px);
