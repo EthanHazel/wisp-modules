@@ -30,6 +30,7 @@ const moduleData = {
   icon: "FlaskConical",
   contributors: [],
   keywords: [],
+  attributions: null,
 };
 
 // Ask user for module contributors
@@ -66,7 +67,7 @@ moduleData.name = name || defaultName;
 
 // Ask for module keywords
 const keywords = prompt(
-  "Enter the module keywords \x1b[90m(separated by commas):\x1b[0m "
+  "Enter the module keywords seperated by commas \x1b[90m(None):\x1b[0m "
 );
 if (keywords) {
   moduleData.keywords = keywords.split(",");
@@ -82,6 +83,14 @@ if (!description) {
   moduleData.description = "Placeholder description";
 } else {
   moduleData.description = description;
+}
+
+// Ask user for module attributions
+const attributions = prompt(
+  "Enter the module attributions \x1b[90m(None):\x1b[0m "
+);
+if (attributions) {
+  moduleData.attributions = attributions;
 }
 
 // Create module directory
