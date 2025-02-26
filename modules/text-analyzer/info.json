@@ -3,7 +3,7 @@
   "description": "Shows info on the text such as the letter count, word count, and more.",
   "icon": "ScanText",
   "contributors": ["EthanHazel"],
-  "tags": [
+  "keywords": [
     "info",
     "letter",
     "characters",

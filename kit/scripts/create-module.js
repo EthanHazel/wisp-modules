@@ -29,7 +29,7 @@ const moduleData = {
   description: "",
   icon: "FlaskConical",
   contributors: [],
-  tags: [],
+  keywords: [],
 };
 
 // Ask user for module contributors
@@ -64,14 +64,14 @@ const name = prompt(`Enter the module name \x1b[90m(${defaultName}):\x1b[0m `);
 
 moduleData.name = name || defaultName;
 
-// Ask for module tags
-const tags = prompt(
-  "Enter the module tags \x1b[90m(separated by commas):\x1b[0m "
+// Ask for module keywords
+const keywords = prompt(
+  "Enter the module keywords \x1b[90m(separated by commas):\x1b[0m "
 );
-if (tags) {
-  moduleData.tags = tags.split(",");
+if (keywords) {
+  moduleData.keywords = keywords.split(",");
 } else {
-  moduleData.tags = [];
+  moduleData.keywords = [];
 }
 
 // Ask user for module description

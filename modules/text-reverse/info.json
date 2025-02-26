@@ -3,6 +3,6 @@
   "description": "Reverse any string of text",
   "icon": "Type",
   "contributors": ["EthanHazel"],
-  "tags": ["reverse", " swap", "type"],
+  "keywords": ["reverse", " swap", "type"],
   "attributions": null
 }
