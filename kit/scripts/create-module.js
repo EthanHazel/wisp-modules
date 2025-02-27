@@ -26,7 +26,7 @@ do {
 
 const moduleData = {
   name: "",
-  description: "",
+  description: "Placeholder description.",
   icon: "FlaskConical",
   contributors: [],
   keywords: [],
@@ -70,7 +70,10 @@ const keywords = prompt(
   "Enter the module keywords seperated by commas \x1b[90m(None):\x1b[0m "
 );
 if (keywords) {
-  moduleData.keywords = keywords.split(",");
+  moduleData.keywords = keywords
+    .split(",")
+    .map((k) => k.trim())
+    .filter((k) => k);
 } else {
   moduleData.keywords = [];
 }
@@ -79,9 +82,7 @@ if (keywords) {
 const description = prompt(
   "Enter the module description \x1b[90m(Placeholder description):\x1b[0m "
 );
-if (!description) {
-  moduleData.description = "Placeholder description";
-} else {
+if (description) {
   moduleData.description = description;
 }
 
