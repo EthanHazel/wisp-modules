@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../../style/module.css" />
+
+    <title>Wisp Module</title>
+  </head>
+  <body>
+    <div class="container w-100 h-100">
+      <div class="container w-100 h-100 padless overflow">
+        <div class="container row wrap-mobile w-100 overflow padless">
+          <input
+            type="radio"
+            name="mode"
+            id="uppercase"
+            value="upper"
+            label="Uppercase"
+          />
+          <input
+            type="radio"
+            name="mode"
+            id="lowercase"
+            value="lower"
+            label="Lowercase"
+          />
+          <input
+            type="radio"
+            name="mode"
+            id="titlecase"
+            value="title"
+            label="Titlecase"
+          />
+          <input
+            type="radio"
+            name="mode"
+            id="sentencecase"
+            value="sentence"
+            label="Sentencecase"
+            checked
+          />
+        </div>
+        <textarea
+          name="text"
+          id="input"
+          placeholder="Input..."
+          class="h-100"
+        ></textarea>
+        <textarea
+          name="text"
+          id="output"
+          placeholder="Output..."
+          class="h-100"
+          readonly
+        ></textarea>
+      </div>
+      <div class="container row h-fit w-100 padless">
+        <button icon="trash" class="w-100" id="clear-button">Clear</button>
+        <button icon="clipboard" class="w-100" id="paste-button">Paste</button>
+        <button icon="copy" class="w-100" id="copy-button">Copy</button>
+        <button icon="download" class="w-100" id="save-button">Save</button>
+      </div>
+    </div>
+  </body>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="../../scripts/module.js"></script>
+  <script src="script.js"></script>
+</html>
