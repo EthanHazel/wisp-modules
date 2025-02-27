@@ -1,6 +1,6 @@
 {
   "name": "Binary Converter",
-  "description": "Convert binary to text and vice versa",
+  "description": "Convert binary to text and vice versa.",
   "icon": "Binary",
   "contributors": ["EthanHazel"],
   "keywords": ["code", "text to binary", "binary to text", "conversion"],

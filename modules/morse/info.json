@@ -1,6 +1,6 @@
 {
   "name": "Morse Code Converter",
-  "description": "Converts morse code to text and vice versa",
+  "description": "Converts morse code to text and vice versa.",
   "icon": "Binary",
   "contributors": ["EthanHazel"],
   "keywords": ["conversion", "encode", "decode"],
