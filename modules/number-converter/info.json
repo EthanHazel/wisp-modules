@@ -1,0 +1,8 @@
+{
+  "name": "Integer Converter",
+  "description": "Converts numbers to and from Decimal, Hex, Binary, and Octal.",
+  "icon": "Binary",
+  "contributors": ["EthanHazel"],
+  "keywords": [],
+  "attributions": null
+}

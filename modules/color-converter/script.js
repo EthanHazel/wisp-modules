@@ -193,11 +193,6 @@ const updateAllFields = (r, g, b) => {
 
 const clearFields = (fields) => fields.forEach((field) => (field.value = ""));
 
-const copyToClipboard = (text) => {
-  navigator.clipboard.writeText(text);
-  toast(`${text} copied to clipboard!`, 0, "copy", 500);
-};
-
 buttons.convertHex.addEventListener("click", () => {
   let hex = inputs.hex.value;
   if (hex.length === 3)
@@ -268,31 +263,31 @@ buttons.clearCmyk.addEventListener("click", () =>
 );
 
 buttons.copyHex.addEventListener("click", () =>
-  copyToClipboard(inputs.hex.value || "#000000")
+  copyTextToClipboard(inputs.hex.value || "#000000")
 );
 buttons.copyRgb.addEventListener("click", () =>
-  copyToClipboard(
+  copyTextToClipboard(
     `rgb(${inputs.red.value || 0}, ${inputs.green.value || 0}, ${
       inputs.blue.value || 0
     })`
   )
 );
 buttons.copyHsv.addEventListener("click", () =>
-  copyToClipboard(
+  copyTextToClipboard(
     `hsv(${inputs.hsvHue.value || 0}, ${inputs.hsvSaturation.value || 0}%, ${
       inputs.hsvValue.value || 0
     }%)`
   )
 );
 buttons.copyHsl.addEventListener("click", () =>
-  copyToClipboard(
+  copyTextToClipboard(
     `hsl(${inputs.hslHue.value || 0}, ${inputs.hslSaturation.value || 0}%, ${
       inputs.hslLightness.value || 0
     }%)`
   )
 );
 buttons.copyCmyk.addEventListener("click", () =>
-  copyToClipboard(
+  copyTextToClipboard(
     `cmyk(${inputs.cyan.value || 0}, ${inputs.magenta.value || 0}, ${
       inputs.yellow.value || 0
     }, ${inputs.key.value || 0})`
