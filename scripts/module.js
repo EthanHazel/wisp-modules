@@ -576,7 +576,7 @@ async function renderInputs() {
     header.appendChild(headerLine);
 
     header.classList.add("collapsible-header");
-    header.classList.add("collapsed");
+    if (!collapsible.getAttribute("open")) header.classList.add("collapsed");
     header.tabIndex = 0;
 
     header.onclick = function () {
@@ -591,7 +591,8 @@ async function renderInputs() {
       }
     });
 
-    collapsible.classList.add("collapsed");
+    if (!collapsible.getAttribute("open"))
+      collapsible.classList.add("collapsed");
 
     collapsible.parentNode.insertBefore(header, collapsible);
     collapsible.setAttribute("rendered", true);
