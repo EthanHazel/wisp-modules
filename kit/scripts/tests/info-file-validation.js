@@ -1,8 +1,11 @@
+console.log("- VALIDATING MODULE INFO FILES -");
+
 const fs = require("fs");
 
 const MODULES_DIR = "./modules";
 
 // Get every dir in the modules dir
+
 const modules = fs
   .readdirSync(MODULES_DIR)
   .filter((dir) => fs.statSync(`${MODULES_DIR}/${dir}`).isDirectory());
