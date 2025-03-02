@@ -24,9 +24,14 @@ const LOREM_IPSUM = [
 function generateLorem(wordCount, paragraphs) {
   let output = LOREM_IPSUM[0];
   let paragraphCount = wordCount / 150;
+  let prevSentence = LOREM_IPSUM[0];
+  const sentences = LOREM_IPSUM.slice(1);
   while (output.split(" ").length < wordCount) {
-    const randSentence =
-      LOREM_IPSUM[Math.floor(Math.random() * LOREM_IPSUM.length)];
+    let randSentence;
+    do {
+      randSentence = sentences[Math.floor(Math.random() * sentences.length)];
+    } while (randSentence === prevSentence);
+    prevSentence = randSentence;
     if (wordCount > randSentence.split(" ").length) {
       output += " " + randSentence;
     } else {
