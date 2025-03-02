@@ -1,15 +1,12 @@
 name: "Test Modules"
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
 
 jobs:
-  test:
+  test-modules:
     runs-on: ubuntu-latest
     steps:
       - name: Use Node.js 16.x
