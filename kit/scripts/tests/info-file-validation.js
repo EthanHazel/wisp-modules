@@ -1,4 +1,4 @@
-console.log("- VALIDATING MODULE INFO FILES -");
+console.log("\x1b[34m- VALIDATING MODULE INFO FILES -\n\x1b[0m");
 
 const fs = require("fs");
 
