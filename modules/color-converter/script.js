@@ -1,4 +1,5 @@
 const INPUTS = {
+  PICKER: document.getElementById("color-picker"),
   HEX: document.getElementById("hex-input"),
   RED: document.getElementById("hex-red"),
   GREEN: document.getElementById("hex-green"),
@@ -16,16 +17,19 @@ const INPUTS = {
 };
 
 const BUTTONS = {
+  CONVERT_PICKER: document.getElementById("convert-picker"),
   CONVERT_HEX: document.getElementById("convert-hex"),
   CONVERT_RGB: document.getElementById("convert-rgb"),
   CONVERT_HSV: document.getElementById("convert-hsv"),
   CONVERT_HSL: document.getElementById("convert-hsl"),
   CONVERT_CMYK: document.getElementById("convert-cmyk"),
+  CLEAR_PICKER: document.getElementById("clear-picker"),
   CLEAR_HEX: document.getElementById("clear-hex"),
   CLEAR_RGB: document.getElementById("clear-rgb"),
   CLEAR_HSV: document.getElementById("clear-hsv"),
   CLEAR_HSL: document.getElementById("clear-hsl"),
   CLEAR_CMYK: document.getElementById("clear-cmyk"),
+  COPY_PICKER: document.getElementById("copy-picker"),
   COPY_HEX: document.getElementById("copy-hex"),
   COPY_RGB: document.getElementById("copy-rgb"),
   COPY_HSV: document.getElementById("copy-hsv"),
@@ -187,6 +191,7 @@ const updateAllFields = (r, g, b) => {
   INPUTS.YELLOW.value = Math.round(cmyk.y);
   INPUTS.KEY.value = Math.round(cmyk.k);
   INPUTS.HEX.value = rgbToHex(r, g, b);
+  INPUTS.PICKER.value = rgbToHex(r, g, b);
 
   updateColorDisplay(r, g, b);
 };
@@ -195,6 +200,18 @@ const clearFields = (fields) => fields.forEach((field) => (field.value = ""));
 
 BUTTONS.CONVERT_HEX.addEventListener("click", () => {
   let hex = INPUTS.HEX.value;
+  if (hex.length === 3)
+    hex = `#${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
+  else if (hex.length === 4)
+    hex = `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}`;
+  else if (!hex.startsWith("#")) hex = `#${hex}`;
+  if (/^#([A-Fa-f0-9]{6})$/.test(hex))
+    updateAllFields(...Object.values(hexToRgb(hex)));
+  else toast("Invalid HEX color format!", 3, "error", 500);
+});
+
+BUTTONS.CONVERT_PICKER.addEventListener("click", () => {
+  let hex = INPUTS.PICKER.value;
   if (hex.length === 3)
     hex = `#${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
   else if (hex.length === 4)
@@ -249,6 +266,10 @@ BUTTONS.CONVERT_CMYK.addEventListener("click", () => {
 });
 
 BUTTONS.CLEAR_HEX.addEventListener("click", () => clearFields([INPUTS.HEX]));
+BUTTONS.CLEAR_PICKER.addEventListener(
+  "click",
+  () => (INPUTS.PICKER.value = "#000000")
+);
 BUTTONS.CLEAR_RGB.addEventListener("click", () =>
   clearFields([INPUTS.RED, INPUTS.GREEN, INPUTS.BLUE])
 );
@@ -262,7 +283,10 @@ BUTTONS.CLEAR_CMYK.addEventListener("click", () =>
   clearFields([INPUTS.CYAN, INPUTS.MAGENTA, INPUTS.YELLOW, INPUTS.KEY])
 );
 
-copyButtonRegister([[BUTTONS.COPY_HEX, INPUTS.HEX]]);
+copyButtonRegister([
+  [BUTTONS.COPY_HEX, INPUTS.HEX],
+  [BUTTONS.COPY_PICKER, INPUTS.PICKER],
+]);
 
 BUTTONS.COPY_RGB.addEventListener("click", () =>
   copyTextToClipboard(
@@ -271,6 +295,7 @@ BUTTONS.COPY_RGB.addEventListener("click", () =>
     })`
   )
 );
+
 BUTTONS.COPY_HSV.addEventListener("click", () =>
   copyTextToClipboard(
     `hsv(${INPUTS.HSV_HUE.value || 0}, ${INPUTS.HSV_SAT.value || 0}%, ${

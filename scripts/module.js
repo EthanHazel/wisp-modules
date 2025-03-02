@@ -58,30 +58,6 @@ document
 // Input rendering -----------------------------------------------------------
 
 async function renderInputs() {
-  // Text input code ------------------------------------------------------------
-
-  document
-    .querySelectorAll(
-      "input[type='text'], input[type='email'], input[type='url']"
-    )
-    .forEach(function (input) {
-      // Disabled handler
-      disabledHandler(input, input);
-      if (input.getAttribute("rendered")) return;
-      input.setAttribute("rendered", true);
-
-      if (input.getAttribute("wisp-for")) {
-        const FOR_BUTTON = document.getElementById(
-          input.getAttribute("wisp-for")
-        );
-        input.addEventListener("keyup", (e) => {
-          if (e.key === "Enter") {
-            FOR_BUTTON.click();
-          }
-        });
-      }
-    });
-
   // Button Icon code ----------------------------------------------------------
 
   document
@@ -206,6 +182,31 @@ async function renderInputs() {
 
       valueSpan.innerHTML = colorInput.value;
       valueSpan.classList.add("color-input-value");
+
+      // Fixed: Get descriptor from prototype instead of instance
+      const inputDescriptor = Object.getOwnPropertyDescriptor(
+        HTMLInputElement.prototype,
+        "value"
+      );
+
+      Object.defineProperty(colorInput, "value", {
+        set: function (newValue) {
+          const oldValue = this.value;
+          inputDescriptor.set.call(this, newValue);
+
+          if (oldValue !== newValue) {
+            const event = new Event("input", {
+              bubbles: true,
+              cancelable: true,
+            });
+            this.dispatchEvent(event);
+          }
+        },
+        get: function () {
+          return inputDescriptor.get.call(this);
+        },
+        configurable: true,
+      });
 
       colorInput.addEventListener("input", function () {
         colorSpan.style.backgroundColor = colorInput.value;
@@ -563,7 +564,21 @@ async function renderInputs() {
       "input[type='text'], input[type='date'], input[type='time'], input[type='datetime-local'], input[type='email'], input[type='number'], input[type='password'], input[type='search'], input[type='tel'], input[type='url'], input[type='week'], input[type='month'], input[type='datetime']"
     )
     .forEach(function (input) {
+      // Disabled handler
       disabledHandler(input, input);
+      if (input.getAttribute("rendered")) return;
+      input.setAttribute("rendered", true);
+
+      if (input.getAttribute("wisp-for")) {
+        const FOR_BUTTON = document.getElementById(
+          input.getAttribute("wisp-for")
+        );
+        input.addEventListener("keyup", (e) => {
+          if (e.key === "Enter") {
+            FOR_BUTTON.click();
+          }
+        });
+      }
     });
 
   document
