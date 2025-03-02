@@ -1,6 +1,6 @@
 {
   "name": "Text Reverser",
-  "description": "Reverse any string of text",
+  "description": "Reverse any string of text.",
   "icon": "Type",
   "contributors": ["EthanHazel"],
   "keywords": ["reverse", " swap", "type"],

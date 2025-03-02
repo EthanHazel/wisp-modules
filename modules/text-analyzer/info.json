@@ -3,14 +3,6 @@
   "description": "Shows info on the text such as the letter count, word count, and more.",
   "icon": "ScanText",
   "contributors": ["EthanHazel"],
-  "keywords": [
-    "info",
-    "letter",
-    "characters",
-    "word",
-    "sentence",
-    "pargraph",
-    "counter"
-  ],
+  "keywords": ["characters", "sentence", "pargraph", "counter"],
   "attributions": null
 }

@@ -13,6 +13,6 @@
   "scripts": {
     "create": "node kit/scripts/create-module",
     "kit": "node kit/scripts/kit-server",
-    "test": "node kit/scripts/test-modules"
+    "test": "node kit/scripts/test-modules && node kit/scripts/tests/info-file-validation"
   }
 }
