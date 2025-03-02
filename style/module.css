@@ -772,7 +772,7 @@ input[type="checkbox"] {
   justify-content: center;
   gap: 16px;
   cursor: pointer;
-  border-radius: var(--container-border-radius);
+  border-radius: var(--input-border-radius);
   user-select: none;
   width: fit-content;
   padding: 8px;
@@ -921,6 +921,7 @@ select {
   background-repeat: no-repeat;
   background-position: right 12px center;
   cursor: pointer;
+  padding-right: 48px;
 }
 
 /* Hr styles */
