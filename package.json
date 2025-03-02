@@ -12,6 +12,7 @@
   },
   "scripts": {
     "create": "node kit/scripts/create-module",
-    "kit": "node kit/scripts/kit-server"
+    "kit": "node kit/scripts/kit-server",
+    "test": "node kit/scripts/test-modules"
   }
 }
