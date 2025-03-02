@@ -8,31 +8,31 @@ const WORD_COUNT = document.getElementById("word-count");
 const SENTENCE_COUNT = document.getElementById("sentence-count");
 const PARAGRAPH_COUNT = document.getElementById("paragraph-count");
 
-const mostUsedWordsContainer = document.getElementById(
+const MOST_USED_WORDS_CONTAINER = document.getElementById(
   "most-used-words-container"
 );
-const mostUsedCharactersContainer = document.getElementById(
+const MOST_USED_CHAR_CONTAINER = document.getElementById(
   "most-used-characters-container"
 );
 
 function updateMostUsedWords(words) {
-  mostUsedWordsContainer.innerHTML = "";
+  MOST_USED_WORDS_CONTAINER.innerHTML = "";
   words.forEach((word) => {
     const wordElement = document.createElement("span");
     wordElement.classList.add("container", "row", "w-100", "h-fit");
     wordElement.innerHTML = `<span>${word[0]}</span> <span class="txt-c-secondary">${word[1]}</span>`;
-    mostUsedWordsContainer.appendChild(wordElement);
+    MOST_USED_WORDS_CONTAINER.appendChild(wordElement);
   });
 }
 
 function updateMostUsedCharacters(characters) {
-  mostUsedCharactersContainer.innerHTML = "";
+  MOST_USED_CHAR_CONTAINER.innerHTML = "";
   characters.forEach((character) => {
     if (character[0] === " " || character[0] === "\n") return;
     const characterElement = document.createElement("span");
     characterElement.classList.add("container", "row", "w-100", "h-fit");
     characterElement.innerHTML = `<span>${character[0]}</span> <span class="txt-c-secondary">${character[1]}</span>`;
-    mostUsedCharactersContainer.appendChild(characterElement);
+    MOST_USED_CHAR_CONTAINER.appendChild(characterElement);
   });
 }
 
@@ -87,7 +87,7 @@ function generate() {
 }
 
 PASTE_BUTTON.addEventListener("click", async () => {
-  const text = await navigator.clipboard.readText();
+  const text = await getClipboardText();
   TEXT_INPUT.value = text;
   generate();
 });

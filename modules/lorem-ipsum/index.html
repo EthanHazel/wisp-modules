@@ -14,7 +14,7 @@
       <input
         type="range"
         name="words"
-        id="wordAmount"
+        id="word-amount"
         min="1"
         max="5000"
         value="146"
@@ -24,7 +24,7 @@
         type="checkbox"
         name="paragraphs"
         id="paragraphs"
-        label="Enable Paragraphs"
+        wisp-label="Enable Paragraphs"
         checked
       />
 
@@ -34,17 +34,17 @@
         min="1"
         max="128"
         value="14"
-        name="fontSize"
-        id="fontSize"
+        name="font-size"
+        id="font-size"
       />
 
-      <button id="originalAmount" icon="refresh-cw">Reset to default</button>
+      <button id="original-amount" icon="refresh-cw">Reset to default</button>
       <button id="reseed" icon="dices">Reseed</button>
     </div>
     <div class="container w-100 h-100">
       <textarea
         name="lorem"
-        id="loremOutput"
+        id="lorem-output"
         placeholder="Lorem Ipsum"
         class="h-100"
         readonly
@@ -52,12 +52,12 @@
       <div
         class="container row w-100 outlined round-min j-around txt-small a-center padless h-fit"
       >
-        <p>Letter count: <span id="letterCount">0</span></p>
-        <p>Word count: <span id="wordCount">0</span></p>
+        <p>Letter count: <span id="letter-count">0</span></p>
+        <p>Word count: <span id="word-count">0</span></p>
       </div>
       <div class="container row w-100 padless">
-        <button class="w-100" id="copyLorem" icon="copy">Copy</button>
-        <button class="w-100" id="saveLorem" icon="file-text">Save</button>
+        <button class="w-100" id="copy-button" icon="copy">Copy</button>
+        <button class="w-100" id="save-button" icon="file-text">Save</button>
       </div>
     </div>
   </body>

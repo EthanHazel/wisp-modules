@@ -16,8 +16,8 @@
     <title>Wisp Module</title>
   </head>
   <body>
-    <div class="tab-con h-100" label="Convert">
-      <div class="tab-view h-100" label="Text to Base64">
+    <div class="tab-con h-100" wisp-label="Convert">
+      <div class="tab-view h-100" wisp-label="Text to Base64">
         <div class="container row wrap-mobile w-100">
           <textarea
             type="text"
@@ -37,7 +37,7 @@
         </div>
       </div>
 
-      <div class="tab-view h-100" label="Base64 to Text">
+      <div class="tab-view h-100" wisp-label="Base64 to Text">
         <div class="container row wrap-mobile w-100">
           <textarea
             type="text"
@@ -57,14 +57,14 @@
         </div>
       </div>
 
-      <div class="tab-view h-100" label="Image to Base64">
+      <div class="tab-view h-100" wisp-label="Image to Base64">
         <div class="container w-100 h-100">
           <input
             type="file"
             id="image-input"
             accept="image/*"
             class="w-100 size-to-content"
-            label="Upload Image"
+            wisp-label="Upload Image"
             icon="image"
           />
 
@@ -79,7 +79,7 @@
         </div>
       </div>
 
-      <div class="tab-view h-100" label="Base64 to Image">
+      <div class="tab-view h-100" wisp-label="Base64 to Image">
         <div class="container row wrap-mobile w-100 h-100">
           <textarea
             type="text"

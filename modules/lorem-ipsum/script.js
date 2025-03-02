@@ -1,11 +1,17 @@
-const wordAmount = document.getElementById("wordAmount");
-const fontSize = document.getElementById("fontSize");
-const originalButton = document.getElementById("originalAmount");
-const paragraphCheck = document.getElementById("paragraphs");
-const wordCount = document.getElementById("wordCount");
-const letterCount = document.getElementById("letterCount");
+const WORD_AMOUNT = document.getElementById("word-amount");
+const FONT_SIZE = document.getElementById("font-size");
+const OG_BUTTON = document.getElementById("original-amount");
+const PARAGRAPH_CHECK = document.getElementById("paragraphs");
+const WORD_COUNT = document.getElementById("word-count");
+const LETTER_COUNT = document.getElementById("letter-count");
 
-const loremIpsum = [
+const COPY_BUTTON = document.getElementById("copy-button");
+const SAVE_BUTTON = document.getElementById("save-button");
+const RESEED_BUTTON = document.getElementById("reseed");
+
+const LOREM_OUTPUT = document.getElementById("lorem-output");
+
+const LOREM_IPSUM = [
   "Lorem ipsum dolor sit amet.",
   "Consectetur adipiscing elit.",
   "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -16,15 +22,16 @@ const loremIpsum = [
 ];
 
 function generateLorem(wordCount, paragraphs) {
-  let output = loremIpsum[0];
+  let output = LOREM_IPSUM[0];
   let paragraphCount = wordCount / 150;
   while (output.split(" ").length < wordCount) {
-    randSentence = loremIpsum[Math.floor(Math.random() * loremIpsum.length)];
+    const randSentence =
+      LOREM_IPSUM[Math.floor(Math.random() * LOREM_IPSUM.length)];
     if (wordCount > randSentence.split(" ").length) {
       output += " " + randSentence;
     } else {
-      if (wordCount > loremIpsum[3].split(" ").length) {
-        output += " " + loremIpsum[3];
+      if (wordCount > LOREM_IPSUM[3].split(" ").length) {
+        output += " " + LOREM_IPSUM[3];
       } else {
         output += " " + randSentence.slice(0, wordCount) + ".";
       }
@@ -32,7 +39,7 @@ function generateLorem(wordCount, paragraphs) {
   }
 
   if (paragraphs) {
-    let outputArray = output.split(".");
+    const outputArray = output.split(".");
     for (let i = 0; i < paragraphCount; i++) {
       if (i === 0) continue;
       outputArray[Math.ceil(outputArray.length * (i / paragraphCount))] +=
@@ -46,58 +53,37 @@ function generateLorem(wordCount, paragraphs) {
 }
 
 function generate() {
-  const wordVal = wordAmount.value;
-  const fontVal = fontSize.value;
+  const wordVal = WORD_AMOUNT.value;
+  const fontVal = FONT_SIZE.value;
 
-  const loremOuput = generateLorem(wordVal, paragraphCheck.checked);
+  const loremOuput = generateLorem(wordVal, PARAGRAPH_CHECK.checked);
 
-  const wordCount = document.getElementById("wordCount");
-  const letterCount = document.getElementById("letterCount");
+  WORD_COUNT.innerHTML = loremOuput.split(" ").length;
+  LETTER_COUNT.innerHTML = loremOuput.length;
 
-  wordCount.innerHTML = loremOuput.split(" ").length;
-  letterCount.innerHTML = loremOuput.length;
-
-  const output = document.getElementById("loremOutput");
-  output.style.fontSize = fontVal + "px";
-  output.value = loremOuput;
+  LOREM_OUTPUT.style.fontSize = fontVal + "px";
+  LOREM_OUTPUT.value = loremOuput;
 }
 
-wordAmount.addEventListener("input", generate);
-fontSize.addEventListener("input", generate);
-paragraphCheck.addEventListener("input", generate);
+WORD_AMOUNT.addEventListener("input", generate);
+FONT_SIZE.addEventListener("input", generate);
+PARAGRAPH_CHECK.addEventListener("input", generate);
 
-originalButton.addEventListener("click", function () {
-  wordAmount.value = 145;
-  fontSize.value = 14;
-  paragraphCheck.checked = true;
+OG_BUTTON.addEventListener("click", function () {
+  WORD_AMOUNT.value = 145;
+  FONT_SIZE.value = 14;
+  PARAGRAPH_CHECK.checked = true;
   generate();
 });
 
-document.getElementById("reseed").addEventListener("click", function () {
+RESEED_BUTTON.addEventListener("click", function () {
   generate();
 });
 
-document.getElementById("copyLorem").addEventListener("click", function () {
-  const textToCopy = document.getElementById("loremOutput").value;
-  const textArea = document.createElement("textarea");
-  textArea.value = textToCopy;
-  document.body.appendChild(textArea);
-  textArea.select();
-  document.execCommand("copy");
-  textArea.remove();
-  toast("Copied to clipboard", 0, "clipboard", 250);
-});
+copyButtonRegister([[COPY_BUTTON, LOREM_OUTPUT]]);
 
-document.getElementById("saveLorem").addEventListener("click", function () {
-  const textToSave = document.getElementById("loremOutput").value;
-  const blob = new Blob([textToSave], { type: "text/plain;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `loremIpsum.txt`;
-  a.click();
-  URL.revokeObjectURL(url);
-  toast("Saved as " + a.download, 0, "file-text", 1000);
+SAVE_BUTTON.addEventListener("click", function () {
+  saveTextToFile(LOREM_OUTPUT.value, "loremIpsum");
 });
 
 generate();

@@ -129,7 +129,7 @@ async function renderInputs() {
     disabledHandler(fileInput, fileInputDiv);
     if (fileInput.getAttribute("rendered")) return;
 
-    var name = fileInput.getAttribute("label") || "Upload File";
+    var name = fileInput.getAttribute("wisp-label") || "Upload File";
 
     icon.setAttribute(
       "data-lucide",
@@ -196,7 +196,7 @@ async function renderInputs() {
       disabledHandler(colorInput, colorInputDiv);
       if (colorInput.getAttribute("rendered")) return;
 
-      var name = colorInput.getAttribute("label") || "Color";
+      var name = colorInput.getAttribute("wisp-label") || "Color";
 
       nameSpan.innerHTML = name;
       nameSpan.classList.add("color-input-name");
@@ -337,7 +337,7 @@ async function renderInputs() {
 
       pseudoCheckbox.append(checkIcon);
 
-      var name = checkbox.getAttribute("label") || "Checkbox";
+      var name = checkbox.getAttribute("wisp-label") || "Checkbox";
 
       nameLabel.innerHTML = name;
       if (!checkbox.id) {
@@ -407,7 +407,7 @@ async function renderInputs() {
 
     pseudoRadio.append(circleIcon);
 
-    var name = radio.getAttribute("label") || "Radio";
+    var name = radio.getAttribute("wisp-label") || "Radio";
 
     nameLabel.innerHTML = name;
     nameLabel.classList.add("radio-name");
@@ -462,7 +462,7 @@ async function renderInputs() {
   document.querySelectorAll(".tab-con").forEach(function (tabContainer) {
     if (tabContainer.getAttribute("rendered")) return;
 
-    var containerName = tabContainer.getAttribute("label");
+    var containerName = tabContainer.getAttribute("wisp-label");
 
     if (!containerName) {
       console.error("Error: tab-con is missing a 'label' attribute.");
@@ -484,7 +484,7 @@ async function renderInputs() {
 
     var tabs = tabContainer.querySelectorAll(".tab-view");
     tabs.forEach(function (tab, index) {
-      var title = tab.getAttribute("label");
+      var title = tab.getAttribute("wisp-label");
 
       if (!title) {
         console.error("Error: tab-view is missing a 'label' attribute.");
@@ -593,14 +593,15 @@ async function renderInputs() {
     headerIcon.setAttribute("data-lucide", "chevron-down");
     header.appendChild(headerIcon);
 
-    headerLabel.innerHTML = collapsible.getAttribute("label");
+    headerLabel.innerHTML = collapsible.getAttribute("wisp-label");
     headerLabel.classList.add("collapsible-label");
     header.appendChild(headerLabel);
 
     header.appendChild(headerLine);
 
     header.classList.add("collapsible-header");
-    if (!collapsible.getAttribute("open")) header.classList.add("collapsed");
+    if (!collapsible.getAttribute("wisp-open"))
+      header.classList.add("collapsed");
     header.tabIndex = 0;
 
     header.onclick = function () {
@@ -615,7 +616,7 @@ async function renderInputs() {
       }
     });
 
-    if (!collapsible.getAttribute("open"))
+    if (!collapsible.getAttribute("wisp-open"))
       collapsible.classList.add("collapsed");
 
     collapsible.parentNode.insertBefore(header, collapsible);
@@ -755,15 +756,20 @@ function onResize() {
 
 // Clipboard functions ----------------------------------------------------------
 
-const copyTextToClipboard = (text) => {
+const copyTextToClipboard = (text, showText = true) => {
   navigator.clipboard.writeText(text);
-  toast(`${text} copied to clipboard!`, 0, "copy", 500);
+  toast(
+    showText ? `${text} copied to clipboard!` : "Copied to clipboard!",
+    0,
+    "copy",
+    500
+  );
 };
 
 const copyButtonRegister = (buttons) => {
   buttons.forEach((button) => {
     button[0].addEventListener("click", () => {
-      copyTextToClipboard(button[1].value);
+      copyTextToClipboard(button[1].value, false);
     });
   });
 };
@@ -795,6 +801,7 @@ const saveTextToFile = (text, filename) => {
   a.download = filename + ".txt";
   a.click();
   URL.revokeObjectURL(url);
+  toast("Saved as " + a.download, 0, "file-text", 1000);
 };
 
 const saveButtonRegister = (buttons) => {

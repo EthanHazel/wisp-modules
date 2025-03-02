@@ -40,26 +40,12 @@ MODE.forEach((input) => {
   });
 });
 
-COPY_BUTTON.addEventListener("click", function () {
-  const textArea = document.createElement("textarea");
-  textArea.value = OUTPUT.value;
-  document.body.appendChild(textArea);
-  textArea.select();
-  document.execCommand("copy");
-  textArea.remove();
-  toast("Copied to clipboard", 0, "clipboard", 250);
-});
+copyButtonRegister([[COPY_BUTTON, OUTPUT]]);
 
-PASTE_BUTTON.addEventListener("click", function () {
-  navigator.clipboard
-    .readText()
-    .then((text) => {
-      INPUT.value = text;
-      OUTPUT.value = convertCase(text);
-    })
-    .catch((err) => {
-      console.error("Error: ", err);
-    });
+PASTE_BUTTON.addEventListener("click", async function () {
+  const text = await getClipboardText();
+  INPUT.value = text;
+  OUTPUT.value = convertCase(text);
 });
 
 CLEAR_BUTTON.addEventListener("click", function () {
@@ -68,12 +54,5 @@ CLEAR_BUTTON.addEventListener("click", function () {
 });
 
 SAVE_BUTTON.addEventListener("click", function () {
-  const blob = new Blob([OUTPUT.value], { type: "text/plain;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `text-case.txt`;
-  a.click();
-  URL.revokeObjectURL(url);
-  toast("Saved as " + a.download, 0, "file-text", 1000);
+  saveTextToFile(OUTPUT.value, `text-case.txt`);
 });

@@ -1,39 +1,39 @@
-const inputs = {
-  hex: document.getElementById("hex-input"),
-  red: document.getElementById("hex-red"),
-  green: document.getElementById("hex-green"),
-  blue: document.getElementById("hex-blue"),
-  hsvHue: document.getElementById("hsv-hue"),
-  hsvSaturation: document.getElementById("hsv-saturation"),
-  hsvValue: document.getElementById("hsv-value"),
-  hslHue: document.getElementById("hsl-hue"),
-  hslSaturation: document.getElementById("hsl-saturation"),
-  hslLightness: document.getElementById("hsl-lightness"),
-  cyan: document.getElementById("cmyk-cyan"),
-  magenta: document.getElementById("cmyk-magenta"),
-  yellow: document.getElementById("cmyk-yellow"),
-  key: document.getElementById("cmyk-key"),
+const INPUTS = {
+  HEX: document.getElementById("hex-input"),
+  RED: document.getElementById("hex-red"),
+  GREEN: document.getElementById("hex-green"),
+  BLUE: document.getElementById("hex-blue"),
+  HSV_HUE: document.getElementById("hsv-hue"),
+  HSV_SAT: document.getElementById("hsv-saturation"),
+  HSV_VAL: document.getElementById("hsv-value"),
+  HSL_HUE: document.getElementById("hsl-hue"),
+  HSL_SAT: document.getElementById("hsl-saturation"),
+  HSL_LIGHT: document.getElementById("hsl-lightness"),
+  CYAN: document.getElementById("cmyk-cyan"),
+  MAGENTA: document.getElementById("cmyk-magenta"),
+  YELLOW: document.getElementById("cmyk-yellow"),
+  KEY: document.getElementById("cmyk-key"),
 };
 
-const buttons = {
-  convertHex: document.getElementById("convert-hex"),
-  convertRgb: document.getElementById("convert-rgb"),
-  convertHsv: document.getElementById("convert-hsv"),
-  convertHsl: document.getElementById("convert-hsl"),
-  convertCmyk: document.getElementById("convert-cmyk"),
-  clearHex: document.getElementById("clear-hex"),
-  clearRgb: document.getElementById("clear-rgb"),
-  clearHsv: document.getElementById("clear-hsv"),
-  clearHsl: document.getElementById("clear-hsl"),
-  clearCmyk: document.getElementById("clear-cmyk"),
-  copyHex: document.getElementById("copy-hex"),
-  copyRgb: document.getElementById("copy-rgb"),
-  copyHsv: document.getElementById("copy-hsv"),
-  copyHsl: document.getElementById("copy-hsl"),
-  copyCmyk: document.getElementById("copy-cmyk"),
+const BUTTONS = {
+  CONVERT_HEX: document.getElementById("convert-hex"),
+  CONVERT_RGB: document.getElementById("convert-rgb"),
+  CONVERT_HSV: document.getElementById("convert-hsv"),
+  CONVERT_HSL: document.getElementById("convert-hsl"),
+  CONVERT_CMYK: document.getElementById("convert-cmyk"),
+  CLEAR_HEX: document.getElementById("clear-hex"),
+  CLEAR_RGB: document.getElementById("clear-rgb"),
+  CLEAR_HSV: document.getElementById("clear-hsv"),
+  CLEAR_HSL: document.getElementById("clear-hsl"),
+  CLEAR_CMYK: document.getElementById("clear-cmyk"),
+  COPY_HEX: document.getElementById("copy-hex"),
+  COPY_RGB: document.getElementById("copy-rgb"),
+  COPY_HSV: document.getElementById("copy-hsv"),
+  COPY_HSL: document.getElementById("copy-hsl"),
+  COPY_CMYK: document.getElementById("copy-cmyk"),
 };
 
-const colorDisplay = document.getElementById("color");
+const COLOR_DISPLAY = document.getElementById("color");
 
 const hexToRgb = (hex) => ({
   r: parseInt(hex.slice(1, 3), 16),
@@ -165,7 +165,7 @@ const cmykToRgb = (c, m, y, k) => ({
 });
 
 const updateColorDisplay = (r, g, b) => {
-  colorDisplay.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+  COLOR_DISPLAY.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
 };
 
 const updateAllFields = (r, g, b) => {
@@ -173,28 +173,28 @@ const updateAllFields = (r, g, b) => {
   const hsl = rgbToHsl(r, g, b);
   const cmyk = rgbToCmyk(r, g, b);
 
-  inputs.red.value = r;
-  inputs.green.value = g;
-  inputs.blue.value = b;
-  inputs.hsvHue.value = Math.round(hsv.h);
-  inputs.hsvSaturation.value = Math.round(hsv.s);
-  inputs.hsvValue.value = Math.round(hsv.v);
-  inputs.hslHue.value = Math.round(hsl.h);
-  inputs.hslSaturation.value = Math.round(hsl.s);
-  inputs.hslLightness.value = Math.round(hsl.l);
-  inputs.cyan.value = Math.round(cmyk.c);
-  inputs.magenta.value = Math.round(cmyk.m);
-  inputs.yellow.value = Math.round(cmyk.y);
-  inputs.key.value = Math.round(cmyk.k);
-  inputs.hex.value = rgbToHex(r, g, b);
+  INPUTS.RED.value = r;
+  INPUTS.GREEN.value = g;
+  INPUTS.BLUE.value = b;
+  INPUTS.HSV_HUE.value = Math.round(hsv.h);
+  INPUTS.HSV_SAT.value = Math.round(hsv.s);
+  INPUTS.HSV_VAL.value = Math.round(hsv.v);
+  INPUTS.HSL_HUE.value = Math.round(hsl.h);
+  INPUTS.HSL_SAT.value = Math.round(hsl.s);
+  INPUTS.HSL_LIGHT.value = Math.round(hsl.l);
+  INPUTS.CYAN.value = Math.round(cmyk.c);
+  INPUTS.MAGENTA.value = Math.round(cmyk.m);
+  INPUTS.YELLOW.value = Math.round(cmyk.y);
+  INPUTS.KEY.value = Math.round(cmyk.k);
+  INPUTS.HEX.value = rgbToHex(r, g, b);
 
   updateColorDisplay(r, g, b);
 };
 
 const clearFields = (fields) => fields.forEach((field) => (field.value = ""));
 
-buttons.convertHex.addEventListener("click", () => {
-  let hex = inputs.hex.value;
+BUTTONS.CONVERT_HEX.addEventListener("click", () => {
+  let hex = INPUTS.HEX.value;
   if (hex.length === 3)
     hex = `#${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
   else if (hex.length === 4)
@@ -205,10 +205,10 @@ buttons.convertHex.addEventListener("click", () => {
   else toast("Invalid HEX color format!", 3, "error", 500);
 });
 
-buttons.convertRgb.addEventListener("click", () => {
-  const r = parseFloat(inputs.red.value);
-  const g = parseFloat(inputs.green.value);
-  const b = parseFloat(inputs.blue.value);
+BUTTONS.CONVERT_RGB.addEventListener("click", () => {
+  const r = parseFloat(INPUTS.RED.value);
+  const g = parseFloat(INPUTS.GREEN.value);
+  const b = parseFloat(INPUTS.BLUE.value);
   if ([r, g, b].every((val) => !isNaN(val) && val >= 0 && val <= 255))
     updateAllFields(r, g, b);
   else
@@ -220,76 +220,75 @@ buttons.convertRgb.addEventListener("click", () => {
     );
 });
 
-buttons.convertHsv.addEventListener("click", () => {
-  const h = parseFloat(inputs.hsvHue.value);
-  const s = parseFloat(inputs.hsvSaturation.value);
-  const v = parseFloat(inputs.hsvValue.value);
+BUTTONS.CONVERT_HSV.addEventListener("click", () => {
+  const h = parseFloat(INPUTS.HSV_HUE.value);
+  const s = parseFloat(INPUTS.HSV_SAT.value);
+  const v = parseFloat(INPUTS.HSV_VAL.value);
   if ([h, s, v].every((val) => !isNaN(val)))
     updateAllFields(...Object.values(hsvToRgb(h, s, v)));
   else toast("Invalid HSV values!", 3, "error", 500);
 });
 
-buttons.convertHsl.addEventListener("click", () => {
-  const h = parseFloat(inputs.hslHue.value);
-  const s = parseFloat(inputs.hslSaturation.value);
-  const l = parseFloat(inputs.hslLightness.value);
+BUTTONS.CONVERT_HSL.addEventListener("click", () => {
+  const h = parseFloat(INPUTS.HSL_HUE.value);
+  const s = parseFloat(INPUTS.HSL_SAT.value);
+  const l = parseFloat(INPUTS.HSL_LIGHT.value);
   if ([h, s, l].every((val) => !isNaN(val)))
     updateAllFields(...Object.values(hslToRgb(h, s, l)));
   else toast("Invalid HSL values!", 3, "error", 500);
 });
 
-buttons.convertCmyk.addEventListener("click", () => {
-  const c = parseFloat(inputs.cyan.value);
-  const m = parseFloat(inputs.magenta.value);
-  const y = parseFloat(inputs.yellow.value);
-  const k = parseFloat(inputs.key.value);
+BUTTONS.CONVERT_CMYK.addEventListener("click", () => {
+  const c = parseFloat(INPUTS.CYAN.value);
+  const m = parseFloat(INPUTS.MAGENTA.value);
+  const y = parseFloat(INPUTS.YELLOW.value);
+  const k = parseFloat(INPUTS.KEY.value);
   if ([c, m, y, k].every((val) => !isNaN(val)))
     updateAllFields(...Object.values(cmykToRgb(c, m, y, k)));
   else toast("Invalid CMYK values!", 3, "error", 500);
 });
 
-buttons.clearHex.addEventListener("click", () => clearFields([inputs.hex]));
-buttons.clearRgb.addEventListener("click", () =>
-  clearFields([inputs.red, inputs.green, inputs.blue])
+BUTTONS.CLEAR_HEX.addEventListener("click", () => clearFields([INPUTS.HEX]));
+BUTTONS.CLEAR_RGB.addEventListener("click", () =>
+  clearFields([INPUTS.RED, INPUTS.GREEN, INPUTS.BLUE])
 );
-buttons.clearHsv.addEventListener("click", () =>
-  clearFields([inputs.hsvHue, inputs.hsvSaturation, inputs.hsvValue])
+BUTTONS.CLEAR_HSV.addEventListener("click", () =>
+  clearFields([INPUTS.HSV_HUE, INPUTS.HSV_SAT, INPUTS.HSV_VAL])
 );
-buttons.clearHsl.addEventListener("click", () =>
-  clearFields([inputs.hslHue, inputs.hslSaturation, inputs.hslLightness])
+BUTTONS.CLEAR_HSL.addEventListener("click", () =>
+  clearFields([INPUTS.HSL_HUE, INPUTS.HSL_SAT, INPUTS.HSL_LIGHT])
 );
-buttons.clearCmyk.addEventListener("click", () =>
-  clearFields([inputs.cyan, inputs.magenta, inputs.yellow, inputs.key])
+BUTTONS.CLEAR_CMYK.addEventListener("click", () =>
+  clearFields([INPUTS.CYAN, INPUTS.MAGENTA, INPUTS.YELLOW, INPUTS.KEY])
 );
 
-buttons.copyHex.addEventListener("click", () =>
-  copyTextToClipboard(inputs.hex.value || "#000000")
-);
-buttons.copyRgb.addEventListener("click", () =>
+copyButtonRegister([[BUTTONS.COPY_HEX, INPUTS.HEX]]);
+
+BUTTONS.COPY_RGB.addEventListener("click", () =>
   copyTextToClipboard(
-    `rgb(${inputs.red.value || 0}, ${inputs.green.value || 0}, ${
-      inputs.blue.value || 0
+    `rgb(${INPUTS.RED.value || 0}, ${INPUTS.GREEN.value || 0}, ${
+      INPUTS.BLUE.value || 0
     })`
   )
 );
-buttons.copyHsv.addEventListener("click", () =>
+BUTTONS.COPY_HSV.addEventListener("click", () =>
   copyTextToClipboard(
-    `hsv(${inputs.hsvHue.value || 0}, ${inputs.hsvSaturation.value || 0}%, ${
-      inputs.hsvValue.value || 0
+    `hsv(${INPUTS.HSV_HUE.value || 0}, ${INPUTS.HSV_SAT.value || 0}%, ${
+      INPUTS.HSV_VAL.value || 0
     }%)`
   )
 );
-buttons.copyHsl.addEventListener("click", () =>
+BUTTONS.COPY_HSL.addEventListener("click", () =>
   copyTextToClipboard(
-    `hsl(${inputs.hslHue.value || 0}, ${inputs.hslSaturation.value || 0}%, ${
-      inputs.hslLightness.value || 0
+    `hsl(${INPUTS.HSL_HUE.value || 0}, ${INPUTS.HSL_SAT.value || 0}%, ${
+      INPUTS.HSL_LIGHT.value || 0
     }%)`
   )
 );
-buttons.copyCmyk.addEventListener("click", () =>
+BUTTONS.COPY_CMYK.addEventListener("click", () =>
   copyTextToClipboard(
-    `cmyk(${inputs.cyan.value || 0}, ${inputs.magenta.value || 0}, ${
-      inputs.yellow.value || 0
-    }, ${inputs.key.value || 0})`
+    `cmyk(${INPUTS.CYAN.value || 0}, ${INPUTS.MAGENTA.value || 0}, ${
+      INPUTS.YELLOW.value || 0
+    }, ${INPUTS.KEY.value || 0})`
   )
 );

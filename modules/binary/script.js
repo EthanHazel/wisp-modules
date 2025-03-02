@@ -1,3 +1,14 @@
+const TEXT_INPUT = document.getElementById("text-input");
+const BINARY_OUTPUT = document.getElementById("binary-output");
+
+const BINARY_INPUT = document.getElementById("binary-input");
+const TEXT_OUTPUT = document.getElementById("text-output");
+
+const COPY_BUTTON = document.getElementById("copy-button");
+const PASTE_BUTTON = document.getElementById("paste-button");
+const CLEAR_BUTTON = document.getElementById("clear-button");
+const SAVE_BUTTON = document.getElementById("save-button");
+
 function getCurrentMode() {
   const tabIndex = getCurrentTabIndex("Convert");
   if (tabIndex === 0) {
@@ -9,85 +20,69 @@ function getCurrentMode() {
   }
 }
 
-document.getElementById("text-input").addEventListener("input", function () {
-  const text = this.value;
-  const binary = text
+function convertTextToBinary(text) {
+  return text
     .split("")
     .map((char) => char.charCodeAt(0).toString(2).padStart(8, "0"))
     .join(" ");
-  document.getElementById("binary-output").value = binary;
-});
+}
 
-document.getElementById("binary-input").addEventListener("input", function () {
-  const binary = this.value;
-  const text = binary
+function convertBinaryToText(binary) {
+  return binary
     .split(" ")
     .map((bin) => String.fromCharCode(parseInt(bin, 2)))
     .join("");
-  document.getElementById("text-output").value = text;
+}
+
+TEXT_INPUT.addEventListener("input", function () {
+  const text = this.value;
+  BINARY_OUTPUT.value = convertTextToBinary(text);
 });
 
-document.getElementById("copy-button").addEventListener("click", function () {
+BINARY_INPUT.addEventListener("input", function () {
+  const binary = this.value;
+  TEXT_OUTPUT.value = convertBinaryToText(binary);
+});
+
+COPY_BUTTON.addEventListener("click", function () {
   const textToCopy =
     getCurrentMode() === "textToBinary"
-      ? document.getElementById("binary-output").value
-      : document.getElementById("text-output").value;
-  const textArea = document.createElement("textarea");
-  textArea.value = textToCopy;
-  document.body.appendChild(textArea);
-  textArea.select();
-  document.execCommand("copy");
-  textArea.remove();
-  toast("Copied to clipboard", 0, "clipboard", 250);
+      ? BINARY_OUTPUT.value
+      : TEXT_OUTPUT.value;
+  copyTextToClipboard(textToCopy, false);
 });
 
-document.getElementById("paste-button").addEventListener("click", function () {
-  navigator.clipboard
-    .readText()
-    .then((text) => {
-      const mode = getCurrentMode();
-      if (mode === "textToBinary") {
-        document.getElementById("text-input").value = text;
-        document.getElementById("binary-output").value = text
-          .split("")
-          .map((char) => char.charCodeAt(0).toString(2).padStart(8, "0"))
-          .join(" ");
-      } else if (mode === "binaryToText") {
-        document.getElementById("binary-input").value = text;
-        document.getElementById("text-output").value = text
-          .split(" ")
-          .map((bin) => String.fromCharCode(parseInt(bin, 2)))
-          .join("");
-      }
-    })
-    .catch((err) => {
-      console.error("Error: ", err);
-    });
-});
-
-document.getElementById("clear-button").addEventListener("click", function () {
-  const mode = getCurrentMode();
-  if (mode === "textToBinary") {
-    document.getElementById("text-input").value = "";
-    document.getElementById("binary-output").value = "";
-  } else if (mode === "binaryToText") {
-    document.getElementById("binary-input").value = "";
-    document.getElementById("text-output").value = "";
+PASTE_BUTTON.addEventListener("click", async function () {
+  try {
+    const text = await getClipboardText();
+    const mode = getCurrentMode();
+    if (mode === "textToBinary") {
+      TEXT_INPUT.value = text;
+      BINARY_OUTPUT.value = convertTextToBinary(text);
+    } else if (mode === "binaryToText") {
+      BINARY_INPUT.value = text;
+      TEXT_OUTPUT.value = convertBinaryToText(text);
+    }
+  } catch (err) {
+    console.error("Error: ", err);
   }
 });
 
-document.getElementById("save-button").addEventListener("click", function () {
+CLEAR_BUTTON.addEventListener("click", function () {
+  const mode = getCurrentMode();
+  if (mode === "textToBinary") {
+    TEXT_INPUT.value = "";
+    BINARY_OUTPUT.value = "";
+  } else if (mode === "binaryToText") {
+    BINARY_INPUT.value = "";
+    TEXT_OUTPUT.value = "";
+  }
+});
+
+SAVE_BUTTON.addEventListener("click", function () {
   const mode = getCurrentMode();
   const textToSave =
-    mode === "textToBinary"
-      ? document.getElementById("binary-output").value
-      : document.getElementById("text-output").value;
-  const blob = new Blob([textToSave], { type: "text/plain;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `${mode}.txt`;
-  a.click();
-  URL.revokeObjectURL(url);
-  toast("Saved as " + a.download, 0, "file-text", 1000);
+    mode === "textToBinary" ? BINARY_OUTPUT.value : TEXT_OUTPUT.value;
+  saveTextToFile(textToSave, mode);
+  toast(`Saved as ${mode}.txt`, 0, "file-text", 1000);
 });
