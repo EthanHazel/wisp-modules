@@ -58,6 +58,30 @@ document
 // Input rendering -----------------------------------------------------------
 
 async function renderInputs() {
+  // Text input code ------------------------------------------------------------
+
+  document
+    .querySelectorAll(
+      "input[type='text'], input[type='email'], input[type='url']"
+    )
+    .forEach(function (input) {
+      // Disabled handler
+      disabledHandler(input, input);
+      if (input.getAttribute("rendered")) return;
+      input.setAttribute("rendered", true);
+
+      if (input.getAttribute("wisp-for")) {
+        const FOR_BUTTON = document.getElementById(
+          input.getAttribute("wisp-for")
+        );
+        input.addEventListener("keyup", (e) => {
+          if (e.key === "Enter") {
+            FOR_BUTTON.click();
+          }
+        });
+      }
+    });
+
   // Button Icon code ----------------------------------------------------------
 
   document
@@ -759,6 +783,24 @@ const pasteButtonRegister = (buttons) => {
     button[0].addEventListener("click", async () => {
       const text = await getClipboardText();
       button[1].value = text;
+    });
+  });
+};
+
+const saveTextToFile = (text, filename) => {
+  const blob = new Blob([text], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename + ".txt";
+  a.click();
+  URL.revokeObjectURL(url);
+};
+
+const saveButtonRegister = (buttons) => {
+  buttons.forEach((button) => {
+    button[0].addEventListener("click", () => {
+      saveTextToFile(button[1].value, button[2]);
     });
   });
 };
