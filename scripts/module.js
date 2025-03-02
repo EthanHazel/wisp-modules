@@ -662,6 +662,8 @@ function openTab(containerName, tabName) {
   document.getElementById(tabName + "-" + containerName).click();
 }
 
+// Toast code ---------------------------------------------------------------
+
 function toast(message, type = 0, icon, time = 5000) {
   var toastContainer = document.getElementById("toast-container");
   if (!toastContainer) {
@@ -726,6 +728,48 @@ function onResize() {
     document.body.classList.remove("is-mobile");
   }
 }
+
+// Clipboard functions ----------------------------------------------------------
+
+const copyTextToClipboard = (text) => {
+  navigator.clipboard.writeText(text);
+  toast(`${text} copied to clipboard!`, 0, "copy", 500);
+};
+
+const copyButtonRegister = (buttons) => {
+  buttons.forEach((button) => {
+    button[0].addEventListener("click", () => {
+      copyTextToClipboard(button[1].value);
+    });
+  });
+};
+
+const getClipboardText = async () => {
+  try {
+    const text = await navigator.clipboard.readText();
+    return text;
+  } catch (err) {
+    toast("Failed to read clipboard!", 3, "alert-triangle", 500);
+    return "";
+  }
+};
+
+const pasteButtonRegister = (buttons) => {
+  buttons.forEach((button) => {
+    button[0].addEventListener("click", async () => {
+      const text = await getClipboardText();
+      button[1].value = text;
+    });
+  });
+};
+
+const clearButtonRegister = (buttons) => {
+  buttons.forEach((button) => {
+    button[0].addEventListener("click", () => {
+      button[1].value = button[2] || "";
+    });
+  });
+};
 
 // Render all lucide icons --------------------------------------------
 
